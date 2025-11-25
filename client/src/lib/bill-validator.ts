@@ -64,10 +64,13 @@ export const generateFileName = (projectName: string, extension: string): string
 
 // Bill Statistics
 export const calculateBillStats = (items: any[]) => {
-  const validItems = items.filter(item => item.quantity > 0);
-  const totalAmount = validItems.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
+  const validItems = items.filter(item => item.quantity > 0 && item.rate > 0);
+  const totalAmount = validItems.reduce((sum, item) => {
+    const amount = (item.quantity * item.rate);
+    return sum + (isFinite(amount) ? amount : 0);
+  }, 0);
   const itemCount = validItems.length;
-  return { totalAmount, itemCount, validItems };
+  return { totalAmount: Math.max(0, totalAmount), itemCount, validItems };
 };
 
 // Bill History Management (using localStorage)
