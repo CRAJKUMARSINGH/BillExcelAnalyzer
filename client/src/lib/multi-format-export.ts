@@ -549,13 +549,10 @@ export const generateZIP = async (project: ProjectDetails, items: BillItem[]) =>
   const wb = utils.book_new();
   utils.book_append_sheet(wb, ws, "Bill Summary");
   
-  // Use proper write API
-  const excelBinary = utils.write(wb, { bookType: 'xlsx', type: 'binary' });
-  const excelBuffer = new Uint8Array(excelBinary.length);
-  for (let i = 0; i < excelBinary.length; i++) {
-    excelBuffer[i] = excelBinary.charCodeAt(i) & 0xff;
-  }
-  zip.file("bill_summary.xlsx", excelBuffer);
+  // Generate Excel file in the ZIP
+  const excelFileName = "bill_summary.xlsx";
+  const excelContent = utils.write(wb, { bookType: 'xlsx', type: 'array' }) as Uint8Array;
+  zip.file(excelFileName, excelContent);
 
   // Add HTML
   const htmlContent = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Bill</title><style>body{font-family:Calibri,Arial;font-size:9pt}table{border-collapse:collapse;width:100%;margin:15px 0}th,td{border:1px solid #000;padding:6px;font-family:Calibri,Arial}th{background:#f0f0f0;font-weight:bold;text-align:center}.amount{text-align:right}.total-row{background:#e8f5e9;font-weight:bold}.premium-row{background:#fff3e0;font-weight:bold}.payable-row{background:#c8e6c9;font-weight:bold}</style></head><body><h1>CONTRACTOR BILL - ${project.projectName}</h1><p>Contractor: ${project.contractorName}</p><p>Date: ${project.billDate.toLocaleDateString()}</p><table><thead><tr><th>Unit</th><th>Qty Last</th><th>Qty Total</th><th>S.No</th><th>Item</th><th class="amount">Rate</th><th class="amount">Amount</th><th>Prev</th><th>Remarks</th></tr></thead><tbody>${items.filter(item => item.quantity > 0).map(item => `<tr><td>${item.unit}</td><td class="amount">${item.previousQty}</td><td class="amount">${item.quantity}</td><td>${item.itemNo}</td><td>${item.description}</td><td class="amount">₹${item.rate.toFixed(2)}</td><td class="amount">₹${(item.quantity * item.rate).toFixed(2)}</td><td>0</td><td></td></tr>`).join('')}<tr class="total-row"><td colspan="4"></td><td><strong>Grand Total</strong></td><td></td><td class="amount"><strong>₹${totalAmount.toFixed(2)}</strong></td><td></td><td></td></tr><tr class="premium-row"><td colspan="4"></td><td><strong>Premium @${project.tenderPremium}%</strong></td><td></td><td class="amount"><strong>₹${premiumAmount.toFixed(2)}</strong></td><td></td><td></td></tr><tr class="payable-row"><td colspan="4"></td><td><strong>NET PAYABLE</strong></td><td></td><td class="amount"><strong>₹${netPayable.toFixed(2)}</strong></td><td></td><td></td></tr></tbody></table></body></html>`;
