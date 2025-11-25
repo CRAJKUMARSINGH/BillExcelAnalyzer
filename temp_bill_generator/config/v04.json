@@ -1,0 +1,28 @@
+{
+  "app_name": "BillGeneratorV04",
+  "version": "1.0.0",
+  "mode": "V04",
+  "features": {
+    "excel_upload": true,
+    "online_entry": true,
+    "batch_processing": true,
+    "advanced_pdf": true,
+    "custom_templates": true,
+    "analytics": false,
+    "api_access": false
+  },
+  "ui": {
+    "theme": "dark",
+    "show_debug": true,
+    "branding": {
+      "title": "Bill Generator V04 - Advanced",
+      "icon": "\ud83d\ude80",
+      "color": "#9f7aea"
+    }
+  },
+  "processing": {
+    "max_file_size_mb": 20,
+    "enable_caching": true,
+    "pdf_engine": "weasyprint"
+  }
+}

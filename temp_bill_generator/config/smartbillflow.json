@@ -1,0 +1,39 @@
+{
+  "app_name": "SmartBillFlow",
+  "version": "2.0.0",
+  "mode": "SmartBillFlow",
+  "features": {
+    "excel_upload": true,
+    "online_entry": true,
+    "batch_processing": true,
+    "advanced_pdf": true,
+    "custom_templates": true,
+    "analytics": true,
+    "api_access": true,
+    "smart_naming": true,
+    "smart_validation": true,
+    "smart_defaults": true
+  },
+  "ui": {
+    "theme": "smart",
+    "show_debug": false,
+    "branding": {
+      "title": "SmartBillFlow - Intelligent Bill Generation",
+      "icon": "\u26a1",
+      "color": "#3182ce"
+    }
+  },
+  "processing": {
+    "max_file_size_mb": 50,
+    "enable_caching": true,
+    "pdf_engine": "weasyprint",
+    "smart_features_enabled": true
+  },
+  "smart_features": {
+    "auto_validation": true,
+    "smart_naming": true,
+    "progress_tracking": true,
+    "error_suggestions": true,
+    "analytics_enabled": true
+  }
+}

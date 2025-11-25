@@ -1,0 +1,246 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Deviation Statement</title>
+            <style>
+                @page { 
+                    size: A4 landscape; 
+                    margin: 10mm;
+                }
+                * { box-sizing: border-box; }
+                body { 
+                    font-family: Arial, sans-serif; 
+                    margin: 0; 
+                    padding: 10mm;
+                    font-size: 9pt; 
+                }
+                .header { text-align: center; margin-bottom: 8px; }
+                .subtitle { font-size: 10pt; margin: 3px 0; }
+                table { 
+                    width: 100%; 
+                    border-collapse: collapse; 
+                    margin: 4px 0; 
+                    table-layout: fixed;
+                }
+                thead { display: table-header-group; }
+                tr, img { break-inside: avoid; }
+                th, td { 
+                    border: 1px solid #000; 
+                    padding: 3px; 
+                    text-align: left; 
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                    font-size: 8.5pt;
+                }
+                th { background-color: #f0f0f0; font-weight: bold; }
+                .amount { text-align: right; }
+                
+                /* Column-specific widths for Deviation Statement (percentages) */
+                th:nth-child(1), td:nth-child(1) { width: 2.20%; }   /* Item No */
+                th:nth-child(2), td:nth-child(2) { width: 43.22%; }  /* Description */
+                th:nth-child(3), td:nth-child(3) { width: 3.85%; }   /* Unit */
+                th:nth-child(4), td:nth-child(4) { width: 3.85%; }   /* Qty WO */
+                th:nth-child(5), td:nth-child(5) { width: 3.85%; }   /* Rate */
+                th:nth-child(6), td:nth-child(6) { width: 3.85%; }   /* Amt WO */
+                th:nth-child(7), td:nth-child(7) { width: 3.85%; }   /* Qty Exec */
+                th:nth-child(8), td:nth-child(8) { width: 3.85%; }   /* Amt Exec */
+                th:nth-child(9), td:nth-child(9) { width: 3.85%; }   /* Excess Qty */
+                th:nth-child(10), td:nth-child(10) { width: 3.85%; } /* Excess Amt */
+                th:nth-child(11), td:nth-child(11) { width: 3.85%; } /* Saving Qty */
+                th:nth-child(12), td:nth-child(12) { width: 3.85%; } /* Saving Amt */
+                th:nth-child(13), td:nth-child(13) { width: 17.58%; } /* Remarks */
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <div class="subtitle">Deviation Statement</div>
+                <div class="subtitle">Date: 12/11/2025</div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 6mm;">ITEM No.</th>
+                        <th style="width: 118mm;">Description</th>
+                        <th style="width: 10.5mm;">Unit</th>
+                        <th style="width: 10.5mm;">Qty as per Work Order</th>
+                        <th style="width: 10.5mm;">Rate</th>
+                        <th style="width: 10.5mm;">Amt as per Work Order Rs.</th>
+                        <th style="width: 10.5mm;">Qty Executed</th>
+                        <th style="width: 10.5mm;">Amt as per Executed Rs.</th>
+                        <th style="width: 10.5mm;">Excess Qty</th>
+                        <th style="width: 10.5mm;">Excess Amt Rs.</th>
+                        <th style="width: 10.5mm;">Saving Qty</th>
+                        <th style="width: 10.5mm;">Saving Amt Rs.</th>
+                        <th style="width: 48mm;">REMARKS/ REASON.</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr>
+                        <td>1.0</td>
+                        <td>Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR</td>
+                        <td>nan</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td>Short point (up to 3 mtr.)</td>
+                        <td>P. point</td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">256.00</td>
+                        <td class="amount">12800.00</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">12800.00</td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td>Medium point (up to 6 mtr.)</td>
+                        <td>P. point</td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">472.00</td>
+                        <td class="amount">23600.00</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">23600.00</td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td>Long point  (up to 10 mtr.)</td>
+                        <td>P. point</td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">662.00</td>
+                        <td class="amount">33100.00</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">33100.00</td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td>2.0</td>
+                        <td>Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR</td>
+                        <td>nan</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td>On board</td>
+                        <td>P. point</td>
+                        <td class="amount">100.00</td>
+                        <td class="amount">136.00</td>
+                        <td class="amount">13600.00</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount">100.00</td>
+                        <td class="amount">13600.00</td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td>3.0</td>
+                        <td>P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure "A" attached with this BSR .</td>
+                        <td>Each</td>
+                        <td class="amount">10.00</td>
+                        <td class="amount">23.00</td>
+                        <td class="amount">230.00</td>
+                        <td class="amount">8.00</td>
+                        <td class="amount">184.00</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount">2.00</td>
+                        <td class="amount">46.00</td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td>Total</td>
+                        <td>nan</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td>Add Tender Premium </td>
+                        <td>%</td>
+                        <td class="amount">5.11</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount">5.11</td>
+                        <td class="amount"></td>
+                        <td></td>
+                    </tr>
+            
+                    <tr>
+                        <td></td>
+                        <td>Grand Total</td>
+                        <td>nan</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td></td>
+                    </tr>
+            
+                </tbody>
+            </table>
+        </body>
+        </html>
+        

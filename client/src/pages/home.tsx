@@ -1,0 +1,410 @@
+import React, { useState } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon, Plus, Trash2, FileSpreadsheet, Calculator } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { generateExcel } from "@/lib/excel-export";
+import { useToast } from "@/hooks/use-toast";
+
+// Form Schema
+const billSchema = z.object({
+  projectName: z.string().min(1, "Project name is required"),
+  contractorName: z.string().min(1, "Contractor name is required"),
+  billDate: z.date(),
+  tenderPremium: z.coerce.number().min(0).max(100),
+  items: z.array(z.object({
+    itemNo: z.string().min(1, "Item No required"),
+    description: z.string().min(1, "Description required"),
+    quantity: z.coerce.number().min(0),
+    rate: z.coerce.number().min(0),
+    unit: z.string().optional(),
+    previousQty: z.coerce.number().optional().default(0),
+  })).min(1, "At least one item is required"),
+});
+
+type BillFormValues = z.infer<typeof billSchema>;
+
+export default function Home() {
+  const { toast } = useToast();
+  const [activeTab, setActiveTab] = useState<"online" | "excel">("online");
+
+  const form = useForm<BillFormValues>({
+    resolver: zodResolver(billSchema),
+    defaultValues: {
+      projectName: "",
+      contractorName: "",
+      billDate: new Date(),
+      tenderPremium: 4.0,
+      items: [
+        { itemNo: "001", description: "Earth work in excavation", quantity: 100, rate: 450, unit: "cum", previousQty: 0 },
+        { itemNo: "002", description: "PCC 1:4:8", quantity: 50, rate: 3200, unit: "cum", previousQty: 0 },
+        { itemNo: "003", description: "Brick work 1:6", quantity: 150, rate: 5600, unit: "cum", previousQty: 0 },
+      ],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "items",
+  });
+
+  // Calculate totals for preview
+  const items = form.watch("items");
+  const tenderPremium = form.watch("tenderPremium");
+  
+  const totalAmount = items.reduce((sum, item) => sum + (Number(item.quantity) * Number(item.rate)), 0);
+  const premiumAmount = totalAmount * (Number(tenderPremium) / 100);
+  const netPayable = totalAmount + premiumAmount;
+
+  const onSubmit = (data: BillFormValues) => {
+    try {
+      generateExcel(
+        {
+          projectName: data.projectName,
+          contractorName: data.contractorName,
+          billDate: data.billDate,
+          tenderPremium: data.tenderPremium,
+        },
+        data.items.map(item => ({
+           ...item,
+           id: Math.random().toString(), // temp id
+           unit: item.unit || "",
+           previousQty: item.previousQty || 0
+        }))
+      );
+      
+      toast({
+        title: "Success!",
+        description: "Bill generated and Excel file downloaded.",
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: "Failed to generate Excel file.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col md:flex-row bg-slate-50">
+      {/* Sidebar */}
+      <aside className="w-full md:w-64 bg-white border-r border-slate-200 p-4 flex-shrink-0">
+        <div className="bg-gradient-to-br from-emerald-500 to-teal-500 p-4 rounded-xl text-center text-white shadow-lg shadow-emerald-500/20 mb-6">
+          <div className="text-4xl mb-2">📑</div>
+          <h2 className="font-bold text-lg">BillGenerator</h2>
+          <p className="text-xs opacity-90">Unified System v2.0</p>
+        </div>
+
+        <nav className="space-y-2">
+          <Button 
+            variant={activeTab === "online" ? "secondary" : "ghost"} 
+            className={cn("w-full justify-start", activeTab === "online" && "bg-emerald-50 text-emerald-700 font-semibold")}
+            onClick={() => setActiveTab("online")}
+          >
+            <span className="mr-2">💻</span> Online Entry
+          </Button>
+          <Button 
+            variant={activeTab === "excel" ? "secondary" : "ghost"} 
+            className={cn("w-full justify-start", activeTab === "excel" && "bg-emerald-50 text-emerald-700 font-semibold")}
+            onClick={() => setActiveTab("excel")}
+          >
+            <span className="mr-2">📊</span> Excel Upload
+          </Button>
+          <Button variant="ghost" className="w-full justify-start" disabled>
+            <span className="mr-2">📦</span> Batch Processing
+          </Button>
+          <Button variant="ghost" className="w-full justify-start" disabled>
+            <span className="mr-2">📈</span> Analytics
+          </Button>
+        </nav>
+
+        <div className="mt-8">
+          <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Features Status</h3>
+          <div className="space-y-2 text-sm">
+            <div className="flex items-center text-emerald-700 bg-emerald-50 px-3 py-2 rounded-lg border-l-4 border-emerald-500">
+              <span className="mr-2">✅</span> Online Entry
+            </div>
+            <div className="flex items-center text-slate-500 bg-slate-100 px-3 py-2 rounded-lg border-l-4 border-slate-300">
+              <span className="mr-2">❌</span> Batch Processing
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 p-4 md:p-8 overflow-auto">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl p-8 text-white text-center shadow-xl shadow-emerald-500/20 mb-8 animate-in slide-in-from-top duration-500">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-sm">BillGenerator Unified</h1>
+          <p className="text-emerald-50">✨ Professional Bill Generation System | Version 2.0.0</p>
+        </div>
+
+        {activeTab === "online" ? (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 max-w-5xl mx-auto">
+              
+              {/* Project Details Card */}
+              <Card className="border-slate-200 shadow-sm">
+                <CardHeader className="bg-slate-50/50 border-b border-slate-100 pb-4">
+                  <CardTitle className="flex items-center text-slate-700">
+                    <span className="mr-2">📋</span> Project Details
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="grid md:grid-cols-2 gap-6 pt-6">
+                  <FormField
+                    control={form.control}
+                    name="projectName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Project Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Enter project name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="contractorName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Contractor Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Enter contractor name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="billDate"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col">
+                        <FormLabel>Bill Date</FormLabel>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                variant={"outline"}
+                                className={cn(
+                                  "w-full pl-3 text-left font-normal",
+                                  !field.value && "text-muted-foreground"
+                                )}
+                              >
+                                {field.value ? (
+                                  format(field.value, "PPP")
+                                ) : (
+                                  <span>Pick a date</span>
+                                )}
+                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <Calendar
+                              mode="single"
+                              selected={field.value}
+                              onSelect={field.onChange}
+                              disabled={(date) =>
+                                date > new Date() || date < new Date("1900-01-01")
+                              }
+                              initialFocus
+                            />
+                          </PopoverContent>
+                        </Popover>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tenderPremium"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Tender Premium (%)</FormLabel>
+                        <FormControl>
+                          <Input type="number" step="0.01" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+
+              {/* Work Items Card */}
+              <Card className="border-slate-200 shadow-sm">
+                <CardHeader className="bg-slate-50/50 border-b border-slate-100 pb-4 flex flex-row items-center justify-between">
+                  <CardTitle className="flex items-center text-slate-700">
+                    <span className="mr-2">🔨</span> Work Items
+                  </CardTitle>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className="text-emerald-600 border-emerald-200 hover:bg-emerald-50"
+                    onClick={() => append({ itemNo: "", description: "", quantity: 0, rate: 0, unit: "", previousQty: 0 })}
+                  >
+                    <Plus className="w-4 h-4 mr-1" /> Add Item
+                  </Button>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <div className="space-y-4">
+                    {fields.map((field, index) => (
+                      <div key={field.id} className="grid grid-cols-12 gap-2 items-start bg-slate-50 p-3 rounded-lg border border-slate-100 group hover:border-emerald-200 transition-colors">
+                        <div className="col-span-1">
+                          <FormField
+                            control={form.control}
+                            name={`items.${index}.itemNo`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-xs text-slate-500">No.</FormLabel>
+                                <FormControl>
+                                  <Input {...field} className="h-8 text-sm" />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <div className="col-span-4">
+                          <FormField
+                            control={form.control}
+                            name={`items.${index}.description`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-xs text-slate-500">Description</FormLabel>
+                                <FormControl>
+                                  <Input {...field} className="h-8 text-sm" />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <div className="col-span-1">
+                          <FormField
+                            control={form.control}
+                            name={`items.${index}.unit`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-xs text-slate-500">Unit</FormLabel>
+                                <FormControl>
+                                  <Input {...field} className="h-8 text-sm" />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <FormField
+                            control={form.control}
+                            name={`items.${index}.quantity`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-xs text-slate-500">Quantity</FormLabel>
+                                <FormControl>
+                                  <Input type="number" step="0.01" {...field} className="h-8 text-sm" />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <FormField
+                            control={form.control}
+                            name={`items.${index}.rate`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-xs text-slate-500">Rate</FormLabel>
+                                <FormControl>
+                                  <Input type="number" step="0.01" {...field} className="h-8 text-sm" />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <div className="col-span-2 flex items-end pb-1">
+                           <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8 text-red-500 hover:text-red-700 hover:bg-red-50 ml-auto"
+                            onClick={() => remove(index)}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {fields.length === 0 && (
+                     <div className="text-center py-8 text-slate-400 italic border-2 border-dashed border-slate-200 rounded-lg">
+                       No items added. Click "Add Item" to start.
+                     </div>
+                  )}
+
+                  {/* Summary Section */}
+                  <div className="mt-8 bg-slate-100/50 rounded-xl p-6 border border-slate-200">
+                    <h3 className="text-sm font-semibold text-slate-600 mb-4 flex items-center">
+                      <Calculator className="w-4 h-4 mr-2" /> Summary
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                        <p className="text-xs text-slate-500 font-medium uppercase">Total Amount</p>
+                        <p className="text-2xl font-bold text-slate-700">₹{totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                        <p className="text-xs text-slate-500 font-medium uppercase">Premium ({tenderPremium}%)</p>
+                        <p className="text-2xl font-bold text-emerald-600">+ ₹{premiumAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                      </div>
+                      <div className="bg-emerald-50 p-4 rounded-lg shadow-sm border border-emerald-100">
+                        <p className="text-xs text-emerald-700 font-medium uppercase">Net Payable</p>
+                        <p className="text-2xl font-bold text-emerald-700">₹{netPayable.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <div className="flex justify-end pt-4">
+                <Button type="submit" size="lg" className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25 w-full md:w-auto">
+                  <FileSpreadsheet className="w-4 h-4 mr-2" /> Generate Documents & Excel
+                </Button>
+              </div>
+
+            </form>
+          </Form>
+        ) : (
+          <div className="flex flex-col items-center justify-center h-[60vh] text-slate-400 bg-white rounded-xl border-2 border-dashed border-slate-200">
+            <FileSpreadsheet className="w-16 h-16 mb-4 opacity-20" />
+            <h3 className="text-lg font-semibold text-slate-600">Excel Upload Mode</h3>
+            <p className="text-sm">Coming soon to this prototype...</p>
+            <Button variant="outline" className="mt-4" onClick={() => setActiveTab("online")}>
+              Switch to Online Entry
+            </Button>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}

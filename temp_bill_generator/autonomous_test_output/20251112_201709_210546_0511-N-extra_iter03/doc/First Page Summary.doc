@@ -1,0 +1,208 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>First Page Summary</title>
+            <style>
+                @page { 
+                    size: A4; 
+                    margin: 10mm;
+                }
+                * { box-sizing: border-box; }
+                body { 
+                    font-family: Arial, sans-serif; 
+                    margin: 0; 
+                    padding: 10mm;
+                    font-size: 10pt; 
+                }
+                .header { text-align: center; margin-bottom: 8px; }
+                .subtitle { font-size: 11pt; margin: 3px 0; }
+                table { 
+                    width: 100%; 
+                    border-collapse: collapse; 
+                    margin: 6px 0; 
+                    table-layout: fixed;
+                }
+                thead { display: table-header-group; }
+                tr, img { break-inside: avoid; }
+                th, td { 
+                    border: 1px solid #000; 
+                    padding: 4px; 
+                    text-align: left; 
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                    vertical-align: top;
+                }
+                th { background-color: #f0f0f0; font-weight: bold; }
+                .amount { text-align: right; }
+                .total-row { font-weight: bold; }
+                .highlight-row { background-color: #f0f0f0; font-weight: bold; }
+                
+                /* Column-specific widths for PDF compatibility (percentages) */
+                th:nth-child(1), td:nth-child(1) { width: 5.89%; }   /* Unit */
+                th:nth-child(2), td:nth-child(2) { width: 8.06%; }   /* Qty Since */
+                th:nth-child(3), td:nth-child(3) { width: 8.06%; }   /* Qty Upto */
+                th:nth-child(4), td:nth-child(4) { width: 5.59%; }   /* S.No */
+                th:nth-child(5), td:nth-child(5) { width: 37.38%; }  /* Description */
+                th:nth-child(6), td:nth-child(6) { width: 7.71%; }   /* Rate */
+                th:nth-child(7), td:nth-child(7) { width: 11.44%; }  /* Amt Upto */
+                th:nth-child(8), td:nth-child(8) { width: 8.87%; }   /* Amt Since */
+                th:nth-child(9), td:nth-child(9) { width: 7.00%; }   /* Remarks */
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <div class="subtitle">First Page Summary</div>
+                <div class="subtitle">Date: 12/11/2025</div>
+            </div>
+            
+            <h3>Project Information</h3>
+            <table>
+                <tr><td><strong>Project Name:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Contract No:</strong></td><td>N/A</td></tr>
+                <tr><td><strong>Work Order No:</strong></td><td>N/A</td></tr>
+            </table>
+            
+            <h3>Work Items Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 10.06mm;">Unit</th>
+                        <th style="width: 13.76mm;">Quantity executed (or supplied) since last certificate</th>
+                        <th style="width: 13.76mm;">Quantity executed (or supplied) upto date as per MB</th>
+                        <th style="width: 9.55mm;">S. No.</th>
+                        <th style="width: 63.83mm;">Item of Work supplies (Grouped under "sub-head" and "sub work" of estimate)</th>
+                        <th style="width: 13.16mm;">Rate</th>
+                        <th style="width: 19.53mm;">Upto date Amount</th>
+                        <th style="width: 15.15mm;">Amount Since previous bill (Total for each sub-head)</th>
+                        <th style="width: 11.96mm;">Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr>
+                        <td>nan</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td>1.0</td>
+                        <td>Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                    </tr>
+            
+                    <tr>
+                        <td>P. point</td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">50.00</td>
+                        <td></td>
+                        <td>Short point (up to 3 mtr.)</td>
+                        <td class="amount">256.00</td>
+                        <td class="amount">12800.00</td>
+                        <td class="amount">12800.00</td>
+                    </tr>
+            
+                    <tr>
+                        <td>P. point</td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">50.00</td>
+                        <td></td>
+                        <td>Medium point (up to 6 mtr.)</td>
+                        <td class="amount">472.00</td>
+                        <td class="amount">23600.00</td>
+                        <td class="amount">23600.00</td>
+                    </tr>
+            
+                    <tr>
+                        <td>P. point</td>
+                        <td class="amount">50.00</td>
+                        <td class="amount">50.00</td>
+                        <td></td>
+                        <td>Long point  (up to 10 mtr.)</td>
+                        <td class="amount">662.00</td>
+                        <td class="amount">33100.00</td>
+                        <td class="amount">33100.00</td>
+                    </tr>
+            
+                    <tr>
+                        <td>nan</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td>2.0</td>
+                        <td>Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                    </tr>
+            
+                    <tr>
+                        <td>P. point</td>
+                        <td class="amount">100.00</td>
+                        <td class="amount">100.00</td>
+                        <td></td>
+                        <td>On board</td>
+                        <td class="amount">136.00</td>
+                        <td class="amount">13600.00</td>
+                        <td class="amount">13600.00</td>
+                    </tr>
+            
+                    <tr>
+                        <td>Each</td>
+                        <td class="amount">10.00</td>
+                        <td class="amount">10.00</td>
+                        <td>3.0</td>
+                        <td>P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure "A" attached with this BSR .</td>
+                        <td class="amount">23.00</td>
+                        <td class="amount">230.00</td>
+                        <td class="amount">230.00</td>
+                    </tr>
+            
+                    <tr>
+                        <td>nan</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td></td>
+                        <td>Total</td>
+                        <td class="amount"></td>
+                        <td class="amount">83330.00</td>
+                        <td class="amount">83330.00</td>
+                    </tr>
+            
+                    <tr>
+                        <td>%</td>
+                        <td class="amount">5.11</td>
+                        <td class="amount">5.11</td>
+                        <td></td>
+                        <td>Add Tender Premium </td>
+                        <td class="amount"></td>
+                        <td class="amount">4258.16</td>
+                        <td class="amount">4258.16</td>
+                    </tr>
+            
+                    <tr>
+                        <td>nan</td>
+                        <td class="amount"></td>
+                        <td class="amount"></td>
+                        <td></td>
+                        <td>Grand Total</td>
+                        <td class="amount"></td>
+                        <td class="amount">87588.16</td>
+                        <td class="amount">87588.16</td>
+                    </tr>
+            
+                    <tr>
+                        <td colspan="6">Less: Amount Paid Vide Last Bill Rs.</td>
+                        <td class="amount">0.00</td>
+                        <td class="amount">0.00</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td colspan="6">NET PAYABLE AMOUNT Rs.</td>
+                        <td class="amount">87588.16</td>
+                        <td class="amount">87588.16</td>
+                    </tr>
+                </tbody>
+            </table>
+        </body>
+        </html>
+        
