@@ -1,0 +1,107 @@
+export interface BillHistoryEntry {
+  id: string;
+  projectName: string;
+  contractorName: string;
+  billDate: string;
+  totalAmount: number;
+  itemCount: number;
+  timestamp: string;
+}
+
+// Input Validation
+export const validateBillInput = (
+  projectName: string,
+  contractorName: string,
+  items: any[]
+) => {
+  const errors: string[] = [];
+
+  if (!projectName?.trim()) errors.push('Project name is required');
+  if (!contractorName?.trim()) errors.push('Contractor name is required');
+  if (!items || items.length === 0) errors.push('At least one item is required');
+
+  // Check for negative values
+  items?.forEach((item, idx) => {
+    if (item.quantity < 0) errors.push(`Item ${idx + 1}: Quantity cannot be negative`);
+    if (item.rate < 0) errors.push(`Item ${idx + 1}: Rate cannot be negative`);
+  });
+
+  // Check if any item has quantity > 0
+  const hasValidItems = items?.some(item => item.quantity > 0);
+  if (!hasValidItems) errors.push('At least one item must have quantity > 0');
+
+  return { isValid: errors.length === 0, errors };
+};
+
+// Currency Formatting
+export const formatCurrency = (amount: number): string => {
+  const formatted = parseFloat(amount.toString()).toFixed(2);
+  const parts = formatted.split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return `₹${parts.join('.')}`;
+};
+
+// Generate Filename with Timestamp
+export const generateFileName = (projectName: string, extension: string): string => {
+  const now = new Date();
+  const timestamp = now.toISOString().slice(0, 19).replace(/:/g, '');
+  const safeName = (projectName || 'bill').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+  return `${safeName}_Bill_${timestamp}.${extension}`;
+};
+
+// Bill Statistics
+export const calculateBillStats = (items: any[]) => {
+  const validItems = items.filter(item => item.quantity > 0);
+  const totalAmount = validItems.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
+  const itemCount = validItems.length;
+  return { totalAmount, itemCount, validItems };
+};
+
+// Bill History Management (using localStorage)
+const STORAGE_KEY = 'bill_history';
+const MAX_HISTORY = 20;
+
+export const saveBillToHistory = (projectData: any, items: any[], totalAmount: number) => {
+  const entry: BillHistoryEntry = {
+    id: Math.random().toString(36).substr(2, 9),
+    projectName: projectData.projectName,
+    contractorName: projectData.contractorName,
+    billDate: projectData.billDate.toLocaleDateString(),
+    totalAmount,
+    itemCount: items.filter(i => i.quantity > 0).length,
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    const history = getBillHistory();
+    history.unshift(entry);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(0, MAX_HISTORY)));
+  } catch (err) {
+    console.error('Failed to save to history:', err);
+  }
+};
+
+export const getBillHistory = (): BillHistoryEntry[] => {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch (err) {
+    console.error('Failed to read history:', err);
+    return [];
+  }
+};
+
+export const clearBillHistory = () => {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (err) {
+    console.error('Failed to clear history:', err);
+  }
+};
+
+// Error Message Handler
+export const getErrorMessage = (error: any): string => {
+  if (typeof error === 'string') return error;
+  if (error?.message) return error.message;
+  return 'An unexpected error occurred. Please try again.';
+};

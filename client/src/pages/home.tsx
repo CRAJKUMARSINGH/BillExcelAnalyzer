@@ -3,19 +3,12 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon, Plus, Trash2, FileSpreadsheet, Calculator, RefreshCw, Zap, Download, File } from "lucide-react";
+import { Calendar as CalendarIcon, Plus, Trash2, FileSpreadsheet, Calculator, RefreshCw, Zap, Download, File, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -23,10 +16,10 @@ import { Separator } from "@/components/ui/separator";
 import { parseBillExcel } from "@/lib/excel-parser";
 import { useToast } from "@/hooks/use-toast";
 import { generateStyledExcel, generateHTML, generatePDF, generateZIP, generateCSV } from "@/lib/multi-format-export";
+import { validateBillInput, saveBillToHistory, calculateBillStats, getErrorMessage, formatCurrency } from "@/lib/bill-validator";
 import testFilesData from "@/data/test-files.json";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-// Form Schema
 const billSchema = z.object({
   projectName: z.string().min(1, "Project name is required"),
   contractorName: z.string().min(1, "Contractor name is required"),
@@ -44,62 +37,11 @@ const billSchema = z.object({
 
 type BillFormValues = z.infer<typeof billSchema>;
 
-const SAMPLE_DATA = {
-  "projectDetails": {
-    "projectName": "Sample Project",
-    "contractorName": "Sample Contractor",
-    "billDate": new Date("2025-11-25"),
-    "tenderPremium": 5.11
-  },
-  "items": [
-    {
-      "itemNo": "2",
-      "description": "Short point (up to 3 mtr.)",
-      "quantity": 52.0,
-      "rate": 256.0,
-      "unit": "P. point",
-      "previousQty": 0.0
-    },
-    {
-      "itemNo": "3",
-      "description": "Medium point (up to 6 mtr.)",
-      "quantity": 48.0,
-      "rate": 472.0,
-      "unit": "P. point",
-      "previousQty": 0.0
-    },
-    {
-      "itemNo": "4",
-      "description": "Long point  (up to 10 mtr.)",
-      "quantity": 52.0,
-      "rate": 662.0,
-      "unit": "P. point",
-      "previousQty": 0.0
-    },
-    {
-      "itemNo": "6",
-      "description": "On board",
-      "quantity": 102.0,
-      "rate": 136.0,
-      "unit": "P. point",
-      "previousQty": 0.0
-    },
-    {
-      "itemNo": "7",
-      "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch...",
-      "quantity": 8.0,
-      "rate": 23.0,
-      "unit": "Each",
-      "previousQty": 0.0
-    }
-  ]
-};
-
 export default function Home() {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<"online" | "excel">("online");
-  const [isUploading, setIsUploading] = useState(false);
   const [selectedTestFile, setSelectedTestFile] = useState<string>("");
+  const [exportProgress, setExportProgress] = useState(0);
 
   const form = useForm<BillFormValues>({
     resolver: zodResolver(billSchema),
@@ -108,675 +50,213 @@ export default function Home() {
       contractorName: "",
       billDate: new Date(),
       tenderPremium: 4.0,
-      items: [
-        { itemNo: "001", description: "Earth work in excavation", quantity: 100, rate: 450, unit: "cum", previousQty: 0 },
-        { itemNo: "002", description: "PCC 1:4:8", quantity: 50, rate: 3200, unit: "cum", previousQty: 0 },
-        { itemNo: "003", description: "Brick work 1:6", quantity: 150, rate: 5600, unit: "cum", previousQty: 0 },
-      ],
+      items: [{ itemNo: "001", description: "Item 1", quantity: 0, rate: 0, unit: "", previousQty: 0 }],
     },
   });
 
-  const { fields, append, remove, replace } = useFieldArray({
-    control: form.control,
-    name: "items",
-  });
+  const { fields, append, remove } = useFieldArray({ control: form.control, name: "items" });
 
-  const loadTestFile = (filename: string) => {
-    const data = (testFilesData as any)[filename];
-    if (!data) return;
+  const items = form.watch("items");
+  const stats = calculateBillStats(items);
 
-    // Load Project Details
-    form.setValue("projectName", data.projectDetails.projectName);
-    form.setValue("contractorName", data.projectDetails.contractorName);
-    form.setValue("billDate", new Date(data.projectDetails.billDate || new Date()));
-    form.setValue("tenderPremium", data.projectDetails.tenderPremium);
+  const doExport = async (format: 'excel' | 'html' | 'csv' | 'pdf' | 'zip') => {
+    const data = form.getValues();
+    const validation = validateBillInput(data.projectName, data.contractorName, data.items);
+    
+    if (!validation.isValid) {
+      toast({ title: "❌ Validation Error", description: validation.errors[0], variant: "destructive" });
+      return;
+    }
 
-    // 1. Load ALL items with 0 quantity initially
-    const initialItems = data.items.map((item: any) => ({
-      itemNo: item.itemNo,
-      description: item.description,
-      quantity: 0, // Explicitly 0 as per "donot read quantity sheet"
-      rate: item.rate,
-      unit: item.unit,
-      previousQty: 0
+    try {
+      setExportProgress(50);
+      const billItems = data.items.map((item: any) => ({
+        ...item, id: Math.random().toString(), unit: item.unit || "", previousQty: item.previousQty || 0
+      }));
+
+      const project = {
+        projectName: data.projectName, contractorName: data.contractorName,
+        billDate: data.billDate, tenderPremium: data.tenderPremium
+      };
+
+      if (format === 'excel') generateStyledExcel(project, billItems);
+      else if (format === 'html') generateHTML(project, billItems);
+      else if (format === 'csv') generateCSV(project, billItems);
+      else if (format === 'pdf') await generatePDF(project, billItems);
+      else if (format === 'zip') await generateZIP(project, billItems);
+
+      saveBillToHistory(data, billItems, stats.totalAmount);
+      setExportProgress(100);
+      toast({ title: "✅ Success!", description: `${format.toUpperCase()} exported successfully!` });
+      setTimeout(() => setExportProgress(0), 2000);
+    } catch (error) {
+      toast({ title: "❌ Error", description: getErrorMessage(error), variant: "destructive" });
+    }
+  };
+
+  const loadFastMode = (filename: string) => {
+    const testData = (testFilesData as any)[filename];
+    if (!testData) return;
+
+    form.setValue("projectName", testData.projectDetails.projectName || "Project");
+    form.setValue("contractorName", testData.projectDetails.contractorName || "Contractor");
+    form.setValue("tenderPremium", testData.projectDetails.tenderPremium || 0);
+
+    const itemsToFill = [];
+    const indices = new Set<number>();
+    while (indices.size < Math.min(5, testData.items.length)) {
+      indices.add(Math.floor(Math.random() * testData.items.length));
+    }
+
+    const newItems = testData.items.map((item: any, idx: number) => ({
+      itemNo: item.itemNo, description: item.description, quantity: indices.has(idx) ? Math.floor(Math.random() * 100) + 1 : 0,
+      rate: item.rate, unit: item.unit, previousQty: 0
     }));
 
-    // 2. Randomly select 5 items to fill with some quantity (Simulate Online Entry)
-    const totalItems = initialItems.length;
-    if (totalItems > 0) {
-      const indicesToFill = new Set<number>();
-      while (indicesToFill.size < 5 && indicesToFill.size < totalItems) {
-        indicesToFill.add(Math.floor(Math.random() * totalItems));
-      }
-
-      indicesToFill.forEach(index => {
-        // Generate a realistic random quantity between 1 and 100
-        const randomQty = Math.floor(Math.random() * 100) + 1;
-        initialItems[index].quantity = randomQty;
-      });
-    }
-
-    replace(initialItems);
-    setSelectedTestFile(filename);
-    setActiveTab("online");
-    
-    toast({
-        title: "Fast Mode Activated ⚡",
-        description: `Loaded ${filename} with 5 auto-filled random items.`,
-        className: "bg-emerald-50 border-emerald-200 text-emerald-800"
-    });
-  };
-
-  const randomizeQuantities = () => {
-    const currentItems = form.getValues("items");
-    if (currentItems.length === 0) return;
-
-    // Reset all to 0
-    const newItems = currentItems.map(item => ({ ...item, quantity: 0 }));
-    
-    // Pick 5 random
-    const indicesToFill = new Set<number>();
-    while (indicesToFill.size < 5 && indicesToFill.size < newItems.length) {
-      indicesToFill.add(Math.floor(Math.random() * newItems.length));
-    }
-
-    indicesToFill.forEach(index => {
-      newItems[index].quantity = Math.floor(Math.random() * 100) + 1;
-    });
-
-    replace(newItems);
-    toast({
-      title: "Quantities Randomized 🎲",
-      description: "5 new items have been selected and filled.",
-    });
-  };
-
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setIsUploading(true);
-    try {
-      const data = await parseBillExcel(file);
-      
-      // Update form with parsed data
-      form.setValue("projectName", data.projectDetails.projectName || "Imported Project");
-      form.setValue("contractorName", data.projectDetails.contractorName || "Imported Contractor");
-      if (data.projectDetails.billDate) {
-        form.setValue("billDate", data.projectDetails.billDate);
-      }
-      form.setValue("tenderPremium", data.projectDetails.tenderPremium || 0);
-      
-      if (data.items.length > 0) {
-        replace(data.items);
-        toast({
-          title: "File Parsed Successfully",
-          description: `Loaded ${data.items.length} items from ${file.name}`,
-        });
-        setActiveTab("online"); // Switch to online view to show data
-      } else {
-         toast({
-          title: "Warning",
-          description: "No valid items found in the Excel file.",
-          variant: "destructive",
-        });
-      }
-
-    } catch (error) {
-      console.error(error);
-      toast({
-        title: "Import Failed",
-        description: "Could not parse the Excel file. Please check the format.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsUploading(false);
-    }
-  };
-
-  // Calculate totals for preview
-  const items = form.watch("items");
-  const tenderPremium = form.watch("tenderPremium");
-  
-  const totalAmount = items.reduce((sum, item) => sum + (Number(item.quantity) * Number(item.rate)), 0);
-  const premiumAmount = totalAmount * (Number(tenderPremium) / 100);
-  const netPayable = totalAmount + premiumAmount;
-
-  const exportAsExcel = (data: BillFormValues) => {
-    try {
-      generateStyledExcel(
-        {
-          projectName: data.projectName,
-          contractorName: data.contractorName,
-          billDate: data.billDate,
-          tenderPremium: data.tenderPremium,
-        },
-        data.items.map(item => ({
-           ...item,
-           id: Math.random().toString(),
-           unit: item.unit || "",
-           previousQty: item.previousQty || 0
-        }))
-      );
-      toast({ title: "Success!", description: "Excel file downloaded." });
-    } catch (error) {
-      toast({ title: "Error", description: "Failed to generate Excel.", variant: "destructive" });
-    }
-  };
-
-  const exportAsHTML = (data: BillFormValues) => {
-    try {
-      generateHTML(
-        {
-          projectName: data.projectName,
-          contractorName: data.contractorName,
-          billDate: data.billDate,
-          tenderPremium: data.tenderPremium,
-        },
-        data.items.map(item => ({
-           ...item,
-           id: Math.random().toString(),
-           unit: item.unit || "",
-           previousQty: item.previousQty || 0
-        }))
-      );
-      toast({ title: "Success!", description: "HTML file downloaded." });
-    } catch (error) {
-      toast({ title: "Error", description: "Failed to generate HTML.", variant: "destructive" });
-    }
-  };
-
-  const exportAsPDF = async (data: BillFormValues) => {
-    try {
-      await generatePDF(
-        {
-          projectName: data.projectName,
-          contractorName: data.contractorName,
-          billDate: data.billDate,
-          tenderPremium: data.tenderPremium,
-        },
-        data.items.map(item => ({
-           ...item,
-           id: Math.random().toString(),
-           unit: item.unit || "",
-           previousQty: item.previousQty || 0
-        }))
-      );
-      toast({ title: "Success!", description: "PDF ready to print/save." });
-    } catch (error) {
-      toast({ title: "Error", description: "Failed to generate PDF.", variant: "destructive" });
-    }
-  };
-
-  const exportAsCSV = (data: BillFormValues) => {
-    try {
-      generateCSV(
-        {
-          projectName: data.projectName,
-          contractorName: data.contractorName,
-          billDate: data.billDate,
-          tenderPremium: data.tenderPremium,
-        },
-        data.items.map(item => ({
-           ...item,
-           id: Math.random().toString(),
-           unit: item.unit || "",
-           previousQty: item.previousQty || 0
-        }))
-      );
-      toast({ title: "Success!", description: "CSV file downloaded." });
-    } catch (error) {
-      toast({ title: "Error", description: "Failed to generate CSV.", variant: "destructive" });
-    }
-  };
-
-  const exportAsZIP = async (data: BillFormValues) => {
-    try {
-      await generateZIP(
-        {
-          projectName: data.projectName,
-          contractorName: data.contractorName,
-          billDate: data.billDate,
-          tenderPremium: data.tenderPremium,
-        },
-        data.items.map(item => ({
-           ...item,
-           id: Math.random().toString(),
-           unit: item.unit || "",
-           previousQty: item.previousQty || 0
-        }))
-      );
-      toast({ title: "Success!", description: "ZIP file with all formats downloaded." });
-    } catch (error) {
-      toast({ title: "Error", description: "Failed to generate ZIP.", variant: "destructive" });
-    }
-  };
-
-  const onSubmit = (data: BillFormValues) => {
-    exportAsExcel(data);
+    form.setValue("items", newItems);
+    toast({ title: "⚡ Fast Mode", description: `Loaded ${filename} with random quantities` });
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-slate-50">
-      {/* Sidebar */}
-      <aside className="w-full md:w-64 bg-white border-r border-slate-200 p-4 flex-shrink-0">
-        <div className="bg-gradient-to-br from-emerald-500 to-teal-500 p-4 rounded-xl text-center text-white shadow-lg shadow-emerald-500/20 mb-6">
-          <div className="text-4xl mb-2">📑</div>
-          <h2 className="font-bold text-lg">BillGenerator</h2>
-          <p className="text-xs opacity-90">Unified System v2.0</p>
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-4 md:p-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">Contractor Bill Generator</h1>
+          <p className="text-slate-600">Generate professional bills in multiple formats</p>
         </div>
 
-        <nav className="space-y-2">
-          <Button 
-            variant={activeTab === "online" ? "secondary" : "ghost"} 
-            className={cn("w-full justify-start", activeTab === "online" && "bg-emerald-50 text-emerald-700 font-semibold")}
-            onClick={() => setActiveTab("online")}
-          >
-            <span className="mr-2">💻</span> Online Entry
-          </Button>
-          <Button 
-            variant={activeTab === "excel" ? "secondary" : "ghost"} 
-            className={cn("w-full justify-start", activeTab === "excel" && "bg-emerald-50 text-emerald-700 font-semibold")}
-            onClick={() => setActiveTab("excel")}
-          >
-            <span className="mr-2">📊</span> Excel Upload
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" disabled>
-            <span className="mr-2">📦</span> Batch Processing
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" disabled>
-            <span className="mr-2">📈</span> Analytics
-          </Button>
-        </nav>
-
-        <div className="mt-8">
-          <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Features Status</h3>
-          <div className="space-y-2 text-sm">
-            <div className="flex items-center text-emerald-700 bg-emerald-50 px-3 py-2 rounded-lg border-l-4 border-emerald-500">
-              <span className="mr-2">✅</span> Online Entry
-            </div>
-            <div className="flex items-center text-slate-500 bg-slate-100 px-3 py-2 rounded-lg border-l-4 border-slate-300">
-              <span className="mr-2">❌</span> Batch Processing
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 p-4 md:p-8 overflow-auto">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl p-8 text-white text-center shadow-xl shadow-emerald-500/20 mb-8 animate-in slide-in-from-top duration-500">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-sm">BillGenerator Unified</h1>
-          <p className="text-emerald-50">✨ Professional Bill Generation System | Version 2.0.0</p>
-          
-          <div className="mt-6 max-w-xl mx-auto bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20 shadow-inner">
-             <div className="flex items-center justify-between mb-2">
-                <label className="flex items-center text-sm font-bold text-white">
-                    <Zap className="w-4 h-4 mr-2 text-yellow-300 fill-yellow-300" /> 
-                    FAST MODE
-                    <Badge variant="secondary" className="ml-2 bg-yellow-400/20 text-yellow-100 hover:bg-yellow-400/30 border-0">
-                        Auto-Fill Active
-                    </Badge>
-                </label>
-             </div>
-             
-             <div className="flex gap-2">
-                 <div className="flex-1">
-                     <Select onValueChange={loadTestFile} value={selectedTestFile}>
-                        <SelectTrigger className="bg-white/95 text-slate-800 border-0 h-10 font-medium">
-                          <SelectValue placeholder="Select Test File (e.g. 0511-N-extra)" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {Object.keys(testFilesData).map(filename => (
-                            <SelectItem key={filename} value={filename}>
-                              {filename}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                     </Select>
-                 </div>
-                 <Button 
-                    onClick={randomizeQuantities}
-                    disabled={!selectedTestFile}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white border-0 h-10 px-4"
-                    title="Randomize 5 Items"
-                 >
-                    <RefreshCw className="w-4 h-4" />
-                 </Button>
-                 <Button 
-                    onClick={form.handleSubmit(onSubmit)}
-                    disabled={!selectedTestFile}
-                    className="bg-white text-emerald-700 hover:bg-emerald-50 border-0 h-10 px-4 font-bold shadow-md"
-                    title="Generate Immediately"
-                 >
-                    <FileSpreadsheet className="w-4 h-4 mr-2" /> Generate Now
-                 </Button>
-             </div>
-             <p className="text-xs text-emerald-50 mt-2 opacity-80 flex items-center">
-               <span className="inline-block w-1.5 h-1.5 rounded-full bg-yellow-400 mr-1.5"></span>
-               Simulates online entry by auto-filling 5 random items from the selected file.
-             </p>
-          </div>
+        <div className="grid md:grid-cols-3 gap-4 mb-8">
+          <Card className="border-emerald-200 bg-white shadow-lg">
+            <CardContent className="pt-6">
+              <div className="text-3xl font-bold text-emerald-600">{stats.itemCount}</div>
+              <div className="text-sm text-slate-600">Valid Items</div>
+            </CardContent>
+          </Card>
+          <Card className="border-teal-200 bg-white shadow-lg">
+            <CardContent className="pt-6">
+              <div className="text-3xl font-bold text-teal-600">{formatCurrency(stats.totalAmount)}</div>
+              <div className="text-sm text-slate-600">Total Amount</div>
+            </CardContent>
+          </Card>
+          <Card className="border-cyan-200 bg-white shadow-lg">
+            <CardContent className="pt-6">
+              <div className="text-sm font-semibold text-cyan-600">Export Formats</div>
+              <div className="text-sm text-slate-600">5 formats available</div>
+            </CardContent>
+          </Card>
         </div>
 
-        {activeTab === "online" ? (
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 max-w-5xl mx-auto">
-              
-              {/* Project Details Card */}
-              <Card className="border-slate-200 shadow-sm">
-                <CardHeader className="bg-slate-50/50 border-b border-slate-100 pb-4">
-                  <CardTitle className="flex items-center text-slate-700">
-                    <span className="mr-2">📋</span> Project Details
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="grid md:grid-cols-2 gap-6 pt-6">
-                  <FormField
-                    control={form.control}
-                    name="projectName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Project Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter project name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="contractorName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Contractor Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter contractor name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="billDate"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-col">
-                        <FormLabel>Bill Date</FormLabel>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant={"outline"}
-                                className={cn(
-                                  "w-full pl-3 text-left font-normal",
-                                  !field.value && "text-muted-foreground"
-                                )}
-                              >
-                                {field.value ? (
-                                  format(field.value, "PPP")
-                                ) : (
-                                  <span>Pick a date</span>
-                                )}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
-                            <Calendar
-                              mode="single"
-                              selected={field.value}
-                              onSelect={field.onChange}
-                              disabled={(date) =>
-                                date > new Date() || date < new Date("1900-01-01")
-                              }
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </Popover>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="tenderPremium"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Tender Premium (%)</FormLabel>
-                        <FormControl>
-                          <Input type="number" step="0.01" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </CardContent>
-              </Card>
+        <Card className="border-emerald-300 bg-white shadow-xl">
+          <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-t-lg">
+            <CardTitle>Bill Details</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-6">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(() => {})} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField name="projectName" control={form.control} render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-emerald-700 font-semibold">Project Name</FormLabel>
+                      <FormControl><Input {...field} className="border-emerald-300 focus:ring-emerald-500" /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+                  <FormField name="contractorName" control={form.control} render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-emerald-700 font-semibold">Contractor Name</FormLabel>
+                      <FormControl><Input {...field} className="border-emerald-300 focus:ring-emerald-500" /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+                </div>
 
-              {/* Work Items Card */}
-              <Card className="border-slate-200 shadow-sm">
-                <CardHeader className="bg-slate-50/50 border-b border-slate-100 pb-4 flex flex-row items-center justify-between">
-                  <CardTitle className="flex items-center text-slate-700">
-                    <span className="mr-2">🔨</span> Work Items
-                  </CardTitle>
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="outline"
-                    className="text-emerald-600 border-emerald-200 hover:bg-emerald-50"
-                    onClick={() => append({ itemNo: "", description: "", quantity: 0, rate: 0, unit: "", previousQty: 0 })}
-                  >
-                    <Plus className="w-4 h-4 mr-1" /> Add Item
-                  </Button>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <div className="space-y-4">
-                    {fields.map((field, index) => (
-                      <div key={field.id} className="grid grid-cols-12 gap-2 items-start bg-slate-50 p-3 rounded-lg border border-slate-100 group hover:border-emerald-200 transition-colors">
-                        <div className="col-span-1">
-                          <FormField
-                            control={form.control}
-                            name={`items.${index}.itemNo`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs text-slate-500">No.</FormLabel>
-                                <FormControl>
-                                  <Input {...field} className="h-8 text-sm" />
-                                </FormControl>
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-                        <div className="col-span-4">
-                          <FormField
-                            control={form.control}
-                            name={`items.${index}.description`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs text-slate-500">Description</FormLabel>
-                                <FormControl>
-                                  <Input {...field} className="h-8 text-sm" />
-                                </FormControl>
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-                        <div className="col-span-1">
-                          <FormField
-                            control={form.control}
-                            name={`items.${index}.unit`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs text-slate-500">Unit</FormLabel>
-                                <FormControl>
-                                  <Input {...field} className="h-8 text-sm" />
-                                </FormControl>
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-                        <div className="col-span-2">
-                          <FormField
-                            control={form.control}
-                            name={`items.${index}.quantity`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs text-slate-500">Quantity</FormLabel>
-                                <FormControl>
-                                  <Input type="number" step="0.01" {...field} className="h-8 text-sm" />
-                                </FormControl>
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-                        <div className="col-span-2">
-                          <FormField
-                            control={form.control}
-                            name={`items.${index}.rate`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs text-slate-500">Rate</FormLabel>
-                                <FormControl>
-                                  <Input type="number" step="0.01" {...field} className="h-8 text-sm" />
-                                </FormControl>
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-                        <div className="col-span-2 flex items-end pb-1">
-                           <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 text-red-500 hover:text-red-700 hover:bg-red-50 ml-auto"
-                            onClick={() => remove(index)}
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField name="billDate" control={form.control} render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-emerald-700 font-semibold">Bill Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button className="w-full justify-start text-left bg-emerald-50 border-emerald-300 hover:bg-emerald-100">{format(field.value, "PPP")}</Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0"><Calendar mode="single" selected={field.value} onSelect={field.onChange} /></PopoverContent>
+                      </Popover>
+                    </FormItem>
+                  )} />
+                  <FormField name="tenderPremium" control={form.control} render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-emerald-700 font-semibold">Tender Premium (%)</FormLabel>
+                      <FormControl><Input {...field} type="number" min="0" max="100" className="border-emerald-300" /></FormControl>
+                    </FormItem>
+                  )} />
+                </div>
+
+                <Separator className="bg-emerald-200" />
+
+                <div className="flex gap-2 items-center">
+                  <FormLabel className="font-semibold text-emerald-700">⚡ Fast Mode:</FormLabel>
+                  <Select value={selectedTestFile} onValueChange={(val) => { setSelectedTestFile(val); loadFastMode(val); }}>
+                    <SelectTrigger className="w-60 border-teal-300"><SelectValue placeholder="Select test file..." /></SelectTrigger>
+                    <SelectContent>
+                      {Object.keys(testFilesData).map(file => <SelectItem key={file} value={file}>{file}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <Card className="bg-yellow-50 border-yellow-300 p-4">
+                  <div className="flex gap-3">
+                    <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                    <div className="text-sm text-yellow-800">
+                      <strong>Validation:</strong> Items with quantity 0 are auto-filtered. Ensure at least one item has quantity {'>'} 0.
+                    </div>
+                  </div>
+                </Card>
+
+                <div>
+                  <div className="flex justify-between items-center mb-3">
+                    <FormLabel className="font-semibold text-emerald-700">Bill Items</FormLabel>
+                    <Button type="button" size="sm" onClick={() => append({ itemNo: "", description: "", quantity: 0, rate: 0, unit: "", previousQty: 0 })} className="bg-emerald-600 hover:bg-emerald-700">
+                      <Plus className="w-4 h-4 mr-1" /> Add Item
+                    </Button>
+                  </div>
+
+                  <div className="space-y-3 max-h-96 overflow-y-auto border border-emerald-200 rounded-lg p-3 bg-emerald-50">
+                    {fields.map((field, idx) => (
+                      <div key={field.id} className="bg-white p-3 rounded border border-emerald-200 grid md:grid-cols-6 gap-2">
+                        <FormField name={`items.${idx}.itemNo`} control={form.control} render={({ field }) => (
+                          <FormControl><Input {...field} placeholder="No." size={1} className="border-emerald-300" /></FormControl>
+                        )} />
+                        <FormField name={`items.${idx}.description`} control={form.control} render={({ field }) => (
+                          <FormControl><Input {...field} placeholder="Description" className="md:col-span-2 border-emerald-300" /></FormControl>
+                        )} />
+                        <FormField name={`items.${idx}.quantity`} control={form.control} render={({ field }) => (
+                          <FormControl><Input {...field} type="number" placeholder="Qty" className="border-emerald-300" /></FormControl>
+                        )} />
+                        <FormField name={`items.${idx}.rate`} control={form.control} render={({ field }) => (
+                          <FormControl><Input {...field} type="number" placeholder="Rate" className="border-emerald-300" /></FormControl>
+                        )} />
+                        <Button type="button" size="sm" variant="ghost" onClick={() => remove(idx)} className="text-red-600 hover:bg-red-50">
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
                       </div>
                     ))}
                   </div>
-                  
-                  {fields.length === 0 && (
-                     <div className="text-center py-8 text-slate-400 italic border-2 border-dashed border-slate-200 rounded-lg">
-                       No items added. Click "Add Item" to start.
-                     </div>
-                  )}
+                </div>
 
-                  {/* Summary Section */}
-                  <div className="mt-8 bg-slate-100/50 rounded-xl p-6 border border-slate-200">
-                    <h3 className="text-sm font-semibold text-slate-600 mb-4 flex items-center">
-                      <Calculator className="w-4 h-4 mr-2" /> Summary
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
-                        <p className="text-xs text-slate-500 font-medium uppercase">Total Amount</p>
-                        <p className="text-2xl font-bold text-slate-700">₹{totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
-                        <p className="text-xs text-slate-500 font-medium uppercase">Premium ({tenderPremium}%)</p>
-                        <p className="text-2xl font-bold text-emerald-600">+ ₹{premiumAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                      </div>
-                      <div className="bg-emerald-50 p-4 rounded-lg shadow-sm border border-emerald-100">
-                        <p className="text-xs text-emerald-700 font-medium uppercase">Net Payable</p>
-                        <p className="text-2xl font-bold text-emerald-700">₹{netPayable.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                      </div>
-                    </div>
+                <div className="pt-4">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                    <Button type="button" onClick={() => doExport('excel')} className="bg-emerald-600 hover:bg-emerald-700 text-white"><FileSpreadsheet className="w-4 h-4 mr-2" /> Excel</Button>
+                    <Button type="button" onClick={() => doExport('html')} className="bg-blue-600 hover:bg-blue-700 text-white"><File className="w-4 h-4 mr-2" /> HTML</Button>
+                    <Button type="button" onClick={() => doExport('csv')} className="bg-orange-600 hover:bg-orange-700 text-white"><File className="w-4 h-4 mr-2" /> CSV</Button>
+                    <Button type="button" onClick={() => doExport('pdf')} className="bg-red-600 hover:bg-red-700 text-white"><File className="w-4 h-4 mr-2" /> PDF</Button>
+                    <Button type="button" onClick={() => doExport('zip')} className="bg-purple-600 hover:bg-purple-700 text-white"><Download className="w-4 h-4 mr-2" /> ZIP</Button>
                   </div>
-                </CardContent>
-              </Card>
-
-              <div className="pt-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <Button 
-                    type="button"
-                    onClick={form.handleSubmit(exportAsExcel)}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                  >
-                    <FileSpreadsheet className="w-4 h-4 mr-2" /> Excel (.xlsx)
-                  </Button>
-                  <Button 
-                    type="button"
-                    onClick={form.handleSubmit(exportAsHTML)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
-                  >
-                    <File className="w-4 h-4 mr-2" /> HTML (.html)
-                  </Button>
-                  <Button 
-                    type="button"
-                    onClick={form.handleSubmit(exportAsCSV)}
-                    className="bg-orange-600 hover:bg-orange-700 text-white"
-                  >
-                    <File className="w-4 h-4 mr-2" /> CSV (.csv)
-                  </Button>
-                  <Button 
-                    type="button"
-                    onClick={form.handleSubmit(exportAsPDF)}
-                    className="bg-red-600 hover:bg-red-700 text-white"
-                  >
-                    <File className="w-4 h-4 mr-2" /> PDF (Print)
-                  </Button>
-                  <Button 
-                    type="button"
-                    onClick={form.handleSubmit(exportAsZIP)}
-                    className="bg-purple-600 hover:bg-purple-700 text-white"
-                  >
-                    <Download className="w-4 h-4 mr-2" /> ZIP (All)
-                  </Button>
+                  {exportProgress > 0 && <div className="mt-2 w-full bg-slate-200 rounded h-2"><div className="bg-emerald-500 h-full transition-all" style={{width: `${exportProgress}%`}}></div></div>}
                 </div>
-              </div>
-
-            </form>
-          </Form>
-        ) : (
-          <div className="flex flex-col items-center justify-center h-[60vh] text-slate-400 bg-white rounded-xl border-2 border-dashed border-slate-200 transition-all hover:border-emerald-300 hover:bg-slate-50">
-            {isUploading ? (
-              <div className="animate-pulse flex flex-col items-center">
-                <div className="w-12 h-12 rounded-full border-4 border-emerald-500 border-t-transparent animate-spin mb-4"></div>
-                <p className="text-lg font-medium text-emerald-700">Parsing Excel File...</p>
-              </div>
-            ) : (
-              <>
-                <div className="bg-emerald-100 p-4 rounded-full mb-4">
-                   <FileSpreadsheet className="w-12 h-12 text-emerald-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-700 mb-2">Upload Bill Excel</h3>
-                <p className="text-sm text-slate-500 max-w-md text-center mb-6">
-                  Upload your Excel file containing 'Title', 'Work Order', and 'Bill Quantity' sheets to automatically populate the form.
-                </p>
-                <div className="relative">
-                  <Input 
-                    type="file" 
-                    accept=".xlsx, .xls" 
-                    onChange={handleFileUpload}
-                    className="hidden" 
-                    id="excel-upload"
-                  />
-                  <div className="flex gap-4">
-                    <Button asChild size="lg" className="cursor-pointer bg-emerald-600 hover:bg-emerald-700">
-                      <label htmlFor="excel-upload">
-                        Select Excel File
-                      </label>
-                    </Button>
-                    <Button 
-                        type="button"
-                        variant="outline" 
-                        size="lg" 
-                        onClick={loadSampleData}
-                        className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
-                    >
-                        Load Test Data (0511-N-extra)
-                    </Button>
-                  </div>
-                </div>
-                <p className="mt-4 text-xs text-slate-400">Supports .xlsx and .xls formats</p>
-              </>
-            )}
-          </div>
-        )}
-      </main>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

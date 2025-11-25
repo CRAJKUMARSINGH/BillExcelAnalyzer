@@ -1,5 +1,6 @@
 import { utils, writeFile } from 'xlsx';
 import { saveAs } from 'file-saver';
+import { formatCurrency, generateFileName } from './bill-validator';
 
 export interface BillItem {
   id: string;
@@ -20,7 +21,9 @@ export interface ProjectDetails {
 
 // ========== EXCEL EXPORT (Exact Master Format) ==========
 export const generateStyledExcel = (project: ProjectDetails, items: BillItem[]) => {
-  const totalAmount = items.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
+  // Filter out zero-quantity items
+  const validItems = items.filter(item => item.quantity > 0);
+  const totalAmount = validItems.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
   const premiumAmount = totalAmount * (project.tenderPremium / 100);
   const netPayable = totalAmount + premiumAmount;
 
@@ -45,19 +48,17 @@ export const generateStyledExcel = (project: ProjectDetails, items: BillItem[]) 
     "Remarks"
   ];
 
-  const dataRows = items
-    .filter(item => item.quantity > 0 || item.rate > 0)
-    .map(item => [
-      item.unit || "",
-      item.previousQty || 0,
-      item.quantity,
-      item.itemNo,
-      item.description,
-      item.rate,
-      (item.quantity * item.rate).toFixed(2),
-      0,
-      ""
-    ]);
+  const dataRows = validItems.map(item => [
+    item.unit || "",
+    item.previousQty || 0,
+    item.quantity,
+    item.itemNo,
+    item.description,
+    item.rate,
+    (item.quantity * item.rate).toFixed(2),
+    0,
+    ""
+  ]);
 
   const totalRow = ["", "", "", "", "Grand Total Rs.", "", totalAmount.toFixed(2), totalAmount.toFixed(2), ""];
   const premiumRow = ["", "", "", "", `Tender Premium @ ${project.tenderPremium}%`, "", premiumAmount.toFixed(2), premiumAmount.toFixed(2), ""];
@@ -198,12 +199,13 @@ export const generateStyledExcel = (project: ProjectDetails, items: BillItem[]) 
   };
 
   utils.book_append_sheet(wb, ws, "Bill Summary");
-  writeFile(wb, `${project.projectName || 'bill'}_summary.xlsx`);
+  writeFile(wb, generateFileName(project.projectName, 'xlsx'));
 };
 
 // ========== HTML EXPORT ==========
 export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
-  const totalAmount = items.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
+  const validItems = items.filter(item => item.quantity > 0);
+  const totalAmount = validItems.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
   const premiumAmount = totalAmount * (project.tenderPremium / 100);
   const netPayable = totalAmount + premiumAmount;
 
@@ -310,15 +312,15 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
                 </tr>
             </thead>
             <tbody>
-                ${items.filter(item => item.quantity > 0).map(item => `
+                ${validItems.map(item => `
                 <tr>
                     <td>${item.unit || ''}</td>
                     <td>${item.previousQty || 0}</td>
                     <td class="amount">${item.quantity}</td>
                     <td>${item.itemNo}</td>
                     <td>${item.description}</td>
-                    <td class="amount">₹${item.rate.toFixed(2)}</td>
-                    <td class="amount">₹${(item.quantity * item.rate).toFixed(2)}</td>
+                    <td class="amount">${formatCurrency(item.rate)}</td>
+                    <td class="amount">${formatCurrency(item.quantity * item.rate)}</td>
                     <td class="amount">0.00</td>
                     <td></td>
                 </tr>
