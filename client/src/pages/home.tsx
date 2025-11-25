@@ -360,6 +360,14 @@ export default function Home() {
                  >
                     <RefreshCw className="w-4 h-4" />
                  </Button>
+                 <Button 
+                    onClick={form.handleSubmit(onSubmit)}
+                    disabled={!selectedTestFile}
+                    className="bg-white text-emerald-700 hover:bg-emerald-50 border-0 h-10 px-4 font-bold shadow-md"
+                    title="Generate Immediately"
+                 >
+                    <FileSpreadsheet className="w-4 h-4 mr-2" /> Generate Now
+                 </Button>
              </div>
              <p className="text-xs text-emerald-50 mt-2 opacity-80 flex items-center">
                <span className="inline-block w-1.5 h-1.5 rounded-full bg-yellow-400 mr-1.5"></span>
