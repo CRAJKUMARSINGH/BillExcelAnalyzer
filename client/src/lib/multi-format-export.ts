@@ -18,7 +18,7 @@ export interface ProjectDetails {
   tenderPremium: number;
 }
 
-// ========== EXCEL EXPORT (Master Format Match) ==========
+// ========== EXCEL EXPORT (Exact Master Format) ==========
 export const generateStyledExcel = (project: ProjectDetails, items: BillItem[]) => {
   const totalAmount = items.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
   const premiumAmount = totalAmount * (project.tenderPremium / 100);
@@ -76,23 +76,126 @@ export const generateStyledExcel = (project: ProjectDetails, items: BillItem[]) 
   const wb = utils.book_new();
   const ws = utils.aoa_to_sheet(wsData);
 
-  // Set column widths matching reference template
+  // EXACT COLUMN WIDTHS FROM REFERENCE master*.xlsx
+  // Columns: Unit(12.29), Description(62.43), Qty(13), Rate(8.71), Qty2(9), Other(11), Other(9.14)
   ws['!cols'] = [
-    { wch: 6 },  // Unit (11mm)
-    { wch: 9 },  // Qty Last (16mm)
-    { wch: 9 },  // Qty Total (16mm)
-    { wch: 6 },  // S.No (11mm)
-    { wch: 38 }, // Description (70mm)
-    { wch: 8 },  // Rate (15mm)
-    { wch: 12 }, // Amount Total (22mm)
-    { wch: 9 },  // Amount Since Prev (17mm)
-    { wch: 7 },  // Remarks (12mm)
+    { wch: 12.29 },   // Unit (Col A)
+    { wch: 62.43 },   // Description/Qty executed since last cert (Col B)
+    { wch: 13.0 },    // Qty executed upto date (Col C)
+    { wch: 8.71 },    // S. No. (Col D)
+    { wch: 9.0 },     // Item of Work (Col E)
+    { wch: 11.0 },    // Rate (Col F)
+    { wch: 9.14 },    // Amount (Col G)
+    { wch: 12.0 },    // Amount Since prev (Col H)
+    { wch: 10.0 },    // Remarks (Col I)
   ];
+
+  // Apply formatting to cells: borders, font, alignment
+  const borderStyle = {
+    top: { style: 'thin' },
+    bottom: { style: 'thin' },
+    left: { style: 'thin' },
+    right: { style: 'thin' }
+  };
+
+  const calibriFont = { name: 'Calibri', size: 9, color: { rgb: 'FF000000' } };
+  const headerFont = { name: 'Calibri', size: 9, bold: true, color: { rgb: 'FF000000' } };
+  const centerAlignment = { horizontal: 'center', vertical: 'center', wrapText: true };
+  const leftAlignment = { horizontal: 'left', vertical: 'top', wrapText: true };
+  const rightAlignment = { horizontal: 'right', vertical: 'center', wrapText: false };
+
+  // Apply styles to header rows
+  for (let row = 1; row <= headerRows.length; row++) {
+    for (let col = 1; col <= 9; col++) {
+      const cell = ws[utils.encode_col(col - 1) + row];
+      if (cell) {
+        cell.border = borderStyle;
+        cell.font = calibriFont;
+        cell.alignment = leftAlignment;
+      }
+    }
+  }
+
+  // Apply styles to table header row
+  const headerRowNum = headerRows.length + 1;
+  for (let col = 1; col <= 9; col++) {
+    const cell = ws[utils.encode_col(col - 1) + headerRowNum];
+    if (cell) {
+      cell.border = borderStyle;
+      cell.font = headerFont;
+      cell.alignment = centerAlignment;
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { rgb: 'FFF0F0F0' } };
+    }
+  }
+
+  // Apply styles to data rows
+  const dataStartRow = headerRowNum + 1;
+  for (let row = 0; row < dataRows.length; row++) {
+    const rowNum = dataStartRow + row;
+    for (let col = 1; col <= 9; col++) {
+      const cell = ws[utils.encode_col(col - 1) + rowNum];
+      if (cell) {
+        cell.border = borderStyle;
+        cell.font = calibriFont;
+        cell.alignment = col === 6 || col === 7 || col === 8 ? rightAlignment : leftAlignment;
+        
+        // Number formatting for amounts
+        if (col === 6 || col === 7 || col === 8) {
+          cell.numFmt = '0.00';
+        }
+      }
+    }
+  }
+
+  // Apply styles to summary rows
+  const totalRowNum = dataStartRow + dataRows.length + 1;
+  const summaryRows = [totalRowNum, totalRowNum + 1, totalRowNum + 2];
+  
+  summaryRows.forEach((rowNum, idx) => {
+    for (let col = 1; col <= 9; col++) {
+      const cell = ws[utils.encode_col(col - 1) + rowNum];
+      if (cell) {
+        cell.border = borderStyle;
+        cell.font = { name: 'Calibri', size: 9, bold: true, color: { rgb: 'FF000000' } };
+        cell.alignment = col === 6 || col === 7 || col === 8 ? rightAlignment : leftAlignment;
+        
+        // Background colors for summary rows
+        if (idx === 0) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { rgb: 'FFE8F5E9' } }; // Green
+        } else if (idx === 1) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { rgb: 'FFFFF3E0' } }; // Orange
+        } else if (idx === 2) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { rgb: 'FFC8E6C9' } }; // Light Green
+        }
+        
+        if (col === 6 || col === 7 || col === 8) {
+          cell.numFmt = '0.00';
+        }
+      }
+    }
+  });
 
   // Merge title row
   ws['!merges'] = [
     { s: { r: 0, c: 0 }, e: { r: 0, c: 8 } }
   ];
+
+  // Set print options for A4
+  ws.pageSetup = {
+    paperSize: ws.PAPER_TYPES.A4,
+    orientation: 'portrait',
+    fitToPage: true,
+    fitToHeight: 1,
+    fitToWidth: 1,
+    margins: {
+      top: 0.5,
+      left: 0.5,
+      right: 0.5,
+      bottom: 0.5,
+      header: 0,
+      footer: 0
+    }
+  };
 
   utils.book_append_sheet(wb, ws, "Bill Summary");
   writeFile(wb, `${project.projectName || 'bill'}_summary.xlsx`);
@@ -115,81 +218,69 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Calibri', 'Arial', sans-serif; 
-            font-size: 11pt; 
+            font-size: 9pt; 
             line-height: 1.2;
             background: #f5f5f5;
+            padding: 10mm;
         }
         .container { 
             max-width: 1000px; 
-            margin: 20px auto; 
-            padding: 30px; 
+            margin: 0 auto; 
             background: white; 
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
+            padding: 20px;
         }
         .header { 
-            margin-bottom: 20px; 
-            border-bottom: 2px solid #333; 
-            padding-bottom: 15px; 
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #000; 
+            padding-bottom: 10px; 
         }
         .header h1 { 
-            font-size: 16pt; 
+            font-size: 12pt; 
             font-weight: bold; 
-            margin-bottom: 8px; 
+            margin-bottom: 5px; 
             color: #000; 
         }
         .project-info { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-            font-size: 10pt; 
+            gap: 10px; 
+            font-size: 9pt; 
             color: #333; 
-            margin: 10px 0; 
+            margin: 8px 0; 
         }
         .project-info div { 
-            padding: 5px 0; 
+            padding: 3px 0; 
             border-bottom: 1px solid #eee;
         }
         table { 
             width: 100%; 
             border-collapse: collapse; 
-            margin: 20px 0; 
+            margin: 15px 0; 
             font-size: 9pt;
+            font-family: 'Calibri', Arial;
         }
         th { 
             background: #f0f0f0; 
-            border: 1px solid #333; 
-            padding: 8px; 
-            text-align: left; 
+            border: 1px solid #000; 
+            padding: 6px; 
+            text-align: center;
             font-weight: bold;
             font-family: 'Calibri', Arial;
+            font-size: 9pt;
+            vertical-align: center;
         }
         td { 
-            border: 1px solid #333; 
+            border: 1px solid #000; 
             padding: 6px; 
             text-align: left;
+            word-wrap: break-word;
+            font-family: 'Calibri', Arial;
+            font-size: 9pt;
         }
         .amount { text-align: right; }
         tr.total-row { background: #e8f5e9; font-weight: bold; }
         tr.premium-row { background: #fff3e0; font-weight: bold; }
-        tr.payable-row { background: #c8e6c9; font-weight: bold; font-size: 10pt; }
-        .footer { 
-            margin-top: 40px; 
-            padding-top: 20px; 
-            border-top: 1px solid #ddd; 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 40px; 
-            font-size: 9pt; 
-        }
-        .signature { text-align: center; }
-        .signature-line { 
-            border-top: 1px solid #333; 
-            margin-top: 50px; 
-            padding-top: 5px; 
-            min-height: 40px;
-        }
-        .page-break { page-break-after: always; }
+        tr.payable-row { background: #c8e6c9; font-weight: bold; font-size: 9pt; }
     </style>
 </head>
 <body>
@@ -207,22 +298,22 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
         <table>
             <thead>
                 <tr>
-                    <th>Unit</th>
-                    <th>Qty Since Last</th>
-                    <th>Qty Upto Date</th>
-                    <th>S. No.</th>
-                    <th>Item of Work</th>
-                    <th class="amount">Rate</th>
-                    <th class="amount">Upto Date Amount</th>
-                    <th class="amount">Since Prev Bill</th>
-                    <th>Remarks</th>
+                    <th style="width: 12.29%;">Unit</th>
+                    <th style="width: 62.43%;">Qty executed since last cert</th>
+                    <th style="width: 13%;">Qty executed upto date</th>
+                    <th style="width: 8.71%;">S. No.</th>
+                    <th style="width: 9%;">Item of Work</th>
+                    <th style="width: 11%;">Rate</th>
+                    <th style="width: 9.14%;">Upto date Amount</th>
+                    <th style="width: 12%;">Amount Since prev bill</th>
+                    <th style="width: 10%;">Remarks</th>
                 </tr>
             </thead>
             <tbody>
                 ${items.filter(item => item.quantity > 0).map(item => `
                 <tr>
                     <td>${item.unit || ''}</td>
-                    <td class="amount">${item.previousQty || 0}</td>
+                    <td>${item.previousQty || 0}</td>
                     <td class="amount">${item.quantity}</td>
                     <td>${item.itemNo}</td>
                     <td>${item.description}</td>
@@ -233,7 +324,10 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
                 </tr>
                 `).join('')}
                 <tr class="total-row">
-                    <td colspan="4"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td><strong>Grand Total Rs.</strong></td>
                     <td></td>
                     <td class="amount"><strong>₹${totalAmount.toFixed(2)}</strong></td>
@@ -241,7 +335,10 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
                     <td></td>
                 </tr>
                 <tr class="premium-row">
-                    <td colspan="4"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td><strong>Tender Premium @ ${project.tenderPremium}%</strong></td>
                     <td></td>
                     <td class="amount"><strong>₹${premiumAmount.toFixed(2)}</strong></td>
@@ -249,7 +346,10 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
                     <td></td>
                 </tr>
                 <tr class="payable-row">
-                    <td colspan="4"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td><strong>NET PAYABLE AMOUNT Rs.</strong></td>
                     <td></td>
                     <td class="amount"><strong>₹${netPayable.toFixed(2)}</strong></td>
@@ -258,21 +358,6 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
                 </tr>
             </tbody>
         </table>
-
-        <div class="footer">
-            <div class="signature">
-                <div style="margin-top: 60px;"><strong>Prepared by</strong></div>
-                <div class="signature-line"></div>
-                <div style="margin-top: 10px; font-size: 8pt;"><strong>Assistant Engineer</strong></div>
-                <div style="font-size: 8pt;">PWD, Udaipur</div>
-            </div>
-            <div class="signature">
-                <div style="margin-top: 60px;"><strong>Checked & Approved by</strong></div>
-                <div class="signature-line"></div>
-                <div style="margin-top: 10px; font-size: 8pt;"><strong>Executive Engineer</strong></div>
-                <div style="font-size: 8pt;">PWD, Udaipur</div>
-            </div>
-        </div>
     </div>
 </body>
 </html>
@@ -297,13 +382,13 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
 <style>
   @page { size: A4; margin: 10mm; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Calibri, Arial, sans-serif; font-size: 10pt; line-height: 1.2; }
+  body { font-family: Calibri, Arial, sans-serif; font-size: 9pt; line-height: 1.2; }
   .header { border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 15px; }
-  .header h1 { font-size: 14pt; font-weight: bold; margin-bottom: 5px; }
-  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 9pt; margin: 10px 0; }
-  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 9pt; }
-  th, td { border: 1px solid #000; padding: 6px; text-align: left; }
-  th { background: #f0f0f0; font-weight: bold; }
+  .header h1 { font-size: 12pt; font-weight: bold; margin-bottom: 5px; }
+  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 9pt; margin: 8px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 9pt; font-family: Calibri, Arial; }
+  th, td { border: 1px solid #000; padding: 6px; text-align: left; font-family: Calibri, Arial; }
+  th { background: #f0f0f0; font-weight: bold; text-align: center; }
   .amount { text-align: right; }
   .total-row { background: #e8f5e9; font-weight: bold; }
   .premium-row { background: #fff3e0; font-weight: bold; }
@@ -366,7 +451,7 @@ export const generateZIP = async (project: ProjectDetails, items: BillItem[]) =>
   const premiumAmount = totalAmount * (project.tenderPremium / 100);
   const netPayable = totalAmount + premiumAmount;
 
-  // Add Excel
+  // Add Excel with exact formatting
   const headerRows = [
     ["CONTRACTOR BILL"],
     ["Project:", project.projectName],
@@ -388,7 +473,10 @@ export const generateZIP = async (project: ProjectDetails, items: BillItem[]) =>
 
   const wsData = [...headerRows, tableHeader, ...dataRows, [""], totalRow, premiumRow, payableRow];
   const ws = utils.aoa_to_sheet(wsData);
-  ws['!cols'] = [{ wch: 6 }, { wch: 9 }, { wch: 9 }, { wch: 6 }, { wch: 38 }, { wch: 8 }, { wch: 12 }, { wch: 9 }, { wch: 7 }];
+  ws['!cols'] = [
+    { wch: 12.29 }, { wch: 62.43 }, { wch: 13.0 }, { wch: 8.71 }, 
+    { wch: 9.0 }, { wch: 11.0 }, { wch: 9.14 }, { wch: 12.0 }, { wch: 10.0 }
+  ];
   ws['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 8 } }];
 
   const wb = utils.book_new();
@@ -397,7 +485,7 @@ export const generateZIP = async (project: ProjectDetails, items: BillItem[]) =>
   zip.file("bill_summary.xlsx", excelBuffer);
 
   // Add HTML
-  const htmlContent = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Bill</title><style>body{font-family:Calibri,Arial;font-size:10pt}table{border-collapse:collapse;width:100%;margin:15px 0}th,td{border:1px solid #333;padding:6px}th{background:#f0f0f0;font-weight:bold}.amount{text-align:right}.total-row{background:#e8f5e9;font-weight:bold}.premium-row{background:#fff3e0;font-weight:bold}.payable-row{background:#c8e6c9;font-weight:bold}</style></head><body><h1 style="margin:15px 0">CONTRACTOR BILL - ${project.projectName}</h1><p><strong>Contractor:</strong> ${project.contractorName}</p><p><strong>Date:</strong> ${project.billDate.toLocaleDateString()}</p><table><thead><tr><th>Unit</th><th>Qty Last</th><th>Qty Total</th><th>S.No</th><th>Item</th><th class="amount">Rate</th><th class="amount">Amount</th><th>Prev</th><th>Remarks</th></tr></thead><tbody>${items.filter(item => item.quantity > 0).map(item => `<tr><td>${item.unit}</td><td class="amount">${item.previousQty}</td><td class="amount">${item.quantity}</td><td>${item.itemNo}</td><td>${item.description}</td><td class="amount">₹${item.rate.toFixed(2)}</td><td class="amount">₹${(item.quantity * item.rate).toFixed(2)}</td><td>0</td><td></td></tr>`).join('')}<tr class="total-row"><td colspan="4"></td><td><strong>Grand Total</strong></td><td></td><td class="amount"><strong>₹${totalAmount.toFixed(2)}</strong></td><td></td><td></td></tr><tr class="premium-row"><td colspan="4"></td><td><strong>Premium @${project.tenderPremium}%</strong></td><td></td><td class="amount"><strong>₹${premiumAmount.toFixed(2)}</strong></td><td></td><td></td></tr><tr class="payable-row"><td colspan="4"></td><td><strong>NET PAYABLE</strong></td><td></td><td class="amount"><strong>₹${netPayable.toFixed(2)}</strong></td><td></td><td></td></tr></tbody></table></body></html>`;
+  const htmlContent = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Bill</title><style>body{font-family:Calibri,Arial;font-size:9pt}table{border-collapse:collapse;width:100%;margin:15px 0}th,td{border:1px solid #000;padding:6px;font-family:Calibri,Arial}th{background:#f0f0f0;font-weight:bold;text-align:center}.amount{text-align:right}.total-row{background:#e8f5e9;font-weight:bold}.premium-row{background:#fff3e0;font-weight:bold}.payable-row{background:#c8e6c9;font-weight:bold}</style></head><body><h1>CONTRACTOR BILL - ${project.projectName}</h1><p>Contractor: ${project.contractorName}</p><p>Date: ${project.billDate.toLocaleDateString()}</p><table><thead><tr><th>Unit</th><th>Qty Last</th><th>Qty Total</th><th>S.No</th><th>Item</th><th class="amount">Rate</th><th class="amount">Amount</th><th>Prev</th><th>Remarks</th></tr></thead><tbody>${items.filter(item => item.quantity > 0).map(item => `<tr><td>${item.unit}</td><td class="amount">${item.previousQty}</td><td class="amount">${item.quantity}</td><td>${item.itemNo}</td><td>${item.description}</td><td class="amount">₹${item.rate.toFixed(2)}</td><td class="amount">₹${(item.quantity * item.rate).toFixed(2)}</td><td>0</td><td></td></tr>`).join('')}<tr class="total-row"><td colspan="4"></td><td><strong>Grand Total</strong></td><td></td><td class="amount"><strong>₹${totalAmount.toFixed(2)}</strong></td><td></td><td></td></tr><tr class="premium-row"><td colspan="4"></td><td><strong>Premium @${project.tenderPremium}%</strong></td><td></td><td class="amount"><strong>₹${premiumAmount.toFixed(2)}</strong></td><td></td><td></td></tr><tr class="payable-row"><td colspan="4"></td><td><strong>NET PAYABLE</strong></td><td></td><td class="amount"><strong>₹${netPayable.toFixed(2)}</strong></td><td></td><td></td></tr></tbody></table></body></html>`;
   zip.file("bill_summary.html", htmlContent);
 
   // Add CSV
