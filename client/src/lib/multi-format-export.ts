@@ -384,67 +384,168 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Bill - ${project.projectName}</title>
 <style>
-  @page { size: A4; margin: 10mm; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: Calibri, Arial, sans-serif; font-size: 9pt; line-height: 1.2; }
-  .header { border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 15px; }
-  .header h1 { font-size: 12pt; font-weight: bold; margin-bottom: 5px; }
-  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 9pt; margin: 8px 0; }
-  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 9pt; font-family: Calibri, Arial; table-layout: fixed; }
-  th, td { border: 1px solid #000; padding: 6px; text-align: left; font-family: Calibri, Arial; word-wrap: break-word; overflow-wrap: break-word; }
-  th { background: #f0f0f0; font-weight: bold; text-align: center; vertical-align: middle; }
+  @page { 
+    size: A4; 
+    margin: 10mm;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  html, body { 
+    width: 210mm;
+    height: 297mm;
+    zoom: 100%;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  body { 
+    font-family: 'Calibri', 'Arial', sans-serif; 
+    font-size: 9pt; 
+    line-height: 1.2;
+    padding: 10mm;
+  }
+  .container {
+    width: 190mm;
+    margin: 0;
+  }
+  .header { 
+    border-bottom: 2px solid #000; 
+    padding-bottom: 10px; 
+    margin-bottom: 15px;
+    page-break-inside: avoid;
+  }
+  .header h1 { 
+    font-size: 12pt; 
+    font-weight: bold; 
+    margin-bottom: 5px;
+    color: #000;
+  }
+  .info { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; 
+    font-size: 9pt; 
+    margin: 8px 0;
+  }
+  table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin: 15px 0; 
+    font-size: 9pt; 
+    font-family: 'Calibri', 'Arial';
+    table-layout: fixed;
+    page-break-inside: avoid;
+  }
+  th { 
+    background: #f0f0f0; 
+    border: 1px solid #000; 
+    padding: 4px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 8.5pt;
+    vertical-align: middle;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  td { 
+    border: 1px solid #000; 
+    padding: 4px;
+    text-align: left;
+    font-size: 9pt;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
   .amount { text-align: right; }
-  .total-row { background: #e8f5e9; font-weight: bold; }
-  .premium-row { background: #fff3e0; font-weight: bold; }
-  .payable-row { background: #c8e6c9; font-weight: bold; }
+  .total-row { 
+    background: #e8f5e9; 
+    font-weight: bold;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .premium-row { 
+    background: #fff3e0; 
+    font-weight: bold;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .payable-row { 
+    background: #c8e6c9; 
+    font-weight: bold;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @media print {
+    @page { margin: 10mm; size: A4 portrait; }
+    body { margin: 0; padding: 10mm; }
+    .container { width: 190mm; }
+    table { page-break-inside: avoid; }
+    tr { page-break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
-  <div class="header">
-    <h1>CONTRACTOR BILL</h1>
-    <div class="info">
-      <div><strong>Project:</strong> ${project.projectName}</div>
-      <div><strong>Contractor:</strong> ${project.contractorName}</div>
-      <div><strong>Date:</strong> ${project.billDate.toLocaleDateString()}</div>
-      <div><strong>Premium:</strong> ${project.tenderPremium}%</div>
+  <div class="container">
+    <div class="header">
+      <h1>CONTRACTOR BILL</h1>
+      <div class="info">
+        <div><strong>Project:</strong> ${project.projectName}</div>
+        <div><strong>Contractor:</strong> ${project.contractorName}</div>
+        <div><strong>Date:</strong> ${project.billDate.toLocaleDateString()}</div>
+        <div><strong>Premium:</strong> ${project.tenderPremium}%</div>
+      </div>
     </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10.06mm;">Unit</th>
+          <th style="width: 13.76mm;">Qty Last</th>
+          <th style="width: 13.76mm;">Qty Total</th>
+          <th style="width: 9.55mm;">S.No</th>
+          <th style="width: 63.83mm;">Item</th>
+          <th style="width: 13.16mm;">Rate</th>
+          <th style="width: 19.53mm;">Amount</th>
+          <th style="width: 15.15mm;">Prev</th>
+          <th style="width: 11.96mm;">Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${validItems.map(item => `
+        <tr>
+          <td style="width: 10.06mm;">${item.unit || ''}</td>
+          <td style="width: 13.76mm; text-align: right;">${item.previousQty || 0}</td>
+          <td style="width: 13.76mm; text-align: right;">${item.quantity}</td>
+          <td style="width: 9.55mm;">${item.itemNo}</td>
+          <td style="width: 63.83mm;">${item.description}</td>
+          <td style="width: 13.16mm; text-align: right;">₹${item.rate.toFixed(2)}</td>
+          <td style="width: 19.53mm; text-align: right;">₹${(item.quantity * item.rate).toFixed(2)}</td>
+          <td style="width: 15.15mm; text-align: right;">0</td>
+          <td style="width: 11.96mm;"></td>
+        </tr>
+        `).join('')}
+        <tr class="total-row">
+          <td colspan="4"></td><td><strong>Grand Total</strong></td><td></td><td style="text-align: right;"><strong>₹${totalAmount.toFixed(2)}</strong></td><td></td><td></td>
+        </tr>
+        <tr class="premium-row">
+          <td colspan="4"></td><td><strong>Premium @${project.tenderPremium}%</strong></td><td></td><td style="text-align: right;"><strong>₹${premiumAmount.toFixed(2)}</strong></td><td></td><td></td>
+        </tr>
+        <tr class="payable-row">
+          <td colspan="4"></td><td><strong>NET PAYABLE</strong></td><td></td><td style="text-align: right;"><strong>₹${netPayable.toFixed(2)}</strong></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
-  <table style="table-layout: fixed; width: 100%;">
-    <thead>
-      <tr>
-        <th style="width: 10.06mm;">Unit</th>
-        <th style="width: 13.76mm;">Qty Last</th>
-        <th style="width: 13.76mm;">Qty Total</th>
-        <th style="width: 9.55mm;">S.No</th>
-        <th style="width: 63.83mm;">Item</th>
-        <th style="width: 13.16mm; text-align: right;">Rate</th>
-        <th style="width: 19.53mm; text-align: right;">Amount</th>
-        <th style="width: 15.15mm; text-align: right;">Prev</th>
-        <th style="width: 11.96mm;">Remarks</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${validItems.map(item => `
-      <tr>
-        <td>${item.unit}</td><td class="amount">${item.previousQty}</td><td class="amount">${item.quantity}</td>
-        <td>${item.itemNo}</td><td>${item.description}</td>
-        <td class="amount">₹${item.rate.toFixed(2)}</td><td class="amount">₹${(item.quantity * item.rate).toFixed(2)}</td><td>0</td><td></td>
-      </tr>
-      `).join('')}
-      <tr class="total-row">
-        <td colspan="4"></td><td><strong>Grand Total</strong></td><td></td><td class="amount"><strong>₹${totalAmount.toFixed(2)}</strong></td><td></td><td></td>
-      </tr>
-      <tr class="premium-row">
-        <td colspan="4"></td><td><strong>Premium @${project.tenderPremium}%</strong></td><td></td><td class="amount"><strong>₹${premiumAmount.toFixed(2)}</strong></td><td></td><td></td>
-      </tr>
-      <tr class="payable-row">
-        <td colspan="4"></td><td><strong>NET PAYABLE</strong></td><td></td><td class="amount"><strong>₹${netPayable.toFixed(2)}</strong></td><td></td><td></td>
-      </tr>
-    </tbody>
-  </table>
 </body>
 </html>
   `;
