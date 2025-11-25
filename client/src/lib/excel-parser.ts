@@ -10,30 +10,37 @@ export interface ParsedBillData {
   items: any[];
 }
 
-// Helper: Detect item hierarchy level based on itemNo structure
+// Helper: Detect item hierarchy level based on itemNo structure & context
 function detectItemLevel(itemNo: string, prevItemNo?: string): number {
   if (!itemNo) return 0;
   
   const current = itemNo.trim();
+  const prev = prevItemNo?.trim() || "";
   
-  // Main items end with .0 (e.g., "1.0", "2.0", "11.0")
+  // RULE 1: If previous was main item (ends with .0), current is either sub or sub-sub
+  if (prev.endsWith('.0')) {
+    if (/^\d+$/.test(current)) return 1;           // single digit = sub-item
+    if (/^[a-z]$/i.test(current)) return 1;        // letter = sub-item
+    if (/^[ivxlcdm]+$/i.test(current)) return 1;   // roman numeral = sub-item
+    if (current.includes('.')) return 2;           // decimal = sub-sub-item
+  }
+  
+  // RULE 2: Items with just .0 are typically main items (default)
   if (current.endsWith('.0')) {
-    return 0;
+    // BUT if previous was a single digit or letter (sub-item), then this is sub-sub
+    if (/^\d+$/.test(prev) || /^[a-z]$/i.test(prev) || /^[ivxlcdm]+$/i.test(prev)) {
+      return 2; // sub-sub-item (e.g., "4.0" after "3")
+    }
+    return 0; // main item
   }
   
-  // If previous was main (ends with .0) and current is single digit = sub-item
-  if (prevItemNo?.trim().endsWith('.0')) {
-    if (/^\d+$/.test(current)) return 1; // single digit = sub-item (level 1)
-    if (current.includes('.')) return 2; // decimal = sub-sub-item (level 2)
-  }
-  
-  // If current has decimal but not .0, likely sub-item (level 1 or 2)
+  // RULE 3: Non-.0 decimals are sub-sub-items (e.g., "4.1", "a.i")
   if (current.includes('.') && !current.endsWith('.0')) {
     return 2;
   }
   
-  // Single digit items are typically sub-items (level 1)
-  if (/^\d+$/.test(current)) {
+  // RULE 4: Single digits/letters/roman are typically sub-items
+  if (/^\d+$/.test(current) || /^[a-z]$/i.test(current) || /^[ivxlcdm]+$/i.test(current)) {
     return 1;
   }
   
