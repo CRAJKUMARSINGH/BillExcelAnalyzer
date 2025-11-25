@@ -3,10 +3,11 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon, Plus, Trash2, FileSpreadsheet, Calculator } from "lucide-react";
+import { Calendar as CalendarIcon, Plus, Trash2, FileSpreadsheet, Calculator, RefreshCw, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Badge } from "@/components/ui/badge";
 import {
   Form,
   FormControl,
@@ -158,10 +159,35 @@ export default function Home() {
     replace(initialItems);
     setSelectedTestFile(filename);
     setActiveTab("online");
-
+    
     toast({
-      title: "Test Data Loaded",
-      description: `Loaded ${filename}. 5 random items have been auto-filled.`,
+        title: "Fast Mode Activated ⚡",
+        description: `Loaded ${filename} with 5 auto-filled random items.`,
+        className: "bg-emerald-50 border-emerald-200 text-emerald-800"
+    });
+  };
+
+  const randomizeQuantities = () => {
+    const currentItems = form.getValues("items");
+    if (currentItems.length === 0) return;
+
+    // Reset all to 0
+    const newItems = currentItems.map(item => ({ ...item, quantity: 0 }));
+    
+    // Pick 5 random
+    const indicesToFill = new Set<number>();
+    while (indicesToFill.size < 5 && indicesToFill.size < newItems.length) {
+      indicesToFill.add(Math.floor(Math.random() * newItems.length));
+    }
+
+    indicesToFill.forEach(index => {
+      newItems[index].quantity = Math.floor(Math.random() * 100) + 1;
+    });
+
+    replace(newItems);
+    toast({
+      title: "Quantities Randomized 🎲",
+      description: "5 new items have been selected and filled.",
     });
   };
 
@@ -300,22 +326,44 @@ export default function Home() {
           <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-sm">BillGenerator Unified</h1>
           <p className="text-emerald-50">✨ Professional Bill Generation System | Version 2.0.0</p>
           
-          <div className="mt-6 max-w-md mx-auto bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20">
-             <label className="block text-sm font-medium text-emerald-50 mb-2">🚀 Fast Mode: Select Test File</label>
-             <Select onValueChange={loadTestFile} value={selectedTestFile}>
-                <SelectTrigger className="bg-white text-slate-800 border-0 h-10">
-                  <SelectValue placeholder="Select a test file to load..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {Object.keys(testFilesData).map(filename => (
-                    <SelectItem key={filename} value={filename}>
-                      {filename}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-             </Select>
-             <p className="text-xs text-emerald-100 mt-2">
-               Loads items from file, fills 5 random quantities automatically.
+          <div className="mt-6 max-w-xl mx-auto bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20 shadow-inner">
+             <div className="flex items-center justify-between mb-2">
+                <label className="flex items-center text-sm font-bold text-white">
+                    <Zap className="w-4 h-4 mr-2 text-yellow-300 fill-yellow-300" /> 
+                    FAST MODE
+                    <Badge variant="secondary" className="ml-2 bg-yellow-400/20 text-yellow-100 hover:bg-yellow-400/30 border-0">
+                        Auto-Fill Active
+                    </Badge>
+                </label>
+             </div>
+             
+             <div className="flex gap-2">
+                 <div className="flex-1">
+                     <Select onValueChange={loadTestFile} value={selectedTestFile}>
+                        <SelectTrigger className="bg-white/95 text-slate-800 border-0 h-10 font-medium">
+                          <SelectValue placeholder="Select Test File (e.g. 0511-N-extra)" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {Object.keys(testFilesData).map(filename => (
+                            <SelectItem key={filename} value={filename}>
+                              {filename}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                     </Select>
+                 </div>
+                 <Button 
+                    onClick={randomizeQuantities}
+                    disabled={!selectedTestFile}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white border-0 h-10 px-4"
+                    title="Randomize 5 Items"
+                 >
+                    <RefreshCw className="w-4 h-4" />
+                 </Button>
+             </div>
+             <p className="text-xs text-emerald-50 mt-2 opacity-80 flex items-center">
+               <span className="inline-block w-1.5 h-1.5 rounded-full bg-yellow-400 mr-1.5"></span>
+               Simulates online entry by auto-filling 5 random items from the selected file.
              </p>
           </div>
         </div>

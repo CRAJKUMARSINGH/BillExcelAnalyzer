@@ -86,19 +86,28 @@ export const generateExcel = (project: ProjectDetails, items: BillItem[]) => {
   const wb = utils.book_new();
   const ws = utils.aoa_to_sheet(wsData);
 
-  // Set column widths (approximating the mm values from HTML)
-  // 11mm, 16mm, 16mm, 11mm, 70mm, 15mm, 22mm, 17mm, 12mm
-  // Approx conversion factor: 1mm ~ 0.5 Excel width units (roughly)
+  // Set column widths based on HTML mm values
+  // Approximation: 1mm ≈ 0.55 Excel column width units (roughly)
+  // Unit: 11mm -> ~6
+  // Qty Last: 16mm -> ~9
+  // Qty Total: 16mm -> ~9
+  // S. No.: 11mm -> ~6
+  // Item Work: 70mm -> ~38
+  // Rate: 15mm -> ~8
+  // Amount: 22mm -> ~12
+  // Amount Prev: 17mm -> ~9
+  // Remarks: 12mm -> ~7
+  
   ws['!cols'] = [
-    { wch: 6 },  // Unit
-    { wch: 10 }, // Qty Last
-    { wch: 10 }, // Qty Total
-    { wch: 6 },  // S.No
-    { wch: 40 }, // Description (70mm is wide)
-    { wch: 8 },  // Rate
-    { wch: 12 }, // Amount Total
-    { wch: 10 }, // Amount Last
-    { wch: 8 },  // Remarks
+    { wch: 6 },  // Unit (11mm)
+    { wch: 9 },  // Qty Last (16mm)
+    { wch: 9 },  // Qty Total (16mm)
+    { wch: 6 },  // S.No (11mm)
+    { wch: 38 }, // Description (70mm)
+    { wch: 8 },  // Rate (15mm)
+    { wch: 12 }, // Amount Total (22mm)
+    { wch: 9 },  // Amount Since Prev (17mm)
+    { wch: 7 },  // Remarks (12mm)
   ];
 
   // Merge title row
