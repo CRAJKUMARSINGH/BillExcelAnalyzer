@@ -10,6 +10,36 @@ export interface ParsedBillData {
   items: any[];
 }
 
+// Helper: Detect item hierarchy level based on itemNo structure
+function detectItemLevel(itemNo: string, prevItemNo?: string): number {
+  if (!itemNo) return 0;
+  
+  const current = itemNo.trim();
+  
+  // Main items end with .0 (e.g., "1.0", "2.0", "11.0")
+  if (current.endsWith('.0')) {
+    return 0;
+  }
+  
+  // If previous was main (ends with .0) and current is single digit = sub-item
+  if (prevItemNo?.trim().endsWith('.0')) {
+    if (/^\d+$/.test(current)) return 1; // single digit = sub-item (level 1)
+    if (current.includes('.')) return 2; // decimal = sub-sub-item (level 2)
+  }
+  
+  // If current has decimal but not .0, likely sub-item (level 1 or 2)
+  if (current.includes('.') && !current.endsWith('.0')) {
+    return 2;
+  }
+  
+  // Single digit items are typically sub-items (level 1)
+  if (/^\d+$/.test(current)) {
+    return 1;
+  }
+  
+  return 0;
+}
+
 export const parseBillExcel = async (file: File): Promise<ParsedBillData> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -60,19 +90,25 @@ export const parseBillExcel = async (file: File): Promise<ParsedBillData> => {
           result.projectDetails.tenderPremium = parseFloat(titleMap['Tender Premium'] || "0");
         }
 
-        // 2. Process 'Bill Quantity' Sheet
+        // 2. Process 'Bill Quantity' Sheet with Hierarchical Support
         if (workbook.Sheets['Bill Quantity']) {
           const rawItems = utils.sheet_to_json(workbook.Sheets['Bill Quantity']);
           
-          // Map columns loosely to handle variations
-          result.items = rawItems.map((row: any) => ({
-            itemNo: row['Item No'] || row['S.No'] || row['Item'] || "",
-            description: row['Description'] || row['Particulars'] || "",
-            quantity: parseFloat(row['Qty'] || row['Quantity'] || "0"),
-            rate: parseFloat(row['Rate'] || "0"),
-            unit: row['Unit'] || "",
-            previousQty: parseFloat(row['Prev Qty'] || "0"),
-          })).filter(item => item.description && (item.quantity > 0 || item.rate > 0));
+          // Map columns and preserve hierarchy
+          result.items = rawItems.map((row: any, idx: number) => {
+            const prevItemNo = idx > 0 ? (rawItems[idx-1]['Item No'] || rawItems[idx-1]['S.No'] || rawItems[idx-1]['Item'] || "") : undefined;
+            const itemNo = row['Item No'] || row['S.No'] || row['Item'] || "";
+            
+            return {
+              itemNo: itemNo,
+              description: row['Description'] || row['Particulars'] || "",
+              quantity: parseFloat(row['Qty'] || row['Quantity'] || "0"),
+              rate: parseFloat(row['Rate'] || "0"),
+              unit: row['Unit'] || "",
+              previousQty: parseFloat(row['Prev Qty'] || "0"),
+              level: detectItemLevel(itemNo, prevItemNo), // 0=main, 1=sub, 2=sub-sub
+            };
+          }).filter(item => item.description && (item.quantity > 0 || item.rate > 0));
         }
 
         resolve(result);
