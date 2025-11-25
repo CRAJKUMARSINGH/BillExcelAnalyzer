@@ -270,45 +270,54 @@ export default function Home() {
                           <Button type="button" size="sm" variant="outline" onClick={handleClearAll} className="text-red-600 border-red-300 hover:bg-red-50" data-testid="button-clear-all">
                             <X className="w-4 h-4 mr-1" /> Clear All
                           </Button>
-                          <Button type="button" size="sm" onClick={() => append({ itemNo: "", description: "", quantity: 0, rate: 0, unit: "", previousQty: 0 })} className="bg-emerald-600 hover:bg-emerald-700" data-testid="button-add-item">
+                          <Button type="button" size="sm" onClick={() => append({ itemNo: "", description: "", quantity: 0, rate: 0, unit: "", previousQty: 0, level: 0 })} className="bg-emerald-600 hover:bg-emerald-700" data-testid="button-add-item">
                             <Plus className="w-4 h-4 mr-1" /> Add Item
                           </Button>
                         </div>
                       </div>
 
                       <div className="space-y-2 max-h-96 overflow-y-auto border border-emerald-200 rounded-lg p-3 bg-emerald-50">
-                        {fields.map((field, idx) => (
-                          <div key={field.id} className="bg-white p-3 rounded border border-emerald-200 space-y-2" data-testid={`item-row-${idx}`}>
-                            <div className="grid md:grid-cols-6 gap-2 items-start">
-                              <FormField name={`items.${idx}.itemNo`} control={form.control} render={({ field }) => (
-                                <FormItem><FormControl><Input {...field} placeholder="No." size={1} className="border-emerald-300" data-testid={`input-itemno-${idx}`} /></FormControl></FormItem>
-                              )} />
-                              <FormField name={`items.${idx}.description`} control={form.control} render={({ field }) => (
-                                <FormItem><FormControl><Input {...field} placeholder="Description" className="md:col-span-2 border-emerald-300" data-testid={`input-description-${idx}`} /></FormControl></FormItem>
-                              )} />
-                              <FormField name={`items.${idx}.quantity`} control={form.control} render={({ field }) => (
-                                <FormItem><FormControl><Input {...field} type="number" placeholder="Qty" className="border-emerald-300" data-testid={`input-quantity-${idx}`} /></FormControl></FormItem>
-                              )} />
-                              <FormField name={`items.${idx}.rate`} control={form.control} render={({ field }) => (
-                                <FormItem><FormControl><Input {...field} type="number" placeholder="Rate" className="border-emerald-300" data-testid={`input-rate-${idx}`} /></FormControl></FormItem>
-                              )} />
+                        {fields.map((field, idx) => {
+                          const itemLevel = (items[idx]?.level || 0);
+                          const indent = itemLevel > 0 ? itemLevel * 4 : 0;
+                          return (
+                            <div key={field.id} className="bg-white p-3 rounded border border-emerald-200 space-y-2" style={{marginLeft: `${indent}px`}} data-testid={`item-row-${idx}`}>
+                              <div className="grid md:grid-cols-6 gap-2 items-start">
+                                <FormField name={`items.${idx}.itemNo`} control={form.control} render={({ field }) => (
+                                  <FormItem><FormControl><Input {...field} placeholder="No." size={1} className="border-emerald-300" data-testid={`input-itemno-${idx}`} /></FormControl></FormItem>
+                                )} />
+                                <FormField name={`items.${idx}.description`} control={form.control} render={({ field }) => (
+                                  <FormItem><FormControl><Input {...field} placeholder="Description" className="md:col-span-2 border-emerald-300" data-testid={`input-description-${idx}`} /></FormControl></FormItem>
+                                )} />
+                                <FormField name={`items.${idx}.quantity`} control={form.control} render={({ field }) => (
+                                  <FormItem><FormControl><Input {...field} type="number" placeholder="Qty" className="border-emerald-300" data-testid={`input-quantity-${idx}`} /></FormControl></FormItem>
+                                )} />
+                                <FormField name={`items.${idx}.rate`} control={form.control} render={({ field }) => (
+                                  <FormItem><FormControl><Input {...field} type="number" placeholder="Rate" className="border-emerald-300" data-testid={`input-rate-${idx}`} /></FormControl></FormItem>
+                                )} />
+                              </div>
+                              <div className="flex gap-2 text-xs">
+                                <span className={`px-2 py-1 rounded ${itemLevel === 0 ? "bg-emerald-100 text-emerald-700" : itemLevel === 1 ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"}`}>
+                                  {itemLevel === 0 ? "Main Item" : itemLevel === 1 ? "Sub-item" : "Sub-sub-item"}
+                                </span>
+                              </div>
+                              <div className="flex gap-2">
+                                <Button type="button" size="sm" variant="ghost" onClick={() => handleDuplicateItem(idx)} className="text-blue-600 hover:bg-blue-50" data-testid={`button-duplicate-${idx}`}>
+                                  <Copy className="w-4 h-4 mr-1" /> Dup
+                                </Button>
+                                {idx > 0 && <Button type="button" size="sm" variant="ghost" onClick={() => move(idx, idx - 1)} className="text-slate-600 hover:bg-slate-100" data-testid={`button-up-${idx}`}>
+                                  <ArrowUp className="w-4 h-4" />
+                                </Button>}
+                                {idx < fields.length - 1 && <Button type="button" size="sm" variant="ghost" onClick={() => move(idx, idx + 1)} className="text-slate-600 hover:bg-slate-100" data-testid={`button-down-${idx}`}>
+                                  <ArrowDown className="w-4 h-4" />
+                                </Button>}
+                                <Button type="button" size="sm" variant="ghost" onClick={() => remove(idx)} className="text-red-600 hover:bg-red-50 ml-auto" data-testid={`button-delete-${idx}`}>
+                                  <Trash2 className="w-4 h-4" />
+                                </Button>
+                              </div>
                             </div>
-                            <div className="flex gap-2">
-                              <Button type="button" size="sm" variant="ghost" onClick={() => handleDuplicateItem(idx)} className="text-blue-600 hover:bg-blue-50" data-testid={`button-duplicate-${idx}`}>
-                                <Copy className="w-4 h-4 mr-1" /> Dup
-                              </Button>
-                              {idx > 0 && <Button type="button" size="sm" variant="ghost" onClick={() => move(idx, idx - 1)} className="text-slate-600 hover:bg-slate-100" data-testid={`button-up-${idx}`}>
-                                <ArrowUp className="w-4 h-4" />
-                              </Button>}
-                              {idx < fields.length - 1 && <Button type="button" size="sm" variant="ghost" onClick={() => move(idx, idx + 1)} className="text-slate-600 hover:bg-slate-100" data-testid={`button-down-${idx}`}>
-                                <ArrowDown className="w-4 h-4" />
-                              </Button>}
-                              <Button type="button" size="sm" variant="ghost" onClick={() => remove(idx)} className="text-red-600 hover:bg-red-50 ml-auto" data-testid={`button-delete-${idx}`}>
-                                <Trash2 className="w-4 h-4" />
-                              </Button>
-                            </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
 

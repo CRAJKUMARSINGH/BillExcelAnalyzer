@@ -10,6 +10,7 @@ export interface BillItem {
   rate: number;
   unit: string;
   previousQty: number;
+  level?: number; // 0=main, 1=sub, 2=sub-sub
 }
 
 export interface ProjectDetails {
@@ -48,17 +49,21 @@ export const generateStyledExcel = (project: ProjectDetails, items: BillItem[]) 
     "Remarks"
   ];
 
-  const dataRows = validItems.map(item => [
-    item.unit || "",
-    item.previousQty || 0,
-    item.quantity,
-    item.itemNo,
-    item.description,
-    item.rate,
-    (item.quantity * item.rate).toFixed(2),
-    0,
-    ""
-  ]);
+  const dataRows = validItems.map(item => {
+    // Add indentation for sub-items and sub-sub-items
+    const indent = (item.level || 0) > 0 ? "  ".repeat(item.level || 0) : "";
+    return [
+      item.unit || "",
+      item.previousQty || 0,
+      item.quantity,
+      item.itemNo,
+      indent + item.description,
+      item.rate,
+      (item.quantity * item.rate).toFixed(2),
+      0,
+      ""
+    ];
+  });
 
   const totalRow = ["", "", "", "", "Grand Total Rs.", "", totalAmount.toFixed(2), totalAmount.toFixed(2), ""];
   const premiumRow = ["", "", "", "", `Tender Premium @ ${project.tenderPremium}%`, "", premiumAmount.toFixed(2), premiumAmount.toFixed(2), ""];

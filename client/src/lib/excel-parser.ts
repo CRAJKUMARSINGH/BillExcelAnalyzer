@@ -92,7 +92,7 @@ export const parseBillExcel = async (file: File): Promise<ParsedBillData> => {
 
         // 2. Process 'Bill Quantity' Sheet with Hierarchical Support
         if (workbook.Sheets['Bill Quantity']) {
-          const rawItems = utils.sheet_to_json(workbook.Sheets['Bill Quantity']);
+          const rawItems = utils.sheet_to_json(workbook.Sheets['Bill Quantity']) as any[];
           
           // Map columns and preserve hierarchy
           result.items = rawItems.map((row: any, idx: number) => {
