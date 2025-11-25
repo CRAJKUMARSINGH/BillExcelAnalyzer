@@ -22,6 +22,8 @@ import { Separator } from "@/components/ui/separator";
 import { generateExcel } from "@/lib/excel-export";
 import { parseBillExcel } from "@/lib/excel-parser";
 import { useToast } from "@/hooks/use-toast";
+import testFilesData from "@/data/test-files.json";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // Form Schema
 const billSchema = z.object({
@@ -96,6 +98,7 @@ export default function Home() {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<"online" | "excel">("online");
   const [isUploading, setIsUploading] = useState(false);
+  const [selectedTestFile, setSelectedTestFile] = useState<string>("");
 
   const form = useForm<BillFormValues>({
     resolver: zodResolver(billSchema),
@@ -117,18 +120,49 @@ export default function Home() {
     name: "items",
   });
 
-  const loadSampleData = () => {
-      form.setValue("projectName", SAMPLE_DATA.projectDetails.projectName);
-      form.setValue("contractorName", SAMPLE_DATA.projectDetails.contractorName);
-      form.setValue("billDate", SAMPLE_DATA.projectDetails.billDate);
-      form.setValue("tenderPremium", SAMPLE_DATA.projectDetails.tenderPremium);
-      replace(SAMPLE_DATA.items);
-      
-      toast({
-        title: "Sample Data Loaded",
-        description: "Loaded data from 0511-N-extra.xlsx",
+  const loadTestFile = (filename: string) => {
+    const data = (testFilesData as any)[filename];
+    if (!data) return;
+
+    // Load Project Details
+    form.setValue("projectName", data.projectDetails.projectName);
+    form.setValue("contractorName", data.projectDetails.contractorName);
+    form.setValue("billDate", new Date(data.projectDetails.billDate || new Date()));
+    form.setValue("tenderPremium", data.projectDetails.tenderPremium);
+
+    // 1. Load ALL items with 0 quantity initially
+    const initialItems = data.items.map((item: any) => ({
+      itemNo: item.itemNo,
+      description: item.description,
+      quantity: 0, // Explicitly 0 as per "donot read quantity sheet"
+      rate: item.rate,
+      unit: item.unit,
+      previousQty: 0
+    }));
+
+    // 2. Randomly select 5 items to fill with some quantity (Simulate Online Entry)
+    const totalItems = initialItems.length;
+    if (totalItems > 0) {
+      const indicesToFill = new Set<number>();
+      while (indicesToFill.size < 5 && indicesToFill.size < totalItems) {
+        indicesToFill.add(Math.floor(Math.random() * totalItems));
+      }
+
+      indicesToFill.forEach(index => {
+        // Generate a realistic random quantity between 1 and 100
+        const randomQty = Math.floor(Math.random() * 100) + 1;
+        initialItems[index].quantity = randomQty;
       });
-      setActiveTab("online");
+    }
+
+    replace(initialItems);
+    setSelectedTestFile(filename);
+    setActiveTab("online");
+
+    toast({
+      title: "Test Data Loaded",
+      description: `Loaded ${filename}. 5 random items have been auto-filled.`,
+    });
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -265,6 +299,25 @@ export default function Home() {
         <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl p-8 text-white text-center shadow-xl shadow-emerald-500/20 mb-8 animate-in slide-in-from-top duration-500">
           <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-sm">BillGenerator Unified</h1>
           <p className="text-emerald-50">✨ Professional Bill Generation System | Version 2.0.0</p>
+          
+          <div className="mt-6 max-w-md mx-auto bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20">
+             <label className="block text-sm font-medium text-emerald-50 mb-2">🚀 Fast Mode: Select Test File</label>
+             <Select onValueChange={loadTestFile} value={selectedTestFile}>
+                <SelectTrigger className="bg-white text-slate-800 border-0 h-10">
+                  <SelectValue placeholder="Select a test file to load..." />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.keys(testFilesData).map(filename => (
+                    <SelectItem key={filename} value={filename}>
+                      {filename}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+             </Select>
+             <p className="text-xs text-emerald-100 mt-2">
+               Loads items from file, fills 5 random quantities automatically.
+             </p>
+          </div>
         </div>
 
         {activeTab === "online" ? (

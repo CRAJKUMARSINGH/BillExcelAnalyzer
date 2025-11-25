@@ -1,0 +1,2074 @@
+{
+  "0511-N-extra.xlsx": {
+    "filename": "0511-N-extra.xlsx",
+    "projectDetails": {
+      "projectName": "Unknown Project",
+      "contractorName": "Unknown Agency",
+      "billDate": "2025-11-25",
+      "tenderPremium": 0.0
+    },
+    "items": [
+      {
+        "itemNo": "1.0",
+        "description": "Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2",
+        "description": "Short point (up to 3 mtr.)",
+        "quantity": 0,
+        "rate": 256.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3",
+        "description": "Medium point (up to 6 mtr.)",
+        "quantity": 0,
+        "rate": 472.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4",
+        "description": "Long point  (up to 10 mtr.)",
+        "quantity": 0,
+        "rate": 662.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2.0",
+        "description": "Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "On board",
+        "quantity": 0,
+        "rate": 136.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3.0",
+        "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 23.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "8",
+        "description": "Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "9",
+        "description": "Add Tender Premium ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "%",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "10",
+        "description": "Grand Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      }
+    ]
+  },
+  "0511Wextra.xlsx": {
+    "filename": "0511Wextra.xlsx",
+    "projectDetails": {
+      "projectName": "Unknown Project",
+      "contractorName": "Unknown Agency",
+      "billDate": "2025-11-25",
+      "tenderPremium": 0.0
+    },
+    "items": [
+      {
+        "itemNo": "1.0",
+        "description": "Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2",
+        "description": "Short point (up to 3 mtr.)",
+        "quantity": 0,
+        "rate": 256.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3",
+        "description": "Medium point (up to 6 mtr.)",
+        "quantity": 0,
+        "rate": 472.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4",
+        "description": "Long point  (up to 10 mtr.)",
+        "quantity": 0,
+        "rate": 662.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2.0",
+        "description": "Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "On board",
+        "quantity": 0,
+        "rate": 136.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3.0",
+        "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 23.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "8",
+        "description": "Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "9",
+        "description": "Add Tender Premium ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "%",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "10",
+        "description": "Grand Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      }
+    ]
+  },
+  "3rdFinalNoExtra.xlsx": {
+    "filename": "3rdFinalNoExtra.xlsx",
+    "projectDetails": {
+      "projectName": "Unknown Project",
+      "contractorName": "Unknown Agency",
+      "billDate": "2025-11-25",
+      "tenderPremium": 0.0
+    },
+    "items": [
+      {
+        "itemNo": "1.0",
+        "description": "Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2",
+        "description": "Short point (up to 3 mtr.)",
+        "quantity": 0,
+        "rate": 256.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3",
+        "description": "Medium point (up to 6 mtr.)",
+        "quantity": 0,
+        "rate": 472.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4",
+        "description": "Long point  (up to 10 mtr.)",
+        "quantity": 0,
+        "rate": 662.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2.0",
+        "description": "Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "On board",
+        "quantity": 0,
+        "rate": 136.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3.0",
+        "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 23.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4.0",
+        "description": "P & F ISI marked (IS :3854) 16 amp. flush type non modular switch CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 50.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "5.0",
+        "description": "Providing & Fixing of  of 3/5 pin 6 amp. flush type  non modular socket  made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 33.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6.0",
+        "description": "Providing & Fixing of  3/6 pin 16 amp flush type non modular socket  made out from Industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 78.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "7.0",
+        "description": "Providing & Fixing of  ISI marked (IS:371) 6 amp surface type 3 pin ceiling rose with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screws including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "8.0",
+        "description": "Providing & Fixing of ISI marked (IS:1258) batten/angle lamp  holder with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screwsincluding making connection testing etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "9.0",
+        "description": "Providing & Fixing of IS 11037:1984  marked  non modular socket size flush type 180 watt rotary minimum 5 step fan regulator with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 219.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "10.0",
+        "description": "Providing and fixing of   power plug point with non modular accessories as per PWD specification for electrical Works with  Galvanized   box of 1.2 mm thick  with earth terminal with suitable size phenolic laminated sheet (IS : 2036 -  1995) cover including cost of 16 amp. Switch (IS :3854) and 3/6 pin 16 amp. socket outlet  making connection , testing , etc. as required. . For specification of  Wiring accessories refer Chapter  E - 07 related item &  For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 303.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "11.0",
+        "description": "S&F following sizes (dia.) of ISI marked virgin material MMS ( IS:9537 P - III ) PVC conduit along with  ISI marked (IS:3419-1988) accessories as required  in  recess  including  cutting the wall, covering conduit and making good the same as required. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16",
+        "description": "20 mm",
+        "quantity": 0,
+        "rate": 40.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17",
+        "description": "25 mm",
+        "quantity": 0,
+        "rate": 56.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "12.0",
+        "description": "Supplying and drawing FR PVC insulated & unsheathed flexible copper conductor as per PWD specification for electrical Works with ISI marked (IS:694) and as per IS 8130 : 2013 of 1.1 kV grade . Wire should be made from  99.90 % purity copper, class 2 stranding in acc. to IS:8130/IEC 60228 for  lower watt loss , oxygen free for less chances of oxidization, insulation PVC type A/C/D , flame retardant as per IS 10810-53, better amperage rating as per IS:3961 part 5,  in existing  surface or recessed PVC/ MS conduit/casing capping making connections with Copper Lugs of suitable size, Ferrules,testing etc. as required. OEM Must have its own in house NABL lab setup for all testing facilities for wires.   For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "19",
+        "description": "2 x 2.5 sq. mm. + 1x1.5sqmm",
+        "quantity": 0,
+        "rate": 81.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "20",
+        "description": "2 x 4.0 sq. mm. + 1 x 2.5 sq. mm.",
+        "quantity": 0,
+        "rate": 122.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "13.0",
+        "description": "Plate Earthing  as per IS:3043 with Hot dipped G.I. Earth plate of size 600mm x 600mm x 6.0mm by embodying  3 to 4 mtr. below the ground level with 20  mm dia. G.I. 'B' class watering Pipe ,including all accessories like nut, bolts, reducer, nipple, wire meshed funnel, and Heavy duty weather proof poly-propylene earth pit chamber with lockable Jam free lid suitable for safe working load 5000 Kg or more of size Top Dia. 225 to 260 mm, Bottom Dia 300 to 350 mm. and Height  250 to 300 mm. and embodying the pipe  complete with alternate layers salt and coke/ charcoal, testing of earth resistance for value of 5 ohms or less  as required & must record by engineer in charge during site visit and ensure to enter in measurment book.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 5733.0,
+        "unit": "Set",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "14.0",
+        "description": "Supply & Laying following size earth wire in horizontal or vertical run in ground/surface/recess including riveting, soldering, saddles,  making connection with GI/Cu purity purity >95%  thimble etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "23",
+        "description": "8 SWG G.I. ( Hot Dipped  ) Wire ",
+        "quantity": 0,
+        "rate": 20.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "15.0",
+        "description": "Providing & Fixing of  BEE  Star rated copper wounded double ball bearing capacitor start, aluminium body & Metallic  blade ceiling  fan  Conforming to all the performance requirements laid down in IS 374:2019 including all amendments, as applicable ; & Carry BIS licensing (i.e. ISI marking) with down rod up to 80 cm with secondary support safety cable ( steel rope) , cotter pin with 3 x 1.5 sq.mm pvc insulated flexible copper conductor making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "25",
+        "description": "1200 mm Sweep BEE 1 Star rated (service value >=4.0 to < 4.5 )",
+        "quantity": 0,
+        "rate": 1890.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16.0",
+        "description": "Providing & Fixing of IP20 SMD Mid Power LED batten type integrated light fixture made from Powder coated Extruded aluminium  housing with in built driver  , System lumen efficacy \u2265 110 lm/Watt output, internal surge protection of 2.5 KV with Short & Open circuit protection ,THD < 10% , P. F.\u22650.95, CRI >80 , life time of minimum  50000 Burning Hours with , 70% of intial Lumen maintaned till life ends  , CCT 3000\u00b0K / 4000\u00b0K  / 5700\u00b0K /6000\u00b0K/6500\u00b0K (As per ANSI Bin) , Maximum power consumption should not more than the specified rating and Fixture shall be of  BIS standard and  trade mark certificate ( T.C.). Manufactures Word Mark/ Name Engraved/ Embossing/ Screen printing on housing. OEM must have its own in house NABL lab setup for all testing facilities for LED fixtures. (LM79 & LM80) certificate / Report from OEM shall be submitted.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "27",
+        "description": "1170mm(+/-10%) LED batten with min. lumen output 2200 lm",
+        "quantity": 0,
+        "rate": 492.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17.0",
+        "description": "Providing & Fixing of 240/415 V AC MCB with positive isolation of 10 kA breaking capacity (B/ C/D tripping characteristic as per type of load and  site requirement) 4 KV impulse withstand voltage, ISI marked IS 8828(1996) / conforming to IEC 60898-1 2002, IEC 60947-2, low watt losses, trip free mechanisum , energy limiting of  class 3 as per IEC,  minimum phase termination capacity of 35sq.mm. , conductor line load reversibility , IP 20 contact protection and fitted in  existing distribution board/sheets, minimum electrical operation 20,000 upto 20 A rating and 10,000 upto 63 A, 5000 for 80 A & above rating  including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "29",
+        "description": "Single pole MCB   (With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "30",
+        "description": " 6 A to 32 A rating",
+        "quantity": 0,
+        "rate": 187.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "31",
+        "description": "Double pole MCB(With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "32",
+        "description": " 50/63 A rating",
+        "quantity": 0,
+        "rate": 900.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "18.0",
+        "description": "Providing & Fixing of Recessed/surface mounting heavy duty horizontal type Double Door ( Metal / Glazed )Distribution board with Metal end box made out from Galvanized steel / CRCA sheet not less then 1.2 mm thick\u00a0 conforming to IS-8623-1 & 3 /\u00a0 IEC 61439- 1 & 3, powder painted complete with reversible door (for double door DB only )100 amp.\u00a0 insulated copper bus bar/shorting link , copper neutral link, copper earth link , color coded interconnecting wire set\u00a0 of suitable rating and din bar,masking sheet,\u00a0 making internal DB\u00a0 terminations with copper lugs, Ferrules,\u00a0 detachable gland plate, including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "34",
+        "description": "Metal door (single phase) IK-09 and IP-43 with Metal end box",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "35",
+        "description": "8 Way (8+2)",
+        "quantity": 0,
+        "rate": 2184.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "36",
+        "description": "Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "37",
+        "description": "Add Tender Premium ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "%",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "38",
+        "description": "Grand Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      }
+    ]
+  },
+  "3rdFinalVidExtra.xlsx": {
+    "filename": "3rdFinalVidExtra.xlsx",
+    "projectDetails": {
+      "projectName": "Unknown Project",
+      "contractorName": "Unknown Agency",
+      "billDate": "2025-11-25",
+      "tenderPremium": 0.0
+    },
+    "items": [
+      {
+        "itemNo": "1.0",
+        "description": "Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2",
+        "description": "Short point (up to 3 mtr.)",
+        "quantity": 0,
+        "rate": 256.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3",
+        "description": "Medium point (up to 6 mtr.)",
+        "quantity": 0,
+        "rate": 472.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4",
+        "description": "Long point  (up to 10 mtr.)",
+        "quantity": 0,
+        "rate": 662.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2.0",
+        "description": "Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "On board",
+        "quantity": 0,
+        "rate": 136.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3.0",
+        "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 23.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4.0",
+        "description": "P & F ISI marked (IS :3854) 16 amp. flush type non modular switch CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 50.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "5.0",
+        "description": "Providing & Fixing of  of 3/5 pin 6 amp. flush type  non modular socket  made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 33.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6.0",
+        "description": "Providing & Fixing of  3/6 pin 16 amp flush type non modular socket  made out from Industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 78.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "7.0",
+        "description": "Providing & Fixing of  ISI marked (IS:371) 6 amp surface type 3 pin ceiling rose with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screws including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "8.0",
+        "description": "Providing & Fixing of ISI marked (IS:1258) batten/angle lamp  holder with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screwsincluding making connection testing etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "9.0",
+        "description": "Providing & Fixing of IS 11037:1984  marked  non modular socket size flush type 180 watt rotary minimum 5 step fan regulator with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 219.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "10.0",
+        "description": "Providing and fixing of   power plug point with non modular accessories as per PWD specification for electrical Works with  Galvanized   box of 1.2 mm thick  with earth terminal with suitable size phenolic laminated sheet (IS : 2036 -  1995) cover including cost of 16 amp. Switch (IS :3854) and 3/6 pin 16 amp. socket outlet  making connection , testing , etc. as required. . For specification of  Wiring accessories refer Chapter  E - 07 related item &  For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 303.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "11.0",
+        "description": "S&F following sizes (dia.) of ISI marked virgin material MMS ( IS:9537 P - III ) PVC conduit along with  ISI marked (IS:3419-1988) accessories as required  in  recess  including  cutting the wall, covering conduit and making good the same as required. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16",
+        "description": "20 mm",
+        "quantity": 0,
+        "rate": 40.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17",
+        "description": "25 mm",
+        "quantity": 0,
+        "rate": 56.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "12.0",
+        "description": "Supplying and drawing FR PVC insulated & unsheathed flexible copper conductor as per PWD specification for electrical Works with ISI marked (IS:694) and as per IS 8130 : 2013 of 1.1 kV grade . Wire should be made from  99.90 % purity copper, class 2 stranding in acc. to IS:8130/IEC 60228 for  lower watt loss , oxygen free for less chances of oxidization, insulation PVC type A/C/D , flame retardant as per IS 10810-53, better amperage rating as per IS:3961 part 5,  in existing  surface or recessed PVC/ MS conduit/casing capping making connections with Copper Lugs of suitable size, Ferrules,testing etc. as required. OEM Must have its own in house NABL lab setup for all testing facilities for wires.   For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "19",
+        "description": "2 x 2.5 sq. mm. + 1x1.5sqmm",
+        "quantity": 0,
+        "rate": 81.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "20",
+        "description": "2 x 4.0 sq. mm. + 1 x 2.5 sq. mm.",
+        "quantity": 0,
+        "rate": 122.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "13.0",
+        "description": "Plate Earthing  as per IS:3043 with Hot dipped G.I. Earth plate of size 600mm x 600mm x 6.0mm by embodying  3 to 4 mtr. below the ground level with 20  mm dia. G.I. 'B' class watering Pipe ,including all accessories like nut, bolts, reducer, nipple, wire meshed funnel, and Heavy duty weather proof poly-propylene earth pit chamber with lockable Jam free lid suitable for safe working load 5000 Kg or more of size Top Dia. 225 to 260 mm, Bottom Dia 300 to 350 mm. and Height  250 to 300 mm. and embodying the pipe  complete with alternate layers salt and coke/ charcoal, testing of earth resistance for value of 5 ohms or less  as required & must record by engineer in charge during site visit and ensure to enter in measurment book.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 5733.0,
+        "unit": "Set",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "14.0",
+        "description": "Supply & Laying following size earth wire in horizontal or vertical run in ground/surface/recess including riveting, soldering, saddles,  making connection with GI/Cu purity purity >95%  thimble etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "23",
+        "description": "8 SWG G.I. ( Hot Dipped  ) Wire ",
+        "quantity": 0,
+        "rate": 20.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "15.0",
+        "description": "Providing & Fixing of  BEE  Star rated copper wounded double ball bearing capacitor start, aluminium body & Metallic  blade ceiling  fan  Conforming to all the performance requirements laid down in IS 374:2019 including all amendments, as applicable ; & Carry BIS licensing (i.e. ISI marking) with down rod up to 80 cm with secondary support safety cable ( steel rope) , cotter pin with 3 x 1.5 sq.mm pvc insulated flexible copper conductor making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "25",
+        "description": "1200 mm Sweep BEE 1 Star rated (service value >=4.0 to < 4.5 )",
+        "quantity": 0,
+        "rate": 1890.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16.0",
+        "description": "Providing & Fixing of IP20 SMD Mid Power LED batten type integrated light fixture made from Powder coated Extruded aluminium  housing with in built driver  , System lumen efficacy \u2265 110 lm/Watt output, internal surge protection of 2.5 KV with Short & Open circuit protection ,THD < 10% , P. F.\u22650.95, CRI >80 , life time of minimum  50000 Burning Hours with , 70% of intial Lumen maintaned till life ends  , CCT 3000\u00b0K / 4000\u00b0K  / 5700\u00b0K /6000\u00b0K/6500\u00b0K (As per ANSI Bin) , Maximum power consumption should not more than the specified rating and Fixture shall be of  BIS standard and  trade mark certificate ( T.C.). Manufactures Word Mark/ Name Engraved/ Embossing/ Screen printing on housing. OEM must have its own in house NABL lab setup for all testing facilities for LED fixtures. (LM79 & LM80) certificate / Report from OEM shall be submitted.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "27",
+        "description": "1170mm(+/-10%) LED batten with min. lumen output 2200 lm",
+        "quantity": 0,
+        "rate": 492.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17.0",
+        "description": "Providing & Fixing of 240/415 V AC MCB with positive isolation of 10 kA breaking capacity (B/ C/D tripping characteristic as per type of load and  site requirement) 4 KV impulse withstand voltage, ISI marked IS 8828(1996) / conforming to IEC 60898-1 2002, IEC 60947-2, low watt losses, trip free mechanisum , energy limiting of  class 3 as per IEC,  minimum phase termination capacity of 35sq.mm. , conductor line load reversibility , IP 20 contact protection and fitted in  existing distribution board/sheets, minimum electrical operation 20,000 upto 20 A rating and 10,000 upto 63 A, 5000 for 80 A & above rating  including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "29",
+        "description": "Single pole MCB   (With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "30",
+        "description": " 6 A to 32 A rating",
+        "quantity": 0,
+        "rate": 187.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "31",
+        "description": "Double pole MCB(With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "32",
+        "description": " 50/63 A rating",
+        "quantity": 0,
+        "rate": 900.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "18.0",
+        "description": "Providing & Fixing of Recessed/surface mounting heavy duty horizontal type Double Door ( Metal / Glazed )Distribution board with Metal end box made out from Galvanized steel / CRCA sheet not less then 1.2 mm thick\u00a0 conforming to IS-8623-1 & 3 /\u00a0 IEC 61439- 1 & 3, powder painted complete with reversible door (for double door DB only )100 amp.\u00a0 insulated copper bus bar/shorting link , copper neutral link, copper earth link , color coded interconnecting wire set\u00a0 of suitable rating and din bar,masking sheet,\u00a0 making internal DB\u00a0 terminations with copper lugs, Ferrules,\u00a0 detachable gland plate, including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "34",
+        "description": "Metal door (single phase) IK-09 and IP-43 with Metal end box",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "35",
+        "description": "8 Way (8+2)",
+        "quantity": 0,
+        "rate": 2184.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "36",
+        "description": "Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "37",
+        "description": "Add Tender Premium ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "%",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "38",
+        "description": "Grand Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      }
+    ]
+  },
+  "3rdRunningNoExtra.xlsx": {
+    "filename": "3rdRunningNoExtra.xlsx",
+    "projectDetails": {
+      "projectName": "Unknown Project",
+      "contractorName": "Unknown Agency",
+      "billDate": "2025-11-25",
+      "tenderPremium": 0.0
+    },
+    "items": [
+      {
+        "itemNo": "1.0",
+        "description": "Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2",
+        "description": "Short point (up to 3 mtr.)",
+        "quantity": 0,
+        "rate": 256.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3",
+        "description": "Medium point (up to 6 mtr.)",
+        "quantity": 0,
+        "rate": 472.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4",
+        "description": "Long point  (up to 10 mtr.)",
+        "quantity": 0,
+        "rate": 662.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2.0",
+        "description": "Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "On board",
+        "quantity": 0,
+        "rate": 136.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3.0",
+        "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 23.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4.0",
+        "description": "P & F ISI marked (IS :3854) 16 amp. flush type non modular switch CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 50.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "5.0",
+        "description": "Providing & Fixing of  of 3/5 pin 6 amp. flush type  non modular socket  made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 33.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6.0",
+        "description": "Providing & Fixing of  3/6 pin 16 amp flush type non modular socket  made out from Industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 78.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "7.0",
+        "description": "Providing & Fixing of  ISI marked (IS:371) 6 amp surface type 3 pin ceiling rose with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screws including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "8.0",
+        "description": "Providing & Fixing of ISI marked (IS:1258) batten/angle lamp  holder with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screwsincluding making connection testing etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "9.0",
+        "description": "Providing & Fixing of IS 11037:1984  marked  non modular socket size flush type 180 watt rotary minimum 5 step fan regulator with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 219.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "10.0",
+        "description": "Providing and fixing of   power plug point with non modular accessories as per PWD specification for electrical Works with  Galvanized   box of 1.2 mm thick  with earth terminal with suitable size phenolic laminated sheet (IS : 2036 -  1995) cover including cost of 16 amp. Switch (IS :3854) and 3/6 pin 16 amp. socket outlet  making connection , testing , etc. as required. . For specification of  Wiring accessories refer Chapter  E - 07 related item &  For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 303.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "11.0",
+        "description": "S&F following sizes (dia.) of ISI marked virgin material MMS ( IS:9537 P - III ) PVC conduit along with  ISI marked (IS:3419-1988) accessories as required  in  recess  including  cutting the wall, covering conduit and making good the same as required. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16",
+        "description": "20 mm",
+        "quantity": 0,
+        "rate": 40.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17",
+        "description": "25 mm",
+        "quantity": 0,
+        "rate": 56.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "12.0",
+        "description": "Supplying and drawing FR PVC insulated & unsheathed flexible copper conductor as per PWD specification for electrical Works with ISI marked (IS:694) and as per IS 8130 : 2013 of 1.1 kV grade . Wire should be made from  99.90 % purity copper, class 2 stranding in acc. to IS:8130/IEC 60228 for  lower watt loss , oxygen free for less chances of oxidization, insulation PVC type A/C/D , flame retardant as per IS 10810-53, better amperage rating as per IS:3961 part 5,  in existing  surface or recessed PVC/ MS conduit/casing capping making connections with Copper Lugs of suitable size, Ferrules,testing etc. as required. OEM Must have its own in house NABL lab setup for all testing facilities for wires.   For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "19",
+        "description": "2 x 2.5 sq. mm. + 1x1.5sqmm",
+        "quantity": 0,
+        "rate": 81.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "20",
+        "description": "2 x 4.0 sq. mm. + 1 x 2.5 sq. mm.",
+        "quantity": 0,
+        "rate": 122.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "13.0",
+        "description": "Plate Earthing  as per IS:3043 with Hot dipped G.I. Earth plate of size 600mm x 600mm x 6.0mm by embodying  3 to 4 mtr. below the ground level with 20  mm dia. G.I. 'B' class watering Pipe ,including all accessories like nut, bolts, reducer, nipple, wire meshed funnel, and Heavy duty weather proof poly-propylene earth pit chamber with lockable Jam free lid suitable for safe working load 5000 Kg or more of size Top Dia. 225 to 260 mm, Bottom Dia 300 to 350 mm. and Height  250 to 300 mm. and embodying the pipe  complete with alternate layers salt and coke/ charcoal, testing of earth resistance for value of 5 ohms or less  as required & must record by engineer in charge during site visit and ensure to enter in measurment book.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 5733.0,
+        "unit": "Set",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "14.0",
+        "description": "Supply & Laying following size earth wire in horizontal or vertical run in ground/surface/recess including riveting, soldering, saddles,  making connection with GI/Cu purity purity >95%  thimble etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "23",
+        "description": "8 SWG G.I. ( Hot Dipped  ) Wire ",
+        "quantity": 0,
+        "rate": 20.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "15.0",
+        "description": "Providing & Fixing of  BEE  Star rated copper wounded double ball bearing capacitor start, aluminium body & Metallic  blade ceiling  fan  Conforming to all the performance requirements laid down in IS 374:2019 including all amendments, as applicable ; & Carry BIS licensing (i.e. ISI marking) with down rod up to 80 cm with secondary support safety cable ( steel rope) , cotter pin with 3 x 1.5 sq.mm pvc insulated flexible copper conductor making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "25",
+        "description": "1200 mm Sweep BEE 1 Star rated (service value >=4.0 to < 4.5 )",
+        "quantity": 0,
+        "rate": 1890.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16.0",
+        "description": "Providing & Fixing of IP20 SMD Mid Power LED batten type integrated light fixture made from Powder coated Extruded aluminium  housing with in built driver  , System lumen efficacy \u2265 110 lm/Watt output, internal surge protection of 2.5 KV with Short & Open circuit protection ,THD < 10% , P. F.\u22650.95, CRI >80 , life time of minimum  50000 Burning Hours with , 70% of intial Lumen maintaned till life ends  , CCT 3000\u00b0K / 4000\u00b0K  / 5700\u00b0K /6000\u00b0K/6500\u00b0K (As per ANSI Bin) , Maximum power consumption should not more than the specified rating and Fixture shall be of  BIS standard and  trade mark certificate ( T.C.). Manufactures Word Mark/ Name Engraved/ Embossing/ Screen printing on housing. OEM must have its own in house NABL lab setup for all testing facilities for LED fixtures. (LM79 & LM80) certificate / Report from OEM shall be submitted.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "27",
+        "description": "1170mm(+/-10%) LED batten with min. lumen output 2200 lm",
+        "quantity": 0,
+        "rate": 492.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17.0",
+        "description": "Providing & Fixing of 240/415 V AC MCB with positive isolation of 10 kA breaking capacity (B/ C/D tripping characteristic as per type of load and  site requirement) 4 KV impulse withstand voltage, ISI marked IS 8828(1996) / conforming to IEC 60898-1 2002, IEC 60947-2, low watt losses, trip free mechanisum , energy limiting of  class 3 as per IEC,  minimum phase termination capacity of 35sq.mm. , conductor line load reversibility , IP 20 contact protection and fitted in  existing distribution board/sheets, minimum electrical operation 20,000 upto 20 A rating and 10,000 upto 63 A, 5000 for 80 A & above rating  including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "29",
+        "description": "Single pole MCB   (With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "30",
+        "description": " 6 A to 32 A rating",
+        "quantity": 0,
+        "rate": 187.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "31",
+        "description": "Double pole MCB(With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "32",
+        "description": " 50/63 A rating",
+        "quantity": 0,
+        "rate": 900.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "18.0",
+        "description": "Providing & Fixing of Recessed/surface mounting heavy duty horizontal type Double Door ( Metal / Glazed )Distribution board with Metal end box made out from Galvanized steel / CRCA sheet not less then 1.2 mm thick\u00a0 conforming to IS-8623-1 & 3 /\u00a0 IEC 61439- 1 & 3, powder painted complete with reversible door (for double door DB only )100 amp.\u00a0 insulated copper bus bar/shorting link , copper neutral link, copper earth link , color coded interconnecting wire set\u00a0 of suitable rating and din bar,masking sheet,\u00a0 making internal DB\u00a0 terminations with copper lugs, Ferrules,\u00a0 detachable gland plate, including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "34",
+        "description": "Metal door (single phase) IK-09 and IP-43 with Metal end box",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "35",
+        "description": "8 Way (8+2)",
+        "quantity": 0,
+        "rate": 2184.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "36",
+        "description": "Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "37",
+        "description": "Add Tender Premium ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "%",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "38",
+        "description": "Grand Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      }
+    ]
+  },
+  "3rdRunningVidExtra.xlsx": {
+    "filename": "3rdRunningVidExtra.xlsx",
+    "projectDetails": {
+      "projectName": "Unknown Project",
+      "contractorName": "Unknown Agency",
+      "billDate": "2025-11-25",
+      "tenderPremium": 0.0
+    },
+    "items": [
+      {
+        "itemNo": "1.0",
+        "description": "Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2",
+        "description": "Short point (up to 3 mtr.)",
+        "quantity": 0,
+        "rate": 256.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3",
+        "description": "Medium point (up to 6 mtr.)",
+        "quantity": 0,
+        "rate": 472.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4",
+        "description": "Long point  (up to 10 mtr.)",
+        "quantity": 0,
+        "rate": 662.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2.0",
+        "description": "Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "On board",
+        "quantity": 0,
+        "rate": 136.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3.0",
+        "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 23.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4.0",
+        "description": "P & F ISI marked (IS :3854) 16 amp. flush type non modular switch CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 50.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "5.0",
+        "description": "Providing & Fixing of  of 3/5 pin 6 amp. flush type  non modular socket  made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 33.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6.0",
+        "description": "Providing & Fixing of  3/6 pin 16 amp flush type non modular socket  made out from Industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 78.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "7.0",
+        "description": "Providing & Fixing of  ISI marked (IS:371) 6 amp surface type 3 pin ceiling rose with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screws including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "8.0",
+        "description": "Providing & Fixing of ISI marked (IS:1258) batten/angle lamp  holder with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screwsincluding making connection testing etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "9.0",
+        "description": "Providing & Fixing of IS 11037:1984  marked  non modular socket size flush type 180 watt rotary minimum 5 step fan regulator with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 219.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "10.0",
+        "description": "Providing and fixing of   power plug point with non modular accessories as per PWD specification for electrical Works with  Galvanized   box of 1.2 mm thick  with earth terminal with suitable size phenolic laminated sheet (IS : 2036 -  1995) cover including cost of 16 amp. Switch (IS :3854) and 3/6 pin 16 amp. socket outlet  making connection , testing , etc. as required. . For specification of  Wiring accessories refer Chapter  E - 07 related item &  For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 303.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "11.0",
+        "description": "S&F following sizes (dia.) of ISI marked virgin material MMS ( IS:9537 P - III ) PVC conduit along with  ISI marked (IS:3419-1988) accessories as required  in  recess  including  cutting the wall, covering conduit and making good the same as required. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16",
+        "description": "20 mm",
+        "quantity": 0,
+        "rate": 40.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17",
+        "description": "25 mm",
+        "quantity": 0,
+        "rate": 56.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "12.0",
+        "description": "Supplying and drawing FR PVC insulated & unsheathed flexible copper conductor as per PWD specification for electrical Works with ISI marked (IS:694) and as per IS 8130 : 2013 of 1.1 kV grade . Wire should be made from  99.90 % purity copper, class 2 stranding in acc. to IS:8130/IEC 60228 for  lower watt loss , oxygen free for less chances of oxidization, insulation PVC type A/C/D , flame retardant as per IS 10810-53, better amperage rating as per IS:3961 part 5,  in existing  surface or recessed PVC/ MS conduit/casing capping making connections with Copper Lugs of suitable size, Ferrules,testing etc. as required. OEM Must have its own in house NABL lab setup for all testing facilities for wires.   For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "19",
+        "description": "2 x 2.5 sq. mm. + 1x1.5sqmm",
+        "quantity": 0,
+        "rate": 81.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "20",
+        "description": "2 x 4.0 sq. mm. + 1 x 2.5 sq. mm.",
+        "quantity": 0,
+        "rate": 122.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "13.0",
+        "description": "Plate Earthing  as per IS:3043 with Hot dipped G.I. Earth plate of size 600mm x 600mm x 6.0mm by embodying  3 to 4 mtr. below the ground level with 20  mm dia. G.I. 'B' class watering Pipe ,including all accessories like nut, bolts, reducer, nipple, wire meshed funnel, and Heavy duty weather proof poly-propylene earth pit chamber with lockable Jam free lid suitable for safe working load 5000 Kg or more of size Top Dia. 225 to 260 mm, Bottom Dia 300 to 350 mm. and Height  250 to 300 mm. and embodying the pipe  complete with alternate layers salt and coke/ charcoal, testing of earth resistance for value of 5 ohms or less  as required & must record by engineer in charge during site visit and ensure to enter in measurment book.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 5733.0,
+        "unit": "Set",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "14.0",
+        "description": "Supply & Laying following size earth wire in horizontal or vertical run in ground/surface/recess including riveting, soldering, saddles,  making connection with GI/Cu purity purity >95%  thimble etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "23",
+        "description": "8 SWG G.I. ( Hot Dipped  ) Wire ",
+        "quantity": 0,
+        "rate": 20.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "15.0",
+        "description": "Providing & Fixing of  BEE  Star rated copper wounded double ball bearing capacitor start, aluminium body & Metallic  blade ceiling  fan  Conforming to all the performance requirements laid down in IS 374:2019 including all amendments, as applicable ; & Carry BIS licensing (i.e. ISI marking) with down rod up to 80 cm with secondary support safety cable ( steel rope) , cotter pin with 3 x 1.5 sq.mm pvc insulated flexible copper conductor making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "25",
+        "description": "1200 mm Sweep BEE 1 Star rated (service value >=4.0 to < 4.5 )",
+        "quantity": 0,
+        "rate": 1890.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16.0",
+        "description": "Providing & Fixing of IP20 SMD Mid Power LED batten type integrated light fixture made from Powder coated Extruded aluminium  housing with in built driver  , System lumen efficacy \u2265 110 lm/Watt output, internal surge protection of 2.5 KV with Short & Open circuit protection ,THD < 10% , P. F.\u22650.95, CRI >80 , life time of minimum  50000 Burning Hours with , 70% of intial Lumen maintaned till life ends  , CCT 3000\u00b0K / 4000\u00b0K  / 5700\u00b0K /6000\u00b0K/6500\u00b0K (As per ANSI Bin) , Maximum power consumption should not more than the specified rating and Fixture shall be of  BIS standard and  trade mark certificate ( T.C.). Manufactures Word Mark/ Name Engraved/ Embossing/ Screen printing on housing. OEM must have its own in house NABL lab setup for all testing facilities for LED fixtures. (LM79 & LM80) certificate / Report from OEM shall be submitted.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "27",
+        "description": "1170mm(+/-10%) LED batten with min. lumen output 2200 lm",
+        "quantity": 0,
+        "rate": 492.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17.0",
+        "description": "Providing & Fixing of 240/415 V AC MCB with positive isolation of 10 kA breaking capacity (B/ C/D tripping characteristic as per type of load and  site requirement) 4 KV impulse withstand voltage, ISI marked IS 8828(1996) / conforming to IEC 60898-1 2002, IEC 60947-2, low watt losses, trip free mechanisum , energy limiting of  class 3 as per IEC,  minimum phase termination capacity of 35sq.mm. , conductor line load reversibility , IP 20 contact protection and fitted in  existing distribution board/sheets, minimum electrical operation 20,000 upto 20 A rating and 10,000 upto 63 A, 5000 for 80 A & above rating  including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "29",
+        "description": "Single pole MCB   (With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "30",
+        "description": " 6 A to 32 A rating",
+        "quantity": 0,
+        "rate": 187.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "31",
+        "description": "Double pole MCB(With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "32",
+        "description": " 50/63 A rating",
+        "quantity": 0,
+        "rate": 900.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "18.0",
+        "description": "Providing & Fixing of Recessed/surface mounting heavy duty horizontal type Double Door ( Metal / Glazed )Distribution board with Metal end box made out from Galvanized steel / CRCA sheet not less then 1.2 mm thick\u00a0 conforming to IS-8623-1 & 3 /\u00a0 IEC 61439- 1 & 3, powder painted complete with reversible door (for double door DB only )100 amp.\u00a0 insulated copper bus bar/shorting link , copper neutral link, copper earth link , color coded interconnecting wire set\u00a0 of suitable rating and din bar,masking sheet,\u00a0 making internal DB\u00a0 terminations with copper lugs, Ferrules,\u00a0 detachable gland plate, including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "34",
+        "description": "Metal door (single phase) IK-09 and IP-43 with Metal end box",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "35",
+        "description": "8 Way (8+2)",
+        "quantity": 0,
+        "rate": 2184.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "36",
+        "description": "Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "37",
+        "description": "Add Tender Premium ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "%",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "38",
+        "description": "Grand Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      }
+    ]
+  },
+  "FirstFINALnoExtra.xlsx": {
+    "filename": "FirstFINALnoExtra.xlsx",
+    "projectDetails": {
+      "projectName": "Unknown Project",
+      "contractorName": "Unknown Agency",
+      "billDate": "2025-11-25",
+      "tenderPremium": 0.0
+    },
+    "items": [
+      {
+        "itemNo": "1.0",
+        "description": "Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2",
+        "description": "Short point (up to 3 mtr.)",
+        "quantity": 0,
+        "rate": 256.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3",
+        "description": "Medium point (up to 6 mtr.)",
+        "quantity": 0,
+        "rate": 472.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4",
+        "description": "Long point  (up to 10 mtr.)",
+        "quantity": 0,
+        "rate": 662.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2.0",
+        "description": "Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "On board",
+        "quantity": 0,
+        "rate": 136.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3.0",
+        "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 23.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4.0",
+        "description": "P & F ISI marked (IS :3854) 16 amp. flush type non modular switch CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 50.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "5.0",
+        "description": "Providing & Fixing of  of 3/5 pin 6 amp. flush type  non modular socket  made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 33.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6.0",
+        "description": "Providing & Fixing of  3/6 pin 16 amp flush type non modular socket  made out from Industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 78.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "7.0",
+        "description": "Providing & Fixing of  ISI marked (IS:371) 6 amp surface type 3 pin ceiling rose with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screws including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "8.0",
+        "description": "Providing & Fixing of ISI marked (IS:1258) batten/angle lamp  holder with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screwsincluding making connection testing etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "9.0",
+        "description": "Providing & Fixing of IS 11037:1984  marked  non modular socket size flush type 180 watt rotary minimum 5 step fan regulator with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 219.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "10.0",
+        "description": "Providing and fixing of   power plug point with non modular accessories as per PWD specification for electrical Works with  Galvanized   box of 1.2 mm thick  with earth terminal with suitable size phenolic laminated sheet (IS : 2036 -  1995) cover including cost of 16 amp. Switch (IS :3854) and 3/6 pin 16 amp. socket outlet  making connection , testing , etc. as required. . For specification of  Wiring accessories refer Chapter  E - 07 related item &  For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 303.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "11.0",
+        "description": "S&F following sizes (dia.) of ISI marked virgin material MMS ( IS:9537 P - III ) PVC conduit along with  ISI marked (IS:3419-1988) accessories as required  in  recess  including  cutting the wall, covering conduit and making good the same as required. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16",
+        "description": "20 mm",
+        "quantity": 0,
+        "rate": 40.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17",
+        "description": "25 mm",
+        "quantity": 0,
+        "rate": 56.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "12.0",
+        "description": "Supplying and drawing FR PVC insulated & unsheathed flexible copper conductor as per PWD specification for electrical Works with ISI marked (IS:694) and as per IS 8130 : 2013 of 1.1 kV grade . Wire should be made from  99.90 % purity copper, class 2 stranding in acc. to IS:8130/IEC 60228 for  lower watt loss , oxygen free for less chances of oxidization, insulation PVC type A/C/D , flame retardant as per IS 10810-53, better amperage rating as per IS:3961 part 5,  in existing  surface or recessed PVC/ MS conduit/casing capping making connections with Copper Lugs of suitable size, Ferrules,testing etc. as required. OEM Must have its own in house NABL lab setup for all testing facilities for wires.   For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "19",
+        "description": "2 x 2.5 sq. mm. + 1x1.5sqmm",
+        "quantity": 0,
+        "rate": 81.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "20",
+        "description": "2 x 4.0 sq. mm. + 1 x 2.5 sq. mm.",
+        "quantity": 0,
+        "rate": 122.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "13.0",
+        "description": "Plate Earthing  as per IS:3043 with Hot dipped G.I. Earth plate of size 600mm x 600mm x 6.0mm by embodying  3 to 4 mtr. below the ground level with 20  mm dia. G.I. 'B' class watering Pipe ,including all accessories like nut, bolts, reducer, nipple, wire meshed funnel, and Heavy duty weather proof poly-propylene earth pit chamber with lockable Jam free lid suitable for safe working load 5000 Kg or more of size Top Dia. 225 to 260 mm, Bottom Dia 300 to 350 mm. and Height  250 to 300 mm. and embodying the pipe  complete with alternate layers salt and coke/ charcoal, testing of earth resistance for value of 5 ohms or less  as required & must record by engineer in charge during site visit and ensure to enter in measurment book.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 5733.0,
+        "unit": "Set",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "14.0",
+        "description": "Supply & Laying following size earth wire in horizontal or vertical run in ground/surface/recess including riveting, soldering, saddles,  making connection with GI/Cu purity purity >95%  thimble etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "23",
+        "description": "8 SWG G.I. ( Hot Dipped  ) Wire ",
+        "quantity": 0,
+        "rate": 20.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "15.0",
+        "description": "Providing & Fixing of  BEE  Star rated copper wounded double ball bearing capacitor start, aluminium body & Metallic  blade ceiling  fan  Conforming to all the performance requirements laid down in IS 374:2019 including all amendments, as applicable ; & Carry BIS licensing (i.e. ISI marking) with down rod up to 80 cm with secondary support safety cable ( steel rope) , cotter pin with 3 x 1.5 sq.mm pvc insulated flexible copper conductor making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "25",
+        "description": "1200 mm Sweep BEE 1 Star rated (service value >=4.0 to < 4.5 )",
+        "quantity": 0,
+        "rate": 1890.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16.0",
+        "description": "Providing & Fixing of IP20 SMD Mid Power LED batten type integrated light fixture made from Powder coated Extruded aluminium  housing with in built driver  , System lumen efficacy \u2265 110 lm/Watt output, internal surge protection of 2.5 KV with Short & Open circuit protection ,THD < 10% , P. F.\u22650.95, CRI >80 , life time of minimum  50000 Burning Hours with , 70% of intial Lumen maintaned till life ends  , CCT 3000\u00b0K / 4000\u00b0K  / 5700\u00b0K /6000\u00b0K/6500\u00b0K (As per ANSI Bin) , Maximum power consumption should not more than the specified rating and Fixture shall be of  BIS standard and  trade mark certificate ( T.C.). Manufactures Word Mark/ Name Engraved/ Embossing/ Screen printing on housing. OEM must have its own in house NABL lab setup for all testing facilities for LED fixtures. (LM79 & LM80) certificate / Report from OEM shall be submitted.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "27",
+        "description": "1170mm(+/-10%) LED batten with min. lumen output 2200 lm",
+        "quantity": 0,
+        "rate": 492.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17.0",
+        "description": "Providing & Fixing of 240/415 V AC MCB with positive isolation of 10 kA breaking capacity (B/ C/D tripping characteristic as per type of load and  site requirement) 4 KV impulse withstand voltage, ISI marked IS 8828(1996) / conforming to IEC 60898-1 2002, IEC 60947-2, low watt losses, trip free mechanisum , energy limiting of  class 3 as per IEC,  minimum phase termination capacity of 35sq.mm. , conductor line load reversibility , IP 20 contact protection and fitted in  existing distribution board/sheets, minimum electrical operation 20,000 upto 20 A rating and 10,000 upto 63 A, 5000 for 80 A & above rating  including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "29",
+        "description": "Single pole MCB   (With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "30",
+        "description": " 6 A to 32 A rating",
+        "quantity": 0,
+        "rate": 187.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "31",
+        "description": "Double pole MCB(With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "32",
+        "description": " 50/63 A rating",
+        "quantity": 0,
+        "rate": 900.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "18.0",
+        "description": "Providing & Fixing of Recessed/surface mounting heavy duty horizontal type Double Door ( Metal / Glazed )Distribution board with Metal end box made out from Galvanized steel / CRCA sheet not less then 1.2 mm thick\u00a0 conforming to IS-8623-1 & 3 /\u00a0 IEC 61439- 1 & 3, powder painted complete with reversible door (for double door DB only )100 amp.\u00a0 insulated copper bus bar/shorting link , copper neutral link, copper earth link , color coded interconnecting wire set\u00a0 of suitable rating and din bar,masking sheet,\u00a0 making internal DB\u00a0 terminations with copper lugs, Ferrules,\u00a0 detachable gland plate, including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "34",
+        "description": "Metal door (single phase) IK-09 and IP-43 with Metal end box",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "35",
+        "description": "8 Way (8+2)",
+        "quantity": 0,
+        "rate": 2184.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "36",
+        "description": "Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "37",
+        "description": "Add Tender Premium ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "%",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "38",
+        "description": "Grand Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      }
+    ]
+  },
+  "FirstFINALvidExtra.xlsx": {
+    "filename": "FirstFINALvidExtra.xlsx",
+    "projectDetails": {
+      "projectName": "Unknown Project",
+      "contractorName": "Unknown Agency",
+      "billDate": "2025-11-25",
+      "tenderPremium": 0.0
+    },
+    "items": [
+      {
+        "itemNo": "1.0",
+        "description": "Rewiring of light point/ fan point/ exhaust fan point/ call bell point with 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade (IS:694) in recessed  ISI marked MMS ( IS:9537 P - III ) virgin material PVC conduit & it's ISI marked (IS:3419-1988) accessories, round tiles, 1.2 mm thick MS box with earth terminal, 6 A switch, 3 pin ceiling rose/holder / 3 way connector , 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/  brass  screws, cup washers, making connections, testing etc. as required. For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2",
+        "description": "Short point (up to 3 mtr.)",
+        "quantity": 0,
+        "rate": 256.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3",
+        "description": "Medium point (up to 6 mtr.)",
+        "quantity": 0,
+        "rate": 472.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4",
+        "description": "Long point  (up to 10 mtr.)",
+        "quantity": 0,
+        "rate": 662.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "2.0",
+        "description": "Rewiring of 3/5 pin 6 amp. Light plug point with 1.5 sq. mm nominal size  FR PVC insulated unsheathed flexible copper conductor 1.1 kV grade  and 1.5 sq. mm nominal size FR PVC insulated unsheathed flexible copper earth conductor 1.1 kV grade(IS:694)   in recessed ISI marked MMS ( IS:9537 P - III ) virgin material  PVC conduit & it's  ISI marked (IS:3419-1988) accessories, 1.2 mm thick  MS box with earth terminal of required size,  6 A  switch, 3/5 pin 6 A socket, 3.0 mm thick ISI marked (IS:2036-1995) phenolic laminated sheet, Al.alloy / Cadmium plated iron/ brass  screws, cup washers, making connections, testing etc. as required.  For specification of copper  Conductor,  Phenolic Laminated sheet's & Electrical/ Wiring accessories refer Chapter E - 04, E - 05 & E - 07 For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "On board",
+        "quantity": 0,
+        "rate": 136.0,
+        "unit": "P. point",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "3.0",
+        "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch  with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 23.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "4.0",
+        "description": "P & F ISI marked (IS :3854) 16 amp. flush type non modular switch CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including cutting hole in tile and making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 50.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "5.0",
+        "description": "Providing & Fixing of  of 3/5 pin 6 amp. flush type  non modular socket  made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 33.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "6.0",
+        "description": "Providing & Fixing of  3/6 pin 16 amp flush type non modular socket  made out from Industrial grade Polycarbonate or fire resistant ABS material, brass terminal with Porcelain based back cover & captive screws including cutting hole in tile and making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 78.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "7.0",
+        "description": "Providing & Fixing of  ISI marked (IS:371) 6 amp surface type 3 pin ceiling rose with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screws including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "8.0",
+        "description": "Providing & Fixing of ISI marked (IS:1258) batten/angle lamp  holder with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material, brass terminal & captive screwsincluding making connection testing etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 30.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "9.0",
+        "description": "Providing & Fixing of IS 11037:1984  marked  non modular socket size flush type 180 watt rotary minimum 5 step fan regulator with CM/L no. printed and made out from industrial grade Polycarbonate or fire resistant ABS material including making connection testing etc. as required.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 219.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "10.0",
+        "description": "Providing and fixing of   power plug point with non modular accessories as per PWD specification for electrical Works with  Galvanized   box of 1.2 mm thick  with earth terminal with suitable size phenolic laminated sheet (IS : 2036 -  1995) cover including cost of 16 amp. Switch (IS :3854) and 3/6 pin 16 amp. socket outlet  making connection , testing , etc. as required. . For specification of  Wiring accessories refer Chapter  E - 07 related item &  For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 303.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "11.0",
+        "description": "S&F following sizes (dia.) of ISI marked virgin material MMS ( IS:9537 P - III ) PVC conduit along with  ISI marked (IS:3419-1988) accessories as required  in  recess  including  cutting the wall, covering conduit and making good the same as required. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16",
+        "description": "20 mm",
+        "quantity": 0,
+        "rate": 40.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17",
+        "description": "25 mm",
+        "quantity": 0,
+        "rate": 56.0,
+        "unit": "R. mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "12.0",
+        "description": "Supplying and drawing FR PVC insulated & unsheathed flexible copper conductor as per PWD specification for electrical Works with ISI marked (IS:694) and as per IS 8130 : 2013 of 1.1 kV grade . Wire should be made from  99.90 % purity copper, class 2 stranding in acc. to IS:8130/IEC 60228 for  lower watt loss , oxygen free for less chances of oxidization, insulation PVC type A/C/D , flame retardant as per IS 10810-53, better amperage rating as per IS:3961 part 5,  in existing  surface or recessed PVC/ MS conduit/casing capping making connections with Copper Lugs of suitable size, Ferrules,testing etc. as required. OEM Must have its own in house NABL lab setup for all testing facilities for wires.   For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "19",
+        "description": "2 x 2.5 sq. mm. + 1x1.5sqmm",
+        "quantity": 0,
+        "rate": 81.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "20",
+        "description": "2 x 4.0 sq. mm. + 1 x 2.5 sq. mm.",
+        "quantity": 0,
+        "rate": 122.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "13.0",
+        "description": "Plate Earthing  as per IS:3043 with Hot dipped G.I. Earth plate of size 600mm x 600mm x 6.0mm by embodying  3 to 4 mtr. below the ground level with 20  mm dia. G.I. 'B' class watering Pipe ,including all accessories like nut, bolts, reducer, nipple, wire meshed funnel, and Heavy duty weather proof poly-propylene earth pit chamber with lockable Jam free lid suitable for safe working load 5000 Kg or more of size Top Dia. 225 to 260 mm, Bottom Dia 300 to 350 mm. and Height  250 to 300 mm. and embodying the pipe  complete with alternate layers salt and coke/ charcoal, testing of earth resistance for value of 5 ohms or less  as required & must record by engineer in charge during site visit and ensure to enter in measurment book.All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 5733.0,
+        "unit": "Set",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "14.0",
+        "description": "Supply & Laying following size earth wire in horizontal or vertical run in ground/surface/recess including riveting, soldering, saddles,  making connection with GI/Cu purity purity >95%  thimble etc. as required.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .   ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "23",
+        "description": "8 SWG G.I. ( Hot Dipped  ) Wire ",
+        "quantity": 0,
+        "rate": 20.0,
+        "unit": "Mtr.",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "15.0",
+        "description": "Providing & Fixing of  BEE  Star rated copper wounded double ball bearing capacitor start, aluminium body & Metallic  blade ceiling  fan  Conforming to all the performance requirements laid down in IS 374:2019 including all amendments, as applicable ; & Carry BIS licensing (i.e. ISI marking) with down rod up to 80 cm with secondary support safety cable ( steel rope) , cotter pin with 3 x 1.5 sq.mm pvc insulated flexible copper conductor making connection testing etc. as required. All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "25",
+        "description": "1200 mm Sweep BEE 1 Star rated (service value >=4.0 to < 4.5 )",
+        "quantity": 0,
+        "rate": 1890.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "16.0",
+        "description": "Providing & Fixing of IP20 SMD Mid Power LED batten type integrated light fixture made from Powder coated Extruded aluminium  housing with in built driver  , System lumen efficacy \u2265 110 lm/Watt output, internal surge protection of 2.5 KV with Short & Open circuit protection ,THD < 10% , P. F.\u22650.95, CRI >80 , life time of minimum  50000 Burning Hours with , 70% of intial Lumen maintaned till life ends  , CCT 3000\u00b0K / 4000\u00b0K  / 5700\u00b0K /6000\u00b0K/6500\u00b0K (As per ANSI Bin) , Maximum power consumption should not more than the specified rating and Fixture shall be of  BIS standard and  trade mark certificate ( T.C.). Manufactures Word Mark/ Name Engraved/ Embossing/ Screen printing on housing. OEM must have its own in house NABL lab setup for all testing facilities for LED fixtures. (LM79 & LM80) certificate / Report from OEM shall be submitted.  All as per pre approved by Engineer in charge.  For additional technical parameters of products/ work  , refer   Annexure \"A\" attached with this BSR .",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "27",
+        "description": "1170mm(+/-10%) LED batten with min. lumen output 2200 lm",
+        "quantity": 0,
+        "rate": 492.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "17.0",
+        "description": "Providing & Fixing of 240/415 V AC MCB with positive isolation of 10 kA breaking capacity (B/ C/D tripping characteristic as per type of load and  site requirement) 4 KV impulse withstand voltage, ISI marked IS 8828(1996) / conforming to IEC 60898-1 2002, IEC 60947-2, low watt losses, trip free mechanisum , energy limiting of  class 3 as per IEC,  minimum phase termination capacity of 35sq.mm. , conductor line load reversibility , IP 20 contact protection and fitted in  existing distribution board/sheets, minimum electrical operation 20,000 upto 20 A rating and 10,000 upto 63 A, 5000 for 80 A & above rating  including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "29",
+        "description": "Single pole MCB   (With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "30",
+        "description": " 6 A to 32 A rating",
+        "quantity": 0,
+        "rate": 187.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "31",
+        "description": "Double pole MCB(With B/C curve tripping Characteristics)",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "32",
+        "description": " 50/63 A rating",
+        "quantity": 0,
+        "rate": 900.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "18.0",
+        "description": "Providing & Fixing of Recessed/surface mounting heavy duty horizontal type Double Door ( Metal / Glazed )Distribution board with Metal end box made out from Galvanized steel / CRCA sheet not less then 1.2 mm thick\u00a0 conforming to IS-8623-1 & 3 /\u00a0 IEC 61439- 1 & 3, powder painted complete with reversible door (for double door DB only )100 amp.\u00a0 insulated copper bus bar/shorting link , copper neutral link, copper earth link , color coded interconnecting wire set\u00a0 of suitable rating and din bar,masking sheet,\u00a0 making internal DB\u00a0 terminations with copper lugs, Ferrules,\u00a0 detachable gland plate, including making connections, testing etc. as required. OEM shall have submit  NABL / CPRI / ERDA accrediated   lab type test reports  & All as per pre approved by Engineer in charge. For additional technical parameters of product / work refer Annexure 'A' attached with this BSR",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "34",
+        "description": "Metal door (single phase) IK-09 and IP-43 with Metal end box",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "35",
+        "description": "8 Way (8+2)",
+        "quantity": 0,
+        "rate": 2184.0,
+        "unit": "Each",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "36",
+        "description": "Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "37",
+        "description": "Add Tender Premium ",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "%",
+        "previousQty": 0
+      },
+      {
+        "itemNo": "38",
+        "description": "Grand Total",
+        "quantity": 0,
+        "rate": 0.0,
+        "unit": "",
+        "previousQty": 0
+      }
+    ]
+  }
+}
