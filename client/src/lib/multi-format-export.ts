@@ -388,7 +388,7 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
 <title>Bill - ${project.projectName}</title>
 <style>
   @page { 
-    size: A4; 
+    size: A4 portrait; 
     margin: 10mm;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -399,35 +399,47 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
     box-sizing: border-box;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    -webkit-font-smoothing: antialiased;
   }
-  html, body { 
+  html { 
     width: 210mm;
     height: 297mm;
     zoom: 100%;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    -webkit-perspective: 1000;
+    perspective: 1000;
   }
   body { 
+    width: 210mm;
+    height: 297mm;
     font-family: 'Calibri', 'Arial', sans-serif; 
     font-size: 9pt; 
     line-height: 1.2;
     padding: 10mm;
+    margin: 0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color: #000;
   }
   .container {
     width: 190mm;
     margin: 0;
+    padding: 0;
   }
   .header { 
     border-bottom: 2px solid #000; 
     padding-bottom: 10px; 
     margin-bottom: 15px;
     page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
   .header h1 { 
     font-size: 12pt; 
     font-weight: bold; 
     margin-bottom: 5px;
     color: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
   .info { 
     display: grid; 
@@ -435,15 +447,27 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
     gap: 10px; 
     font-size: 9pt; 
     margin: 8px 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
   table { 
     width: 100%; 
     border-collapse: collapse; 
-    margin: 15px 0; 
+    margin: 15px 0 0 0; 
     font-size: 9pt; 
-    font-family: 'Calibri', 'Arial';
+    font-family: 'Calibri', 'Arial', sans-serif;
     table-layout: fixed;
     page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  thead {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  tbody {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
   th { 
     background: #f0f0f0; 
@@ -455,8 +479,9 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
     vertical-align: middle;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color: #000;
   }
   td { 
     border: 1px solid #000; 
@@ -465,32 +490,60 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
     font-size: 9pt;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #000;
   }
   .amount { text-align: right; }
   .total-row { 
-    background: #e8f5e9; 
+    background: #e8f5e9 !important; 
     font-weight: bold;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
   .premium-row { 
-    background: #fff3e0; 
+    background: #fff3e0 !important; 
     font-weight: bold;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
   .payable-row { 
-    background: #c8e6c9; 
+    background: #c8e6c9 !important; 
     font-weight: bold;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
   @media print {
-    @page { margin: 10mm; size: A4 portrait; }
-    body { margin: 0; padding: 10mm; }
-    .container { width: 190mm; }
-    table { page-break-inside: avoid; }
-    tr { page-break-inside: avoid; }
+    @page { 
+      size: A4 portrait; 
+      margin: 10mm;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    html, body {
+      width: 210mm;
+      height: 297mm;
+      margin: 0;
+      padding: 0;
+      zoom: 100%;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body { 
+      padding: 10mm;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .container { 
+      width: 190mm;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    table, thead, tbody, tr, td, th { 
+      page-break-inside: avoid;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
   }
 </style>
 </head>
