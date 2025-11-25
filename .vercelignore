@@ -1,0 +1,57 @@
+# Git files
+.git
+.gitignore
+.github
+
+# Node modules
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+
+# Local development
+.env.local
+.env.development
+.DS_Store
+*.log
+
+# Build artifacts (keep dist)
+build
+out
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+coverage
+.nyc_output
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.prettierignore
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# Documentation
+README.md
+CHANGELOG.md
+docs/
+
+# Scripts
+scripts/
+*.sh
+*.bat
+
+# Configuration files not needed
+tsconfig.json
+webpack.config.js
+.eslintrc.json
+.prettierrc
