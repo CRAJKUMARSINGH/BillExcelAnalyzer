@@ -38,14 +38,6 @@ const billSchema = z.object({
 
 type BillFormValues = z.infer<typeof billSchema>;
 
-// Item presets/templates
-const ITEM_PRESETS = [
-  { description: "Labour Cost", rate: 500 },
-  { description: "Material Cost", rate: 1000 },
-  { description: "Equipment Rental", rate: 2000 },
-  { description: "Transportation", rate: 500 },
-  { description: "Supervision", rate: 1500 },
-];
 
 export default function Home() {
   const { toast } = useToast();
@@ -138,12 +130,6 @@ export default function Home() {
   };
 
   // Quick actions
-  const handleAddPreset = (preset: any) => {
-    const nextNo = (Math.max(0, ...fields.map((f: any, i) => parseInt(f.itemNo) || i)) + 1).toString().padStart(3, '0');
-    append({ itemNo: nextNo, description: preset.description, quantity: 0, rate: preset.rate, unit: "", previousQty: 0 });
-    toast({ title: "✅ Preset Added", description: `${preset.description} added to items` });
-  };
-
   const handleDuplicateItem = (index: number) => {
     const item = fields[index];
     append({ ...item, itemNo: (Math.max(0, ...fields.map((f: any) => parseInt(f.itemNo) || 0)) + 1).toString().padStart(3, '0') });
@@ -201,109 +187,7 @@ export default function Home() {
           <p className="text-slate-600">Generate professional bills in multiple formats</p>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-4 mb-8">
-          <div className="lg:col-span-1 order-last lg:order-first">
-            {/* Sticky Summary Panel */}
-            <div className="sticky top-4 space-y-4">
-              <Card className="bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-300 shadow-lg">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-emerald-700">Bill Summary</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div>
-                    <div className="text-xs text-slate-600">Valid Items</div>
-                    <div className="text-2xl font-bold text-emerald-600">{stats.itemCount}</div>
-                  </div>
-                  <Separator className="bg-emerald-200" />
-                  <div>
-                    <div className="text-xs text-slate-600">Subtotal</div>
-                    <div className="text-lg font-semibold text-teal-600">{formatCurrency(stats.subtotal)}</div>
-                  </div>
-                  <div>
-                    <div className="text-xs text-slate-600">Premium ({stats.tenderPremiumPercent}%)</div>
-                    <div className="text-lg font-semibold text-blue-600">{formatCurrency(stats.premium)}</div>
-                  </div>
-                  <Separator className="bg-emerald-200" />
-                  <div>
-                    <div className="text-xs text-slate-600">Total Amount</div>
-                    <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">{formatCurrency(stats.totalAmount)}</div>
-                  </div>
-                  <Separator className="bg-emerald-200" />
-                  
-                  {/* Form Completion */}
-                  <div>
-                    <div className="text-xs text-slate-600 mb-1">Form Completion</div>
-                    <div className="w-full bg-slate-200 rounded-full h-2">
-                      <div className="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full transition-all" style={{width: `${formCompletion}%`}}></div>
-                    </div>
-                    <div className="text-xs text-slate-600 mt-1">{formCompletion}%</div>
-                  </div>
-
-                  {/* Validation Indicators */}
-                  <div className="space-y-1 text-xs">
-                    <div className="flex items-center gap-2">
-                      {isProjectValid ? <Check className="w-4 h-4 text-green-600" /> : <X className="w-4 h-4 text-red-600" />}
-                      <span className={isProjectValid ? "text-green-700" : "text-red-700"}>Project Name</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {isContractorValid ? <Check className="w-4 h-4 text-green-600" /> : <X className="w-4 h-4 text-red-600" />}
-                      <span className={isContractorValid ? "text-green-700" : "text-red-700"}>Contractor Name</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {hasValidItems ? <Check className="w-4 h-4 text-green-600" /> : <X className="w-4 h-4 text-red-600" />}
-                      <span className={hasValidItems ? "text-green-700" : "text-red-700"}>Valid Items</span>
-                    </div>
-                  </div>
-
-                  <Separator className="bg-emerald-200" />
-
-                  {/* Quick Actions */}
-                  <div className="space-y-2">
-                    <Button size="sm" onClick={handleSaveDraft} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white" data-testid="button-save-draft">
-                      <Save className="w-4 h-4 mr-1" /> Save Draft
-                    </Button>
-                    <Button size="sm" variant="outline" onClick={() => setShowDrafts(!showDrafts)} className="w-full border-teal-300 hover:bg-teal-50" data-testid="button-load-draft">
-                      <Upload className="w-4 h-4 mr-1" /> Load Draft
-                    </Button>
-                  </div>
-
-                  {/* Drafts Dropdown */}
-                  {showDrafts && drafts.length > 0 && (
-                    <Card className="bg-white border-teal-200">
-                      <CardContent className="pt-3 space-y-2 max-h-32 overflow-y-auto">
-                        {drafts.map(draft => (
-                          <div key={draft.id} className="flex items-center gap-2 text-xs p-2 bg-teal-50 rounded hover:bg-teal-100 transition">
-                            <div className="flex-1">
-                              <div className="font-semibold text-teal-700">{draft.projectName}</div>
-                              <div className="text-slate-600">{formatDraftTime(draft.savedAt)}</div>
-                            </div>
-                            <Button size="sm" variant="ghost" onClick={() => handleLoadDraft(draft.id)} className="h-6 px-2 text-xs text-green-600">Load</Button>
-                            <Button size="sm" variant="ghost" onClick={() => handleDeleteDraft(draft.id)} className="h-6 px-2 text-xs text-red-600">Delete</Button>
-                          </div>
-                        ))}
-                      </CardContent>
-                    </Card>
-                  )}
-                </CardContent>
-              </Card>
-
-              {/* Item Presets */}
-              <Card className="bg-white border-cyan-200 shadow-lg">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm text-cyan-700">Quick Add</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-1">
-                  {ITEM_PRESETS.map((preset, idx) => (
-                    <Button key={idx} size="sm" variant="outline" onClick={() => handleAddPreset(preset)} className="w-full text-xs justify-start border-cyan-200 hover:bg-cyan-50 text-left" data-testid={`button-preset-${idx}`}>
-                      <Plus className="w-3 h-3 mr-1" /> {preset.description}
-                    </Button>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          <div className="lg:col-span-3 space-y-6">
+        <div className="space-y-6">
             <Card className="border-emerald-300 bg-white shadow-xl">
               <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-t-lg">
                 <CardTitle>Bill Details</CardTitle>
@@ -442,7 +326,12 @@ export default function Home() {
                 </Form>
               </CardContent>
             </Card>
-          </div>
+        </div>
+        
+        {/* Credits */}
+        <div className="text-center text-sm text-slate-600 py-6 border-t border-slate-200 mt-8">
+          <p className="italic">Prepared on Initiative of</p>
+          <p className="font-semibold text-slate-700">Mrs. Premlata Jain, AAO, PWD Udaipur</p>
         </div>
       </div>
     </div>
