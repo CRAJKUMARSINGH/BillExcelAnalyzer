@@ -442,6 +442,71 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
   win?.print();
 };
 
+// ========== CSV EXPORT (Master Template Format) ==========
+export const generateCSV = (project: ProjectDetails, items: BillItem[]) => {
+  const totalAmount = items.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
+  const premiumAmount = totalAmount * (project.tenderPremium / 100);
+  const netPayable = totalAmount + premiumAmount;
+
+  // EXACT REFERENCE TEMPLATE STRUCTURE WITH COLUMN WIDTHS
+  const csvRows = [];
+  
+  // Title rows with column width reference (12.29, 62.43, 13, 8.71, 9, 11, 9.14, 12, 10)
+  csvRows.push(['CONTRACTOR BILL']);
+  csvRows.push(['Project:', project.projectName]);
+  csvRows.push(['Contractor:', project.contractorName]);
+  csvRows.push(['Date:', project.billDate.toLocaleDateString()]);
+  csvRows.push(['Tender Premium:', `${project.tenderPremium}%`]);
+  csvRows.push([]);
+
+  // Headers (matching master template exactly)
+  csvRows.push([
+    'Unit',
+    'Qty executed since last cert',
+    'Qty executed upto date',
+    'S. No.',
+    'Item of Work',
+    'Rate',
+    'Upto date Amount',
+    'Amount Since prev bill',
+    'Remarks'
+  ]);
+
+  // Data rows
+  items.filter(item => item.quantity > 0).forEach(item => {
+    csvRows.push([
+      item.unit || '',
+      item.previousQty || 0,
+      item.quantity,
+      item.itemNo,
+      item.description,
+      item.rate,
+      (item.quantity * item.rate).toFixed(2),
+      0,
+      ''
+    ]);
+  });
+
+  // Summary rows
+  csvRows.push([]);
+  csvRows.push(['', '', '', '', 'Grand Total Rs.', '', totalAmount.toFixed(2), totalAmount.toFixed(2), '']);
+  csvRows.push(['', '', '', '', `Tender Premium @ ${project.tenderPremium}%`, '', premiumAmount.toFixed(2), premiumAmount.toFixed(2), '']);
+  csvRows.push(['', '', '', '', 'NET PAYABLE AMOUNT Rs.', '', netPayable.toFixed(2), netPayable.toFixed(2), '']);
+
+  // Format as CSV with proper escaping and delimiters
+  const csv = csvRows
+    .map(row => row.map(cell => {
+      const cellStr = String(cell || '');
+      return cellStr.includes(',') || cellStr.includes('"') || cellStr.includes('\n')
+        ? `"${cellStr.replace(/"/g, '""')}"` 
+        : cellStr;
+    }).join(','))
+    .join('\n');
+
+  const blob = new Blob([csv], { type: 'text/csv' });
+  saveAs(blob, `${project.projectName || 'bill'}_summary.csv`);
+};
+
 // ========== ZIP EXPORT ==========
 export const generateZIP = async (project: ProjectDetails, items: BillItem[]) => {
   const { default: JSZip } = await import('jszip');
@@ -481,15 +546,40 @@ export const generateZIP = async (project: ProjectDetails, items: BillItem[]) =>
 
   const wb = utils.book_new();
   utils.book_append_sheet(wb, ws, "Bill Summary");
-  const excelBuffer = utils.write(wb, { bookType: 'xlsx', type: 'array' });
+  
+  // Use proper write API
+  const excelBinary = utils.write(wb, { bookType: 'xlsx', type: 'binary' });
+  const excelBuffer = new Uint8Array(excelBinary.length);
+  for (let i = 0; i < excelBinary.length; i++) {
+    excelBuffer[i] = excelBinary.charCodeAt(i) & 0xff;
+  }
   zip.file("bill_summary.xlsx", excelBuffer);
 
   // Add HTML
   const htmlContent = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Bill</title><style>body{font-family:Calibri,Arial;font-size:9pt}table{border-collapse:collapse;width:100%;margin:15px 0}th,td{border:1px solid #000;padding:6px;font-family:Calibri,Arial}th{background:#f0f0f0;font-weight:bold;text-align:center}.amount{text-align:right}.total-row{background:#e8f5e9;font-weight:bold}.premium-row{background:#fff3e0;font-weight:bold}.payable-row{background:#c8e6c9;font-weight:bold}</style></head><body><h1>CONTRACTOR BILL - ${project.projectName}</h1><p>Contractor: ${project.contractorName}</p><p>Date: ${project.billDate.toLocaleDateString()}</p><table><thead><tr><th>Unit</th><th>Qty Last</th><th>Qty Total</th><th>S.No</th><th>Item</th><th class="amount">Rate</th><th class="amount">Amount</th><th>Prev</th><th>Remarks</th></tr></thead><tbody>${items.filter(item => item.quantity > 0).map(item => `<tr><td>${item.unit}</td><td class="amount">${item.previousQty}</td><td class="amount">${item.quantity}</td><td>${item.itemNo}</td><td>${item.description}</td><td class="amount">₹${item.rate.toFixed(2)}</td><td class="amount">₹${(item.quantity * item.rate).toFixed(2)}</td><td>0</td><td></td></tr>`).join('')}<tr class="total-row"><td colspan="4"></td><td><strong>Grand Total</strong></td><td></td><td class="amount"><strong>₹${totalAmount.toFixed(2)}</strong></td><td></td><td></td></tr><tr class="premium-row"><td colspan="4"></td><td><strong>Premium @${project.tenderPremium}%</strong></td><td></td><td class="amount"><strong>₹${premiumAmount.toFixed(2)}</strong></td><td></td><td></td></tr><tr class="payable-row"><td colspan="4"></td><td><strong>NET PAYABLE</strong></td><td></td><td class="amount"><strong>₹${netPayable.toFixed(2)}</strong></td><td></td><td></td></tr></tbody></table></body></html>`;
   zip.file("bill_summary.html", htmlContent);
 
-  // Add CSV
-  const csvContent = [tableHeader, ...dataRows, totalRow, premiumRow, payableRow].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+  // Add CSV with master template format
+  const csvRows = [];
+  csvRows.push(['CONTRACTOR BILL']);
+  csvRows.push(['Project:', project.projectName]);
+  csvRows.push(['Contractor:', project.contractorName]);
+  csvRows.push(['Date:', project.billDate.toLocaleDateString()]);
+  csvRows.push(['Tender Premium:', `${project.tenderPremium}%`]);
+  csvRows.push([]);
+  csvRows.push(tableHeader);
+  dataRows.forEach(row => csvRows.push(row));
+  csvRows.push([]);
+  csvRows.push(totalRow);
+  csvRows.push(premiumRow);
+  csvRows.push(payableRow);
+
+  const csvContent = csvRows
+    .map(row => row.map(cell => {
+      const cellStr = String(cell || '');
+      return cellStr.includes(',') || cellStr.includes('"') ? `"${cellStr.replace(/"/g, '""')}"` : cellStr;
+    }).join(','))
+    .join('\n');
   zip.file("bill_summary.csv", csvContent);
 
   // Add TXT

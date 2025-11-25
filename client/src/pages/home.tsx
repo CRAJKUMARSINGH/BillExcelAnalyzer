@@ -22,7 +22,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { parseBillExcel } from "@/lib/excel-parser";
 import { useToast } from "@/hooks/use-toast";
-import { generateStyledExcel, generateHTML, generatePDF, generateZIP } from "@/lib/multi-format-export";
+import { generateStyledExcel, generateHTML, generatePDF, generateZIP, generateCSV } from "@/lib/multi-format-export";
 import testFilesData from "@/data/test-files.json";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -305,6 +305,28 @@ export default function Home() {
       toast({ title: "Success!", description: "PDF ready to print/save." });
     } catch (error) {
       toast({ title: "Error", description: "Failed to generate PDF.", variant: "destructive" });
+    }
+  };
+
+  const exportAsCSV = (data: BillFormValues) => {
+    try {
+      generateCSV(
+        {
+          projectName: data.projectName,
+          contractorName: data.contractorName,
+          billDate: data.billDate,
+          tenderPremium: data.tenderPremium,
+        },
+        data.items.map(item => ({
+           ...item,
+           id: Math.random().toString(),
+           unit: item.unit || "",
+           previousQty: item.previousQty || 0
+        }))
+      );
+      toast({ title: "Success!", description: "CSV file downloaded." });
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to generate CSV.", variant: "destructive" });
     }
   };
 
@@ -681,6 +703,13 @@ export default function Home() {
                     className="bg-blue-600 hover:bg-blue-700 text-white"
                   >
                     <File className="w-4 h-4 mr-2" /> HTML (.html)
+                  </Button>
+                  <Button 
+                    type="button"
+                    onClick={form.handleSubmit(exportAsCSV)}
+                    className="bg-orange-600 hover:bg-orange-700 text-white"
+                  >
+                    <File className="w-4 h-4 mr-2" /> CSV (.csv)
                   </Button>
                   <Button 
                     type="button"
