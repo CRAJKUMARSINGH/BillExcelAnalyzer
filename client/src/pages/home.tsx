@@ -3,7 +3,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon, Plus, Trash2, FileSpreadsheet, Calculator, RefreshCw, Zap } from "lucide-react";
+import { Calendar as CalendarIcon, Plus, Trash2, FileSpreadsheet, Calculator, RefreshCw, Zap, Download, File } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -20,9 +20,9 @@ import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { generateExcel } from "@/lib/excel-export";
 import { parseBillExcel } from "@/lib/excel-parser";
 import { useToast } from "@/hooks/use-toast";
+import { generateStyledExcel, generateHTML, generatePDF, generateZIP } from "@/lib/multi-format-export";
 import testFilesData from "@/data/test-files.json";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -242,9 +242,9 @@ export default function Home() {
   const premiumAmount = totalAmount * (Number(tenderPremium) / 100);
   const netPayable = totalAmount + premiumAmount;
 
-  const onSubmit = (data: BillFormValues) => {
+  const exportAsExcel = (data: BillFormValues) => {
     try {
-      generateExcel(
+      generateStyledExcel(
         {
           projectName: data.projectName,
           contractorName: data.contractorName,
@@ -253,24 +253,85 @@ export default function Home() {
         },
         data.items.map(item => ({
            ...item,
-           id: Math.random().toString(), // temp id
+           id: Math.random().toString(),
            unit: item.unit || "",
            previousQty: item.previousQty || 0
         }))
       );
-      
-      toast({
-        title: "Success!",
-        description: "Bill generated and Excel file downloaded.",
-      });
+      toast({ title: "Success!", description: "Excel file downloaded." });
     } catch (error) {
-      console.error(error);
-      toast({
-        title: "Error",
-        description: "Failed to generate Excel file.",
-        variant: "destructive",
-      });
+      toast({ title: "Error", description: "Failed to generate Excel.", variant: "destructive" });
     }
+  };
+
+  const exportAsHTML = (data: BillFormValues) => {
+    try {
+      generateHTML(
+        {
+          projectName: data.projectName,
+          contractorName: data.contractorName,
+          billDate: data.billDate,
+          tenderPremium: data.tenderPremium,
+        },
+        data.items.map(item => ({
+           ...item,
+           id: Math.random().toString(),
+           unit: item.unit || "",
+           previousQty: item.previousQty || 0
+        }))
+      );
+      toast({ title: "Success!", description: "HTML file downloaded." });
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to generate HTML.", variant: "destructive" });
+    }
+  };
+
+  const exportAsPDF = async (data: BillFormValues) => {
+    try {
+      await generatePDF(
+        {
+          projectName: data.projectName,
+          contractorName: data.contractorName,
+          billDate: data.billDate,
+          tenderPremium: data.tenderPremium,
+        },
+        data.items.map(item => ({
+           ...item,
+           id: Math.random().toString(),
+           unit: item.unit || "",
+           previousQty: item.previousQty || 0
+        }))
+      );
+      toast({ title: "Success!", description: "PDF ready to print/save." });
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to generate PDF.", variant: "destructive" });
+    }
+  };
+
+  const exportAsZIP = async (data: BillFormValues) => {
+    try {
+      await generateZIP(
+        {
+          projectName: data.projectName,
+          contractorName: data.contractorName,
+          billDate: data.billDate,
+          tenderPremium: data.tenderPremium,
+        },
+        data.items.map(item => ({
+           ...item,
+           id: Math.random().toString(),
+           unit: item.unit || "",
+           previousQty: item.previousQty || 0
+        }))
+      );
+      toast({ title: "Success!", description: "ZIP file with all formats downloaded." });
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to generate ZIP.", variant: "destructive" });
+    }
+  };
+
+  const onSubmit = (data: BillFormValues) => {
+    exportAsExcel(data);
   };
 
   return (
@@ -605,10 +666,37 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              <div className="flex justify-end pt-4">
-                <Button type="submit" size="lg" className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25 w-full md:w-auto">
-                  <FileSpreadsheet className="w-4 h-4 mr-2" /> Generate Documents & Excel
-                </Button>
+              <div className="pt-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <Button 
+                    type="button"
+                    onClick={form.handleSubmit(exportAsExcel)}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                  >
+                    <FileSpreadsheet className="w-4 h-4 mr-2" /> Excel (.xlsx)
+                  </Button>
+                  <Button 
+                    type="button"
+                    onClick={form.handleSubmit(exportAsHTML)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    <File className="w-4 h-4 mr-2" /> HTML (.html)
+                  </Button>
+                  <Button 
+                    type="button"
+                    onClick={form.handleSubmit(exportAsPDF)}
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                  >
+                    <File className="w-4 h-4 mr-2" /> PDF (Print)
+                  </Button>
+                  <Button 
+                    type="button"
+                    onClick={form.handleSubmit(exportAsZIP)}
+                    className="bg-purple-600 hover:bg-purple-700 text-white"
+                  >
+                    <Download className="w-4 h-4 mr-2" /> ZIP (All)
+                  </Button>
+                </div>
               </div>
 
             </form>
