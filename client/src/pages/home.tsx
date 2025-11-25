@@ -193,7 +193,7 @@ export default function Home() {
                 <Separator className="bg-emerald-200" />
 
                 <div className="flex gap-2 items-center">
-                  <FormLabel className="font-semibold text-emerald-700">⚡ Fast Mode:</FormLabel>
+                  <label className="font-semibold text-emerald-700">⚡ Fast Mode:</label>
                   <Select value={selectedTestFile} onValueChange={(val) => { setSelectedTestFile(val); loadFastMode(val); }}>
                     <SelectTrigger className="w-60 border-teal-300"><SelectValue placeholder="Select test file..." /></SelectTrigger>
                     <SelectContent>
@@ -213,7 +213,7 @@ export default function Home() {
 
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <FormLabel className="font-semibold text-emerald-700">Bill Items</FormLabel>
+                    <label className="font-semibold text-emerald-700">Bill Items</label>
                     <Button type="button" size="sm" onClick={() => append({ itemNo: "", description: "", quantity: 0, rate: 0, unit: "", previousQty: 0 })} className="bg-emerald-600 hover:bg-emerald-700">
                       <Plus className="w-4 h-4 mr-1" /> Add Item
                     </Button>

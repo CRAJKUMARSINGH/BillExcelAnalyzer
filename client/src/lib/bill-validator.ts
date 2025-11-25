@@ -16,19 +16,25 @@ export const validateBillInput = (
 ) => {
   const errors: string[] = [];
 
-  if (!projectName?.trim()) errors.push('Project name is required');
-  if (!contractorName?.trim()) errors.push('Contractor name is required');
-  if (!items || items.length === 0) errors.push('At least one item is required');
+  // Strict empty field validation
+  if (!projectName || projectName.trim() === '') errors.push('❌ Project name is required');
+  if (!contractorName || contractorName.trim() === '') errors.push('❌ Contractor name is required');
+  if (!items || items.length === 0) errors.push('❌ At least one item is required');
 
-  // Check for negative values
-  items?.forEach((item, idx) => {
-    if (item.quantity < 0) errors.push(`Item ${idx + 1}: Quantity cannot be negative`);
-    if (item.rate < 0) errors.push(`Item ${idx + 1}: Rate cannot be negative`);
-  });
+  if (items) {
+    // Check for negative values
+    items.forEach((item, idx) => {
+      if (item.quantity < 0) errors.push(`❌ Item ${idx + 1}: Quantity cannot be negative`);
+      if (item.rate < 0) errors.push(`❌ Item ${idx + 1}: Rate cannot be negative`);
+      if (!item.description || item.description.trim() === '') {
+        errors.push(`❌ Item ${idx + 1}: Description is required`);
+      }
+    });
 
-  // Check if any item has quantity > 0
-  const hasValidItems = items?.some(item => item.quantity > 0);
-  if (!hasValidItems) errors.push('At least one item must have quantity > 0');
+    // Check if any item has quantity > 0
+    const hasValidItems = items.some(item => item.quantity > 0);
+    if (!hasValidItems) errors.push('❌ At least one item must have quantity > 0');
+  }
 
   return { isValid: errors.length === 0, errors };
 };
@@ -41,10 +47,17 @@ export const formatCurrency = (amount: number): string => {
   return `₹${parts.join('.')}`;
 };
 
-// Generate Filename with Timestamp
+// Generate Filename with Timestamp (Format: ProjectName_Bill_YYYYMMDD_HHMMSS.ext)
 export const generateFileName = (projectName: string, extension: string): string => {
   const now = new Date();
-  const timestamp = now.toISOString().slice(0, 19).replace(/:/g, '');
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  
+  const timestamp = `${year}${month}${day}_${hours}${minutes}${seconds}`;
   const safeName = (projectName || 'bill').replace(/[^a-z0-9]/gi, '_').toLowerCase();
   return `${safeName}_Bill_${timestamp}.${extension}`;
 };
