@@ -149,31 +149,22 @@ export default function About() {
         {/* Credits */}
         <Card className="mb-8 border-2 border-emerald-200 bg-emerald-50">
           <CardHeader>
-            <CardTitle className="text-emerald-700">Credits & Attribution</CardTitle>
+            <CardTitle className="text-emerald-700">Credits & Initiative</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="bg-white p-6 rounded border-2 border-emerald-300 text-center">
+              <p className="text-sm text-slate-600 italic mb-2">Prepared on Initiative of</p>
+              <p className="text-2xl font-bold text-emerald-700">Mrs. Premlata Jain</p>
+              <p className="text-lg font-semibold text-emerald-600">AAO, PWD Udaipur</p>
+            </div>
             <div>
               <h4 className="font-semibold text-slate-700 mb-2">Development Team</h4>
               <p className="text-sm text-slate-600">BillGenerator Development Team</p>
             </div>
             <div>
-              <h4 className="font-semibold text-slate-700 mb-2">Inspirations & References</h4>
-              <ul className="text-sm text-slate-600 space-y-1">
-                <li>• Professional contractor bill management systems</li>
-                <li>• Government tender documentation standards</li>
-                <li>• Excel template formatting best practices</li>
-                <li>• Precision PDF rendering techniques</li>
-              </ul>
-            </div>
-            <div>
               <h4 className="font-semibold text-slate-700 mb-2">Built on Replit</h4>
               <p className="text-sm text-slate-600">
                 Developed and deployed on Replit - a collaborative IDE for building web applications with integrated hosting.
-              </p>
-            </div>
-            <div className="bg-white p-3 rounded border border-emerald-200 mt-4">
-              <p className="text-xs text-slate-600 italic">
-                "BillGenerator represents the culmination of precision engineering, user-centric design, and rigorous testing to deliver a production-ready billing solution."
               </p>
             </div>
           </CardContent>
