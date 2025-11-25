@@ -20,6 +20,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { generateExcel } from "@/lib/excel-export";
+import { parseBillExcel } from "@/lib/excel-parser";
 import { useToast } from "@/hooks/use-toast";
 
 // Form Schema
@@ -40,9 +41,61 @@ const billSchema = z.object({
 
 type BillFormValues = z.infer<typeof billSchema>;
 
+const SAMPLE_DATA = {
+  "projectDetails": {
+    "projectName": "Sample Project",
+    "contractorName": "Sample Contractor",
+    "billDate": new Date("2025-11-25"),
+    "tenderPremium": 5.11
+  },
+  "items": [
+    {
+      "itemNo": "2",
+      "description": "Short point (up to 3 mtr.)",
+      "quantity": 52.0,
+      "rate": 256.0,
+      "unit": "P. point",
+      "previousQty": 0.0
+    },
+    {
+      "itemNo": "3",
+      "description": "Medium point (up to 6 mtr.)",
+      "quantity": 48.0,
+      "rate": 472.0,
+      "unit": "P. point",
+      "previousQty": 0.0
+    },
+    {
+      "itemNo": "4",
+      "description": "Long point  (up to 10 mtr.)",
+      "quantity": 52.0,
+      "rate": 662.0,
+      "unit": "P. point",
+      "previousQty": 0.0
+    },
+    {
+      "itemNo": "6",
+      "description": "On board",
+      "quantity": 102.0,
+      "rate": 136.0,
+      "unit": "P. point",
+      "previousQty": 0.0
+    },
+    {
+      "itemNo": "7",
+      "description": "P & F ISI marked (IS:3854) 6 amp. flush type non modular switch...",
+      "quantity": 8.0,
+      "rate": 23.0,
+      "unit": "Each",
+      "previousQty": 0.0
+    }
+  ]
+};
+
 export default function Home() {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<"online" | "excel">("online");
+  const [isUploading, setIsUploading] = useState(false);
 
   const form = useForm<BillFormValues>({
     resolver: zodResolver(billSchema),
@@ -59,10 +112,67 @@ export default function Home() {
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, replace } = useFieldArray({
     control: form.control,
     name: "items",
   });
+
+  const loadSampleData = () => {
+      form.setValue("projectName", SAMPLE_DATA.projectDetails.projectName);
+      form.setValue("contractorName", SAMPLE_DATA.projectDetails.contractorName);
+      form.setValue("billDate", SAMPLE_DATA.projectDetails.billDate);
+      form.setValue("tenderPremium", SAMPLE_DATA.projectDetails.tenderPremium);
+      replace(SAMPLE_DATA.items);
+      
+      toast({
+        title: "Sample Data Loaded",
+        description: "Loaded data from 0511-N-extra.xlsx",
+      });
+      setActiveTab("online");
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      const data = await parseBillExcel(file);
+      
+      // Update form with parsed data
+      form.setValue("projectName", data.projectDetails.projectName || "Imported Project");
+      form.setValue("contractorName", data.projectDetails.contractorName || "Imported Contractor");
+      if (data.projectDetails.billDate) {
+        form.setValue("billDate", data.projectDetails.billDate);
+      }
+      form.setValue("tenderPremium", data.projectDetails.tenderPremium || 0);
+      
+      if (data.items.length > 0) {
+        replace(data.items);
+        toast({
+          title: "File Parsed Successfully",
+          description: `Loaded ${data.items.length} items from ${file.name}`,
+        });
+        setActiveTab("online"); // Switch to online view to show data
+      } else {
+         toast({
+          title: "Warning",
+          description: "No valid items found in the Excel file.",
+          variant: "destructive",
+        });
+      }
+
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Import Failed",
+        description: "Could not parse the Excel file. Please check the format.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   // Calculate totals for preview
   const items = form.watch("items");
@@ -395,13 +505,49 @@ export default function Home() {
             </form>
           </Form>
         ) : (
-          <div className="flex flex-col items-center justify-center h-[60vh] text-slate-400 bg-white rounded-xl border-2 border-dashed border-slate-200">
-            <FileSpreadsheet className="w-16 h-16 mb-4 opacity-20" />
-            <h3 className="text-lg font-semibold text-slate-600">Excel Upload Mode</h3>
-            <p className="text-sm">Coming soon to this prototype...</p>
-            <Button variant="outline" className="mt-4" onClick={() => setActiveTab("online")}>
-              Switch to Online Entry
-            </Button>
+          <div className="flex flex-col items-center justify-center h-[60vh] text-slate-400 bg-white rounded-xl border-2 border-dashed border-slate-200 transition-all hover:border-emerald-300 hover:bg-slate-50">
+            {isUploading ? (
+              <div className="animate-pulse flex flex-col items-center">
+                <div className="w-12 h-12 rounded-full border-4 border-emerald-500 border-t-transparent animate-spin mb-4"></div>
+                <p className="text-lg font-medium text-emerald-700">Parsing Excel File...</p>
+              </div>
+            ) : (
+              <>
+                <div className="bg-emerald-100 p-4 rounded-full mb-4">
+                   <FileSpreadsheet className="w-12 h-12 text-emerald-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-700 mb-2">Upload Bill Excel</h3>
+                <p className="text-sm text-slate-500 max-w-md text-center mb-6">
+                  Upload your Excel file containing 'Title', 'Work Order', and 'Bill Quantity' sheets to automatically populate the form.
+                </p>
+                <div className="relative">
+                  <Input 
+                    type="file" 
+                    accept=".xlsx, .xls" 
+                    onChange={handleFileUpload}
+                    className="hidden" 
+                    id="excel-upload"
+                  />
+                  <div className="flex gap-4">
+                    <Button asChild size="lg" className="cursor-pointer bg-emerald-600 hover:bg-emerald-700">
+                      <label htmlFor="excel-upload">
+                        Select Excel File
+                      </label>
+                    </Button>
+                    <Button 
+                        type="button"
+                        variant="outline" 
+                        size="lg" 
+                        onClick={loadSampleData}
+                        className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                    >
+                        Load Test Data (0511-N-extra)
+                    </Button>
+                  </div>
+                </div>
+                <p className="mt-4 text-xs text-slate-400">Supports .xlsx and .xls formats</p>
+              </>
+            )}
           </div>
         )}
       </main>
