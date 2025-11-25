@@ -260,6 +260,7 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
             margin: 15px 0; 
             font-size: 9pt;
             font-family: 'Calibri', Arial;
+            table-layout: fixed;
         }
         th { 
             background: #f0f0f0; 
@@ -270,12 +271,14 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
             font-family: 'Calibri', Arial;
             font-size: 9pt;
             vertical-align: center;
+            word-wrap: break-word;
         }
         td { 
             border: 1px solid #000; 
             padding: 6px; 
             text-align: left;
             word-wrap: break-word;
+            overflow-wrap: break-word;
             font-family: 'Calibri', Arial;
             font-size: 9pt;
         }
@@ -300,15 +303,15 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
         <table>
             <thead>
                 <tr>
-                    <th style="width: 12.29%;">Unit</th>
-                    <th style="width: 62.43%;">Qty executed since last cert</th>
-                    <th style="width: 13%;">Qty executed upto date</th>
-                    <th style="width: 8.71%;">S. No.</th>
-                    <th style="width: 9%;">Item of Work</th>
-                    <th style="width: 11%;">Rate</th>
-                    <th style="width: 9.14%;">Upto date Amount</th>
-                    <th style="width: 12%;">Amount Since prev bill</th>
-                    <th style="width: 10%;">Remarks</th>
+                    <th style="width: 10.06mm;">Unit</th>
+                    <th style="width: 13.76mm;">Qty executed since last cert</th>
+                    <th style="width: 13.76mm;">Qty executed upto date</th>
+                    <th style="width: 9.55mm;">S. No.</th>
+                    <th style="width: 63.83mm;">Item of Work</th>
+                    <th style="width: 13.16mm;">Rate</th>
+                    <th style="width: 19.53mm;">Upto date Amount</th>
+                    <th style="width: 15.15mm;">Amount Since prev bill</th>
+                    <th style="width: 11.96mm;">Remarks</th>
                 </tr>
             </thead>
             <tbody>
@@ -389,9 +392,9 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
   .header { border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 15px; }
   .header h1 { font-size: 12pt; font-weight: bold; margin-bottom: 5px; }
   .info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 9pt; margin: 8px 0; }
-  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 9pt; font-family: Calibri, Arial; }
-  th, td { border: 1px solid #000; padding: 6px; text-align: left; font-family: Calibri, Arial; }
-  th { background: #f0f0f0; font-weight: bold; text-align: center; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 9pt; font-family: Calibri, Arial; table-layout: fixed; }
+  th, td { border: 1px solid #000; padding: 6px; text-align: left; font-family: Calibri, Arial; word-wrap: break-word; overflow-wrap: break-word; }
+  th { background: #f0f0f0; font-weight: bold; text-align: center; vertical-align: middle; }
   .amount { text-align: right; }
   .total-row { background: #e8f5e9; font-weight: bold; }
   .premium-row { background: #fff3e0; font-weight: bold; }
@@ -409,11 +412,18 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
     </div>
   </div>
   
-  <table>
+  <table style="table-layout: fixed; width: 100%;">
     <thead>
       <tr>
-        <th>Unit</th><th>Qty Last</th><th>Qty Total</th><th>S.No</th><th>Item</th>
-        <th class="amount">Rate</th><th class="amount">Amount</th><th class="amount">Prev</th><th>Remarks</th>
+        <th style="width: 10.06mm;">Unit</th>
+        <th style="width: 13.76mm;">Qty Last</th>
+        <th style="width: 13.76mm;">Qty Total</th>
+        <th style="width: 9.55mm;">S.No</th>
+        <th style="width: 63.83mm;">Item</th>
+        <th style="width: 13.16mm; text-align: right;">Rate</th>
+        <th style="width: 19.53mm; text-align: right;">Amount</th>
+        <th style="width: 15.15mm; text-align: right;">Prev</th>
+        <th style="width: 11.96mm;">Remarks</th>
       </tr>
     </thead>
     <tbody>
