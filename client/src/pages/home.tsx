@@ -223,16 +223,16 @@ export default function Home() {
                     {fields.map((field, idx) => (
                       <div key={field.id} className="bg-white p-3 rounded border border-emerald-200 grid md:grid-cols-6 gap-2">
                         <FormField name={`items.${idx}.itemNo`} control={form.control} render={({ field }) => (
-                          <FormControl><Input {...field} placeholder="No." size={1} className="border-emerald-300" /></FormControl>
+                          <FormItem><FormControl><Input {...field} placeholder="No." size={1} className="border-emerald-300" /></FormControl></FormItem>
                         )} />
                         <FormField name={`items.${idx}.description`} control={form.control} render={({ field }) => (
-                          <FormControl><Input {...field} placeholder="Description" className="md:col-span-2 border-emerald-300" /></FormControl>
+                          <FormItem><FormControl><Input {...field} placeholder="Description" className="md:col-span-2 border-emerald-300" /></FormControl></FormItem>
                         )} />
                         <FormField name={`items.${idx}.quantity`} control={form.control} render={({ field }) => (
-                          <FormControl><Input {...field} type="number" placeholder="Qty" className="border-emerald-300" /></FormControl>
+                          <FormItem><FormControl><Input {...field} type="number" placeholder="Qty" className="border-emerald-300" /></FormControl></FormItem>
                         )} />
                         <FormField name={`items.${idx}.rate`} control={form.control} render={({ field }) => (
-                          <FormControl><Input {...field} type="number" placeholder="Rate" className="border-emerald-300" /></FormControl>
+                          <FormItem><FormControl><Input {...field} type="number" placeholder="Rate" className="border-emerald-300" /></FormControl></FormItem>
                         )} />
                         <Button type="button" size="sm" variant="ghost" onClick={() => remove(idx)} className="text-red-600 hover:bg-red-50">
                           <Trash2 className="w-4 h-4" />

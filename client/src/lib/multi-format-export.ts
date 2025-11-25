@@ -371,7 +371,8 @@ export const generateHTML = (project: ProjectDetails, items: BillItem[]) => {
 
 // ========== PDF EXPORT ==========
 export const generatePDF = async (project: ProjectDetails, items: BillItem[]) => {
-  const totalAmount = items.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
+  const validItems = items.filter(item => item.quantity > 0);
+  const totalAmount = validItems.reduce((sum, item) => sum + (item.quantity * item.rate), 0);
   const premiumAmount = totalAmount * (project.tenderPremium / 100);
   const netPayable = totalAmount + premiumAmount;
 
@@ -416,7 +417,7 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
       </tr>
     </thead>
     <tbody>
-      ${items.filter(item => item.quantity > 0).map(item => `
+      ${validItems.map(item => `
       <tr>
         <td>${item.unit}</td><td class="amount">${item.previousQty}</td><td class="amount">${item.quantity}</td>
         <td>${item.itemNo}</td><td>${item.description}</td>
@@ -438,10 +439,9 @@ export const generatePDF = async (project: ProjectDetails, items: BillItem[]) =>
 </html>
   `;
 
-  const blob = new Blob([html], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  const win = window.open(url, '_blank');
-  win?.print();
+  // Generate PDF by saving as HTML - browser can print-to-PDF
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  saveAs(blob, generateFileName(project.projectName, 'pdf.html'));
 };
 
 // ========== CSV EXPORT (Master Template Format) ==========
