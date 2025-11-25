@@ -63,14 +63,23 @@ export const generateFileName = (projectName: string, extension: string): string
 };
 
 // Bill Statistics
-export const calculateBillStats = (items: any[]) => {
+export const calculateBillStats = (items: any[], tenderPremium: number = 0) => {
   const validItems = items.filter(item => item.quantity > 0 && item.rate > 0);
-  const totalAmount = validItems.reduce((sum, item) => {
+  const subtotal = validItems.reduce((sum, item) => {
     const amount = (item.quantity * item.rate);
     return sum + (isFinite(amount) ? amount : 0);
   }, 0);
+  const premium = (subtotal * tenderPremium) / 100;
+  const totalAmount = subtotal + premium;
   const itemCount = validItems.length;
-  return { totalAmount: Math.max(0, totalAmount), itemCount, validItems };
+  return { 
+    subtotal: Math.max(0, subtotal),
+    premium: Math.max(0, premium),
+    totalAmount: Math.max(0, totalAmount),
+    tenderPremiumPercent: tenderPremium,
+    itemCount,
+    validItems
+  };
 };
 
 // Bill History Management (using localStorage)
