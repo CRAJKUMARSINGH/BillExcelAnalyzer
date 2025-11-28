@@ -1,0 +1,1502 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Bill Excel Analyzer - 15 Files Analysis Report</title>
+    <style>
+      body {
+        font-family: Calibri, Arial, sans-serif;
+        font-size: 11pt;
+        margin: 20mm;
+        line-height: 1.4;
+      }
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+      .header {
+        text-align: center;
+        border-bottom: 3px solid #2c5aa0;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+      }
+      .header h1 {
+        color: #2c5aa0;
+        margin: 0;
+        font-size: 24pt;
+      }
+      .header p {
+        margin: 5px 0;
+        color: #666;
+        font-size: 12pt;
+      }
+      .summary {
+        background-color: #f0f8ff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+      }
+      .summary-item {
+        text-align: center;
+        padding: 15px;
+        background: white;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      .summary-number {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2c5aa0;
+        margin: 10px 0;
+      }
+      .summary-label {
+        font-size: 11pt;
+        color: #666;
+        font-weight: bold;
+      }
+      .file-section {
+        margin-bottom: 35px;
+        page-break-inside: avoid;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .file-header {
+        background: linear-gradient(to right, #2c5aa0, #3a7bc8);
+        color: white;
+        padding: 15px 20px;
+      }
+      .file-title {
+        font-weight: bold;
+        margin: 0;
+        font-size: 14pt;
+      }
+      .file-info {
+        font-size: 11pt;
+        margin: 8px 0 0 0;
+        opacity: 0.9;
+      }
+      .section {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+      }
+      .section:last-child {
+        border-bottom: none;
+      }
+      .section-title {
+        color: #2c5aa0;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 8px;
+        margin-top: 0;
+        margin-bottom: 15px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 10pt;
+      }
+      th {
+        background-color: #f0f0f0;
+        border: 1px solid #999;
+        padding: 8px;
+        text-align: left;
+        font-weight: bold;
+      }
+      td {
+        border: 1px solid #ccc;
+        padding: 6px;
+        vertical-align: top;
+      }
+      .highlight {
+        background-color: #fffacd;
+        font-weight: bold;
+      }
+      .footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 10pt;
+        color: #999;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .first-page-content {
+        text-align: center;
+        margin-top: 50px;
+      }
+      .first-page-content p {
+        font-size: 12pt;
+        max-width: 600px;
+        margin: 0 auto 20px auto;
+        line-height: 1.6;
+      }
+      .deviation-note {
+        background-color: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 15px 0;
+      }
+      .deviation-table {
+        background-color: #f8f9fa;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        margin: 15px 0;
+      }
+      @media print {
+        body {
+          margin: 15mm;
+        }
+        .page-break {
+          page-break-before: always;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- FIRST PAGE -->
+    <div class="header">
+      <h1>Bill Excel Analyzer</h1>
+      <p>Comprehensive Analysis of 15 Input Templates</p>
+      <p>Generated on: 11/26/2025 at 1:26:39 PM</p>
+    </div>
+    
+    <div class="first-page-content">
+      <div class="summary">
+        <h2 style="color: #2c5aa0; margin-top: 0;">Executive Summary</h2>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="summary-number">15</div>
+            <div class="summary-label">INPUT FILES PROCESSED</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-number">318</div>
+            <div class="summary-label">TOTAL BILL ITEMS</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-number">63</div>
+            <div class="summary-label">TOTAL EXTRA ITEMS</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-number">10</div>
+            <div class="summary-label">UNIQUE PROJECTS</div>
+          </div>
+        </div>
+      </div>
+      
+      <p>This report provides a comprehensive bird's eye assessment of all 15 input templates processed by the Bill Excel Analyzer system. Each file has been examined for its structure, content, and compliance with statutory requirements.</p>
+      
+      <div class="deviation-note">
+        <h3 style="color: #856404; margin-top: 0;">🔍 Deviation Analysis Summary</h3>
+        <p>Deviation statements and extra items have been analyzed to ensure proper handling of variations from the original contract scope. 12 out of 15 files contain extra items/deviations.</p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>Bill Excel Analyzer Report - Page 1 of 9</p>
+    </div>
+    
+    <div class="page-break"></div>
+  
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 1: 0511-N-extra.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur | 
+          <strong>Contractor:</strong> M/s. Shree Krishna Builders Jaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>0511-N-extra.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Shree Krishna Builders Jaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>45915</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Work Order, Bill Quantity, Extra Items)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 8 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>EXTRA ITEM SLIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qty.</td></tr><tr><td>2</td></tr><tr><td>4</td></tr><tr><td>5</td></tr><tr><td>5</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 2: 0511Wextra.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur | 
+          <strong>Contractor:</strong> M/s. Shree Krishna Builders Jaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>0511Wextra.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Shree Krishna Builders Jaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>45915</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Work Order, Bill Quantity, Extra Items)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 8 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>EXTRA ITEM SLIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qty.</td></tr><tr><td>2</td></tr><tr><td>4</td></tr><tr><td>5</td></tr><tr><td>5</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 3: 3rdFinalNoExtra.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Electric Repair  work at Government Building, Saheli Nagar, Udaipur | 
+          <strong>Contractor:</strong> M/s. Shivshakti Traders Udaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>3rdFinalNoExtra.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Electric Repair  work at Government Building, Saheli Nagar, Udaipur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Shivshakti Traders Udaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>45719</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Work Order, Bill Quantity, Extra Items)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 1 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>EXTRA ITEM SLIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qty.</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 4: 3rdFinalVidExtra.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Electric Repair  work at Government Building, Saheli Nagar, Udaipur | 
+          <strong>Contractor:</strong> M/s. Shivshakti Traders Udaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>3rdFinalVidExtra.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Electric Repair  work at Government Building, Saheli Nagar, Udaipur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Shivshakti Traders Udaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>45719</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Work Order, Bill Quantity, Extra Items)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 8 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>EXTRA ITEM SLIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qty.</td></tr><tr><td>2</td></tr><tr><td>4</td></tr><tr><td>5</td></tr><tr><td>5</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 5: 3rdRunningNoExtra.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Electric Repair and MTC work at Govt. Ambedkar hostel Ambamata, Govardhanvilas, Udaipur | 
+          <strong>Contractor:</strong> M/s Seema Electrical Udaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>3rdRunningNoExtra.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Electric Repair and MTC work at Govt. Ambedkar hostel Ambamata, Govardhanvilas, Udaipur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s Seema Electrical Udaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>45719</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Work Order, Bill Quantity, Extra Items)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 8 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>EXTRA ITEM SLIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qty.</td></tr><tr><td>2</td></tr><tr><td>4</td></tr><tr><td>5</td></tr><tr><td>5</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 6: 3rdRunningVidExtra.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Electric Repair and MTC work at Govt. Ambedkar hostel Ambamata, Govardhanvilas, Udaipur | 
+          <strong>Contractor:</strong> M/s Seema Electrical Udaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>3rdRunningVidExtra.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Electric Repair and MTC work at Govt. Ambedkar hostel Ambamata, Govardhanvilas, Udaipur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s Seema Electrical Udaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>45719</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Work Order, Bill Quantity, Extra Items)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 8 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>EXTRA ITEM SLIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qty.</td></tr><tr><td>2</td></tr><tr><td>4</td></tr><tr><td>5</td></tr><tr><td>5</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 7: Additional_Test_File_1.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Road Construction and Maintenance at Govt. Hospital Complex, Tonk | 
+          <strong>Contractor:</strong> M/s. Rajesh Constructions Jaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>Additional_Test_File_1.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Road Construction and Maintenance at Govt. Hospital Complex, Tonk</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Rajesh Constructions Jaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>2025-10-15</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>4.5</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Bill Quantity, Extra Items, Work Order)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 3 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item No</th><th>Description</th><th>Unit</th><th>Qty</th><th>Rate</th><th>Amount</th><th>Prev Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>E1</td><td>Additional excavation due to unexpected rock layer</td><td>Cum</td><td>15.36</td><td>650</td><td>9984</td><td>0</td></tr><tr><td>E2</td><td>Extra RCC work for additional column</td><td>Cum</td><td>9.6</td><td>7500</td><td>72000</td><td>0</td></tr><tr><td>E3</td><td>Additional waterproofing treatment</td><td>Sq.m</td><td>8.67</td><td>85</td><td>736.95</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 8: Additional_Test_File_2.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Water Supply Line Installation at Govt. Girls School, Bhilwara | 
+          <strong>Contractor:</strong> M/s. Aqua Solutions Udaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>Additional_Test_File_2.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Water Supply Line Installation at Govt. Girls School, Bhilwara</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Aqua Solutions Udaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>2025-09-22</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>3</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Not found</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>3 (Title, Bill Quantity, Work Order)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <p>No extra items or deviations found in this file. All work appears to be within the original contract scope.</p>
+      </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 9: Additional_Test_File_3.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Building Repair and Painting Work at District Court, Kota | 
+          <strong>Contractor:</strong> M/s. Prime Painters & Builders Kota
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>Additional_Test_File_3.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Building Repair and Painting Work at District Court, Kota</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Prime Painters & Builders Kota</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>2025-11-05</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>5</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Bill Quantity, Extra Items, Work Order)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 3 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item No</th><th>Description</th><th>Unit</th><th>Qty</th><th>Rate</th><th>Amount</th><th>Prev Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>E1</td><td>Additional excavation due to unexpected rock layer</td><td>Cum</td><td>16.46</td><td>650</td><td>10699</td><td>0</td></tr><tr><td>E2</td><td>Extra RCC work for additional column</td><td>Cum</td><td>12.42</td><td>7500</td><td>93150</td><td>0</td></tr><tr><td>E3</td><td>Additional waterproofing treatment</td><td>Sq.m</td><td>16.24</td><td>85</td><td>1380.4</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 10: Additional_Test_File_4.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Solar Panel Installation at Govt. Degree College, Ajmer | 
+          <strong>Contractor:</strong> M/s. Green Energy Solutions Jaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>Additional_Test_File_4.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Solar Panel Installation at Govt. Degree College, Ajmer</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Green Energy Solutions Jaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>2025-08-30</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>6</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Not found</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>3 (Title, Bill Quantity, Work Order)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <p>No extra items or deviations found in this file. All work appears to be within the original contract scope.</p>
+      </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 11: Additional_Test_File_5.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Fencing and Gate Installation at Govt. Office Complex, Alwar | 
+          <strong>Contractor:</strong> M/s. Secure Fencing Works Alwar
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>Additional_Test_File_5.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Fencing and Gate Installation at Govt. Office Complex, Alwar</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Secure Fencing Works Alwar</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>2025-10-30</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>3.5</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Bill Quantity, Extra Items, Work Order)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 3 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item No</th><th>Description</th><th>Unit</th><th>Qty</th><th>Rate</th><th>Amount</th><th>Prev Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>E1</td><td>Additional excavation due to unexpected rock layer</td><td>Cum</td><td>2.08</td><td>650</td><td>1352</td><td>0</td></tr><tr><td>E2</td><td>Extra RCC work for additional column</td><td>Cum</td><td>18.25</td><td>7500</td><td>136875</td><td>0</td></tr><tr><td>E3</td><td>Additional waterproofing treatment</td><td>Sq.m</td><td>14.38</td><td>85</td><td>1222.3</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 12: Additional_Test_File_6.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> AC Installation and Maintenance at Govt. Office, Bikaner | 
+          <strong>Contractor:</strong> M/s. Cool Air Solutions Bikaner
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>Additional_Test_File_6.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>AC Installation and Maintenance at Govt. Office, Bikaner</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Cool Air Solutions Bikaner</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>2025-11-10</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>4</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Not found</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>3 (Title, Bill Quantity, Work Order)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <p>No extra items or deviations found in this file. All work appears to be within the original contract scope.</p>
+      </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 13: Additional_Test_File_7.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Plumbing and Sanitary Work at Govt. Hostel, Jodhpur | 
+          <strong>Contractor:</strong> M/s. Pure Water Systems Jodhpur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>Additional_Test_File_7.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Plumbing and Sanitary Work at Govt. Hostel, Jodhpur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Pure Water Systems Jodhpur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>2025-09-18</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>3.75</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Bill Quantity, Extra Items, Work Order)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 3 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item No</th><th>Description</th><th>Unit</th><th>Qty</th><th>Rate</th><th>Amount</th><th>Prev Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>E1</td><td>Additional excavation due to unexpected rock layer</td><td>Cum</td><td>10.38</td><td>650</td><td>6747</td><td>0</td></tr><tr><td>E2</td><td>Extra RCC work for additional column</td><td>Cum</td><td>14.21</td><td>7500</td><td>106575</td><td>0</td></tr><tr><td>E3</td><td>Additional waterproofing treatment</td><td>Sq.m</td><td>9.22</td><td>85</td><td>783.7</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 14: FirstFINALnoExtra.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Electric Repair  work at Government Building, Saheli Nagar, Udaipur | 
+          <strong>Contractor:</strong> M/s. Shivshakti Traders Udaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>FirstFINALnoExtra.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Electric Repair  work at Government Building, Saheli Nagar, Udaipur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Shivshakti Traders Udaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>45719</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Work Order, Bill Quantity, Extra Items)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 2 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>EXTRA ITEM SLIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qty.</td></tr><tr><td>%</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <div class="file-section">
+      <div class="file-header">
+        <h2 class="file-title">File 15: FirstFINALvidExtra.xlsx</h2>
+        <div class="file-info">
+          <strong>Project:</strong> Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur | 
+          <strong>Contractor:</strong> M/s. Shree Krishna Builders Jaipur
+        </div>
+      </div>
+      
+      <!-- Project Details Section -->
+      <div class="section">
+        <h3 class="section-title">📋 Project Overview</h3>
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>File Name</td>
+            <td>FirstFINALvidExtra.xlsx</td>
+          </tr>
+          <tr>
+            <td>Project Name</td>
+            <td>Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur</td>
+          </tr>
+          <tr>
+            <td>Contractor Name</td>
+            <td>M/s. Shree Krishna Builders Jaipur</td>
+          </tr>
+          <tr>
+            <td>Bill Date</td>
+            <td>45915</td>
+          </tr>
+          <tr>
+            <td>Tender Premium</td>
+            <td>0%</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Sheet Structure Section -->
+      <div class="section">
+        <h3 class="section-title">📚 Document Structure</h3>
+        <table>
+          <tr>
+            <th>Sheet Type</th>
+            <th>Sheet Name</th>
+          </tr>
+          <tr>
+            <td>Title Sheet</td>
+            <td>Title</td>
+          </tr>
+          <tr>
+            <td>Bill Quantity Sheet</td>
+            <td>Bill Quantity</td>
+          </tr>
+          <tr>
+            <td>Extra Items Sheet</td>
+            <td>Extra Items</td>
+          </tr>
+          <tr>
+            <td>Total Sheets</td>
+            <td>4 (Title, Work Order, Bill Quantity, Extra Items)</td>
+          </tr>
+        </table>
+      </div>
+      
+      <!-- Deviation Analysis Section -->
+      <div class="section">
+        <h3 class="section-title">📌 Deviation Analysis & Extra Items</h3>
+        <div class="deviation-table">
+            <p><strong>Deviation Summary:</strong> This file contains 8 extra items/deviations from the original contract scope.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>EXTRA ITEM SLIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qty.</td></tr><tr><td>2</td></tr><tr><td>4</td></tr><tr><td>5</td></tr><tr><td>5</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="footer">
+      <p>Bill Excel Analyzer Comprehensive Report - 15 Files Analysis</p>
+      <p>Page 9 of 9</p>
+    </div>
+  </body>
+  </html>
+  

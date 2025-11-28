@@ -1,0 +1,148 @@
+BILL EXCEL ANALYZER - 15 FILES ANALYSIS SUMMARY
+Generated on: 11/26/2025, 1:26:39 PM
+
+EXECUTIVE SUMMARY:
+==================
+• Files processed: 15/15
+• Total bill items: 318
+• Total extra items: 63
+• Unique projects: 10
+• Files with deviations: 12
+
+DETAILED FILE ANALYSIS:
+======================
+
+1. 0511-N-extra.xlsx
+   Project: Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur
+   Contractor: M/s. Shree Krishna Builders Jaipur
+   Bill Date: 45915
+   Tender Premium: 0%
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Bill Items: 10
+   Extra Items: 8
+
+2. 0511Wextra.xlsx
+   Project: Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur
+   Contractor: M/s. Shree Krishna Builders Jaipur
+   Bill Date: 45915
+   Tender Premium: 0%
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Bill Items: 10
+   Extra Items: 8
+
+3. 3rdFinalNoExtra.xlsx
+   Project: Electric Repair  work at Government Building, Saheli Nagar, Udaipur
+   Contractor: M/s. Shivshakti Traders Udaipur
+   Bill Date: 45719
+   Tender Premium: 0%
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Bill Items: 38
+   Extra Items: 1
+
+4. 3rdFinalVidExtra.xlsx
+   Project: Electric Repair  work at Government Building, Saheli Nagar, Udaipur
+   Contractor: M/s. Shivshakti Traders Udaipur
+   Bill Date: 45719
+   Tender Premium: 0%
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Bill Items: 38
+   Extra Items: 8
+
+5. 3rdRunningNoExtra.xlsx
+   Project: Electric Repair and MTC work at Govt. Ambedkar hostel Ambamata, Govardhanvilas, Udaipur
+   Contractor: M/s Seema Electrical Udaipur
+   Bill Date: 45719
+   Tender Premium: 0%
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Bill Items: 38
+   Extra Items: 8
+
+6. 3rdRunningVidExtra.xlsx
+   Project: Electric Repair and MTC work at Govt. Ambedkar hostel Ambamata, Govardhanvilas, Udaipur
+   Contractor: M/s Seema Electrical Udaipur
+   Bill Date: 45719
+   Tender Premium: 0%
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Bill Items: 38
+   Extra Items: 8
+
+7. Additional_Test_File_1.xlsx
+   Project: Road Construction and Maintenance at Govt. Hospital Complex, Tonk
+   Contractor: M/s. Rajesh Constructions Jaipur
+   Bill Date: 2025-10-15
+   Tender Premium: 4.5
+   Sheets: 4 (Title, Bill Quantity, Extra Items, Work Order)
+   Bill Items: 10
+   Extra Items: 3
+
+8. Additional_Test_File_2.xlsx
+   Project: Water Supply Line Installation at Govt. Girls School, Bhilwara
+   Contractor: M/s. Aqua Solutions Udaipur
+   Bill Date: 2025-09-22
+   Tender Premium: 3
+   Sheets: 3 (Title, Bill Quantity, Work Order)
+   Bill Items: 10
+   Extra Items: 0
+
+9. Additional_Test_File_3.xlsx
+   Project: Building Repair and Painting Work at District Court, Kota
+   Contractor: M/s. Prime Painters & Builders Kota
+   Bill Date: 2025-11-05
+   Tender Premium: 5
+   Sheets: 4 (Title, Bill Quantity, Extra Items, Work Order)
+   Bill Items: 10
+   Extra Items: 3
+
+10. Additional_Test_File_4.xlsx
+   Project: Solar Panel Installation at Govt. Degree College, Ajmer
+   Contractor: M/s. Green Energy Solutions Jaipur
+   Bill Date: 2025-08-30
+   Tender Premium: 6
+   Sheets: 3 (Title, Bill Quantity, Work Order)
+   Bill Items: 10
+   Extra Items: 0
+
+11. Additional_Test_File_5.xlsx
+   Project: Fencing and Gate Installation at Govt. Office Complex, Alwar
+   Contractor: M/s. Secure Fencing Works Alwar
+   Bill Date: 2025-10-30
+   Tender Premium: 3.5
+   Sheets: 4 (Title, Bill Quantity, Extra Items, Work Order)
+   Bill Items: 10
+   Extra Items: 3
+
+12. Additional_Test_File_6.xlsx
+   Project: AC Installation and Maintenance at Govt. Office, Bikaner
+   Contractor: M/s. Cool Air Solutions Bikaner
+   Bill Date: 2025-11-10
+   Tender Premium: 4
+   Sheets: 3 (Title, Bill Quantity, Work Order)
+   Bill Items: 10
+   Extra Items: 0
+
+13. Additional_Test_File_7.xlsx
+   Project: Plumbing and Sanitary Work at Govt. Hostel, Jodhpur
+   Contractor: M/s. Pure Water Systems Jodhpur
+   Bill Date: 2025-09-18
+   Tender Premium: 3.75
+   Sheets: 4 (Title, Bill Quantity, Extra Items, Work Order)
+   Bill Items: 10
+   Extra Items: 3
+
+14. FirstFINALnoExtra.xlsx
+   Project: Electric Repair  work at Government Building, Saheli Nagar, Udaipur
+   Contractor: M/s. Shivshakti Traders Udaipur
+   Bill Date: 45719
+   Tender Premium: 0%
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Bill Items: 38
+   Extra Items: 2
+
+15. FirstFINALvidExtra.xlsx
+   Project: Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur
+   Contractor: M/s. Shree Krishna Builders Jaipur
+   Bill Date: 45915
+   Tender Premium: 0%
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Bill Items: 38
+   Extra Items: 8

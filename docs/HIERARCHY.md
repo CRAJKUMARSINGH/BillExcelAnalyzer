@@ -238,5 +238,5 @@ export interface BillItem {
 
 ---
 
-**Last Updated**: 2025-11-25
+**Last Updated**: 2025-11-27
 **Version**: 1.0 (Foundation - Core Hierarchy Detection)

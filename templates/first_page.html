@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CONTRACTOR BILL - {{ project.projectName }}</title>
+    <style>
+        @page { 
+            size: A4 portrait; 
+            margin: 10mm;
+        }
+        @media print {
+            html, body {
+                width: 190mm !important;
+                min-width: 190mm !important;
+                max-width: 190mm !important;
+            }
+            table {
+                width: 190mm !important;
+                min-width: 190mm !important;
+                max-width: 190mm !important;
+            }
+        }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        html {
+            zoom: 1.0 !important;
+            -webkit-text-size-adjust: none !important;
+            -moz-text-size-adjust: none !important;
+            -ms-text-size-adjust: none !important;
+            text-size-adjust: none !important;
+        }
+        body { 
+            font-family: Calibri, sans-serif; 
+            font-size: 8pt; 
+            margin: 0; 
+            line-height: 1.2;
+            width: 190mm !important;
+            max-width: 190mm !important;
+            min-width: 190mm !important;
+            transform: scale(1.0) !important;
+            transform-origin: top left !important;
+            overflow-x: visible !important;
+        }
+        .container { 
+            width: 190mm !important; 
+            max-width: 190mm !important;
+            min-width: 190mm !important;
+            min-height: 277mm; 
+            margin: 0; 
+            padding: 0;
+            transform: scale(1.0) !important;
+        }
+        table { 
+            width: 190mm !important;
+            min-width: 190mm !important;
+            max-width: 190mm !important;
+            border-collapse: collapse; 
+            table-layout: fixed !important; 
+            font-size: 8pt;
+            transform: scale(1.0) !important;
+        }
+        /* FORCE exact column widths - NO SHRINKING POSSIBLE */
+        table th:nth-child(1), table td:nth-child(1) { width: 25mm !important; min-width: 25mm !important; max-width: 25mm !important; }
+        table th:nth-child(2), table td:nth-child(2) { width: 70mm !important; min-width: 70mm !important; max-width: 70mm !important; }
+        table th:nth-child(3), table td:nth-child(3) { width: 15mm !important; min-width: 15mm !important; max-width: 15mm !important; }
+        table th:nth-child(4), table td:nth-child(4) { width: 20mm !important; min-width: 20mm !important; max-width: 20mm !important; }
+        table th:nth-child(5), table td:nth-child(5) { width: 20mm !important; min-width: 20mm !important; max-width: 20mm !important; }
+        table th:nth-child(6), table td:nth-child(6) { width: 25mm !important; min-width: 25mm !important; max-width: 25mm !important; }
+        table th:nth-child(7), table td:nth-child(7) { width: 15mm !important; min-width: 15mm !important; max-width: 15mm !important; }
+        th, td { 
+            border: 1px solid black; 
+            padding: 3px 2px; 
+            text-align: left; 
+            vertical-align: top; 
+            overflow: hidden; 
+            word-wrap: break-word;
+            white-space: normal;
+        }
+        .header { text-align: left; margin-bottom: 8px; }
+        .header h2 { font-size: 11pt; margin-bottom: 4px; }
+        .header p { margin: 1px 0; font-size: 8pt; }
+        .bold { font-weight: bold; }
+        .underline { text-decoration: underline; }
+        .center-align { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>CONTRACTOR BILL</h2>
+            <p><strong>Project:</strong> {{ project.projectName }}</p>
+            <p><strong>Contractor:</strong> {{ project.contractorName }}</p>
+            <p><strong>Date:</strong> {{ project.billDate }}</p>
+        </div>
+        <table>
+            <colgroup>
+                <col style="width: 11mm;">
+                <col style="width: 16mm;">
+                <col style="width: 16mm;">
+                <col style="width: 11mm;">
+                <col style="width: 70mm;">
+                <col style="width: 15mm;">
+                <col style="width: 22mm;">
+                <col style="width: 17mm;">
+                <col style="width: 12mm;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th style="width: 11mm;">Unit</th>
+                    <th style="width: 16mm;">Quantity executed (or supplied) since last certificate</th>
+                    <th style="width: 16mm;">Quantity executed (or supplied) upto date as per MB</th>
+                    <th style="width: 11mm;">S. No.</th>
+                    <th style="width: 70mm;">Item of Work supplies (Grouped under "sub-head" and "sub work" of estimate)</th>
+                    <th style="width: 15mm;">Rate</th>
+                    <th style="width: 22mm;">Upto date Amount</th>
+                    <th style="width: 17mm;">Amount Since previous bill (Total for each sub-head)</th>
+                    <th style="width: 12mm;">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.unit }}</td>
+                        <td>{{ item.previousQty }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.itemNo }}</td>
+                        <td class="{% if item.level == 1 %}bold{% endif %} {% if item.level == 2 %}underline{% endif %}">{{ item.description }}</td>
+                        <td>{{ item.rate }}</td>
+                        <td>{{ item.amount }}</td>
+                        <td>{{ item.amountPrevious }}</td>
+                        <td>{{ item.remark }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="4"></td>
+                    <td>Grand Total Rs.</td>
+                    <td></td>
+                    <td>{{ totals.grandTotal }}</td>
+                    <td>{{ totals.grandTotal }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td>Tender Premium @ {{ totals.premium.percent }}%</td>
+                    <td>{{ totals.premium.percent }}%</td>
+                    <td>{{ totals.premium.amount }}</td>
+                    <td>{{ totals.premium.amount }}</td>
+                    <td></td>
+                </tr>               
+                <tr>
+                    <td colspan="9" style="text-align: left; padding-left: 10px;">
+                        Sum of Extra Items (including Tender Premium): 
+                        {% if totals.extraItemsSum > 0 %}
+                            Rs. {{ totals.extraItemsSum }}
+                        {% else %}
+                            NIL
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td>Payable Amount Rs.</td>
+                    <td></td>
+                    <td>{{ totals.payable }}</td>
+                    <td>{{ totals.payable }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td>Less Amount Paid vide Last Bill Rs.</td>
+                    <td></td>
+                    <td>{{ totals.lastBillAmount }}</td>
+                    <td>{{ totals.lastBillAmount }}</td>
+                    <td></td>
+                </tr>
+                <tr style="background-color: #f0f0f0;">
+                    <td colspan="4"></td>
+                    <td style="font-weight: bold;">Net Payable Amount Rs.</td>
+                    <td></td>
+                    <td style="font-weight: bold;">{{ totals.netPayable }}</td>
+                    <td style="font-weight: bold;">{{ totals.netPayable }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Closure Lines - Two Column Format -->
+        <div style="margin-top: 50px; width: 100%; display: table;">
+            <div style="display: table-row;">
+                <div style="display: table-cell; width: 50%; padding: 10px; vertical-align: top;">
+                    <div style="border-top: 2px solid #000; padding-top: 10px; text-align: center; margin-top: 40px;">
+                        <strong style="font-size: 11pt;">Prepared by</strong><br><br>
+                        <span style="font-size: 9pt;">Assistant Engineer</span><br>
+                        <span style="font-size: 9pt;">PWD, Udaipur</span><br>
+                        <span style="font-size: 9pt;">Date: {{ currentDate }}</span>
+                    </div>
+                </div>
+                <div style="display: table-cell; width: 50%; padding: 10px; vertical-align: top;">
+                    <div style="border-top: 2px solid #000; padding-top: 10px; text-align: center; margin-top: 40px;">
+                        <strong style="font-size: 11pt;">Checked & Approved by</strong><br><br>
+                        <span style="font-size: 9pt;">Executive Engineer</span><br>
+                        <span style="font-size: 9pt;">PWD, Udaipur</span><br>
+                        <span style="font-size: 9pt;">Date: {{ currentDate }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

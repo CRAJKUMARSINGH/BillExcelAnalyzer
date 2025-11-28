@@ -16,10 +16,16 @@ export const validateBillInput = (
 ) => {
   const errors: string[] = [];
 
-  // Strict empty field validation
-  if (!projectName || projectName.trim() === '') errors.push('❌ Project name is required');
-  if (!contractorName || contractorName.trim() === '') errors.push('❌ Contractor name is required');
-  if (!items || items.length === 0) errors.push('❌ At least one item is required');
+  // Strict empty field validation - enhanced to handle whitespace-only strings
+  if (!projectName || projectName.trim() === '') {
+    errors.push('❌ Project name is required');
+  }
+  if (!contractorName || contractorName.trim() === '') {
+    errors.push('❌ Contractor name is required');
+  }
+  if (!items || items.length === 0) {
+    errors.push('❌ At least one item is required');
+  }
 
   if (items) {
     // Check for negative values
@@ -58,8 +64,11 @@ export const generateFileName = (projectName: string, extension: string): string
   const seconds = String(now.getSeconds()).padStart(2, '0');
   
   const timestamp = `${year}${month}${day}_${hours}${minutes}${seconds}`;
-  const safeName = (projectName || 'bill').replace(/[^a-z0-9]/gi, '_').toLowerCase();
-  return `${safeName}_Bill_${timestamp}.${extension}`;
+  // Enhanced filename generation to handle special characters better
+  const safeName = (projectName || 'bill').replace(/[^a-zA-Z0-9_\-\s]/g, '_').trim().replace(/\s+/g, '_');
+  // Ensure we don't have multiple consecutive underscores
+  const cleanName = safeName.replace(/_+/g, '_').replace(/^_|_$/g, '');
+  return `${cleanName || 'bill'}_Bill_${timestamp}.${extension}`;
 };
 
 // Bill Statistics

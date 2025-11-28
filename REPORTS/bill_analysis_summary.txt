@@ -1,0 +1,61 @@
+BILL EXCEL ANALYZER - TEXT REPORT SUMMARY
+Generated on: 11/26/2025, 12:43:40 PM
+
+INPUT FILES ANALYSIS:
+=====================
+
+1. 0511-N-extra.xlsx
+   Project: Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur
+   Contractor: M/s. Shree Krishna Builders Jaipur
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Data rows: 10
+   Headers: Item | Description | Unit | Quantity | Rate | Amount | BSR
+
+2. 0511Wextra.xlsx
+   Project: Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur
+   Contractor: M/s. Shree Krishna Builders Jaipur
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Data rows: 10
+   Headers: Item | Description | Unit | Quantity | Rate | Amount | BSR
+
+3. 3rdFinalNoExtra.xlsx
+   Project: Electric Repair  work at Government Building, Saheli Nagar, Udaipur
+   Contractor: M/s. Shivshakti Traders Udaipur
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Data rows: 10
+   Headers: Item | Description | Unit | Quantity | Rate | Amount | BSR
+
+4. 3rdFinalVidExtra.xlsx
+   Project: Electric Repair  work at Government Building, Saheli Nagar, Udaipur
+   Contractor: M/s. Shivshakti Traders Udaipur
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Data rows: 10
+   Headers: Item | Description | Unit | Quantity | Rate | Amount | BSR
+
+5. 3rdRunningNoExtra.xlsx
+   Project: Electric Repair and MTC work at Govt. Ambedkar hostel Ambamata, Govardhanvilas, Udaipur
+   Contractor: M/s Seema Electrical Udaipur
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Data rows: 10
+   Headers: Item | Description | Unit | Quantity | Rate | Amount | BSR
+
+6. 3rdRunningVidExtra.xlsx
+   Project: Electric Repair and MTC work at Govt. Ambedkar hostel Ambamata, Govardhanvilas, Udaipur
+   Contractor: M/s Seema Electrical Udaipur
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Data rows: 10
+   Headers: Item | Description | Unit | Quantity | Rate | Amount | BSR
+
+7. FirstFINALnoExtra.xlsx
+   Project: Electric Repair  work at Government Building, Saheli Nagar, Udaipur
+   Contractor: M/s. Shivshakti Traders Udaipur
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Data rows: 10
+   Headers: Item | Description | Unit | Quantity | Rate | Amount | BSR
+
+8. FirstFINALvidExtra.xlsx
+   Project: Plumbing Installation and MTC work at Govt. Nehru hostel Mansarovar, Sanganer, Jaipur
+   Contractor: M/s. Shree Krishna Builders Jaipur
+   Sheets: 4 (Title, Work Order, Bill Quantity, Extra Items)
+   Data rows: 10
+   Headers: Item | Description | Unit | Quantity | Rate | Amount | BSR

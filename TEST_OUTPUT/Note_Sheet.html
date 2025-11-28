@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NOTE SHEET - Test Project</title>
+    <style>
+        @page { 
+            size: A4 portrait; 
+            margin: 10mm;
+        }
+        @media print {
+            html, body {
+                width: 190mm !important;
+                min-width: 190mm !important;
+                max-width: 190mm !important;
+            }
+            table {
+                width: 190mm !important;
+                min-width: 190mm !important;
+                max-width: 190mm !important;
+            }
+        }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        html {
+            zoom: 1.0 !important;
+            -webkit-text-size-adjust: none !important;
+            -moz-text-size-adjust: none !important;
+            -ms-text-size-adjust: none !important;
+            text-size-adjust: none !important;
+        }
+        body { 
+            font-family: Calibri, sans-serif; 
+            font-size: 9pt; 
+            margin: 0; 
+            line-height: 1.3;
+            width: 190mm !important;
+            max-width: 190mm !important;
+            min-width: 190mm !important;
+            transform: scale(1.0) !important;
+            transform-origin: top left !important;
+            overflow-x: visible !important;
+        }
+        .container { 
+            width: 190mm !important; 
+            max-width: 190mm !important;
+            min-width: 190mm !important;
+            min-height: 277mm; 
+            margin: 0; 
+            padding: 0;
+            transform: scale(1.0) !important;
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .header h1 { 
+            font-size: 14pt; 
+            margin-bottom: 5px;
+            color: #000;
+        }
+        .header h2 { 
+            font-size: 12pt; 
+            margin-bottom: 3px;
+            color: #333;
+        }
+        .project-info { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 8px; 
+            margin: 10px 0;
+        }
+        .project-info div { 
+            padding: 3px 0; 
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 15px 0; 
+            font-size: 9pt;
+            table-layout: fixed;
+        }
+        th { 
+            background: #f0f0f0; 
+            border: 1px solid #000; 
+            padding: 6px; 
+            text-align: center;
+            font-weight: bold;
+            vertical-align: middle;
+            word-wrap: break-word;
+        }
+        td { 
+            border: 1px solid #000; 
+            padding: 6px; 
+            text-align: left;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .amount { text-align: right; }
+        .total-row { background: #e8f5e9; font-weight: bold; }
+        .deduction-row { background: #fff3e0; font-weight: bold; }
+        .payable-row { background: #c8e6c9; font-weight: bold; }
+        .signature-block {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .signature-item {
+            width: 45%;
+            text-align: center;
+        }
+        .signature-line {
+            border-top: 1px solid #000;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FINAL BILL SCRUTINY SHEET</h1>
+            <h2>First & Final Bill</h2>
+        </div>
+        
+        <div class="project-info">
+            <div><strong>Project:</strong> Test Project</div>
+            <div><strong>Contractor:</strong> Test Contractor</div>
+            <div><strong>Date:</strong> 11/27/2025</div>
+            <div><strong>Tender Premium:</strong> 4%</div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 10%;">S.No.</th>
+                    <th style="width: 60%;">Particulars</th>
+                    <th style="width: 30%;">Amount (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Work Order Amount</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Grand Total (Bill Items)</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Tender Premium @ 4% (Above)</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Extra Items (with Premium)</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="2"><strong>Total Payable Amount</strong></td>
+                    <td class="amount"><strong>₹</strong></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Less: Amount Paid vide Last Bill</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="2"><strong>Net Payable Amount (This Bill)</strong></td>
+                    <td class="amount"><strong>₹</strong></td>
+                </tr>
+                <tr><td colspan="3" style="background-color: #e0e0e0; font-weight: bold; text-align: center;">DEDUCTIONS</td></tr>
+                <tr class="deduction-row">
+                    <td>6</td>
+                    <td>Security Deposit II @ 5%</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr class="deduction-row">
+                    <td>7</td>
+                    <td>Income Tax @ 2%</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr class="deduction-row">
+                    <td>8</td>
+                    <td>GST @ 18%</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr class="deduction-row">
+                    <td>9</td>
+                    <td>Labor Cess @ 1%</td>
+                    <td class="amount">₹</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="2"><strong>Total Deductions</strong></td>
+                    <td class="amount"><strong>₹</strong></td>
+                </tr>
+                <tr class="payable-row">
+                    <td colspan="2"><strong>NET AMOUNT PAYABLE (Cheque Amount)</strong></td>
+                    <td class="amount"><strong>₹</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 30px; padding: 15px; background-color: #ffffcc; border: 1px solid #000;">
+            <strong>Note:</strong> All calculations are as per PWD norms and agreement terms. Security Deposit, Income Tax, GST, and Labor Cess are deducted as per applicable rates.
+        </div>
+        
+        <div class="signature-block">
+            <div class="signature-item">
+                <div class="signature-line"></div>
+                <p><strong>Assistant Engineer</strong></p>
+                <p>Date: _______________</p>
+            </div>
+            <div class="signature-item">
+                <div class="signature-line"></div>
+                <p><strong>Executive Engineer</strong></p>
+                <p>Date: _______________</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

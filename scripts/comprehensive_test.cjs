@@ -11,6 +11,9 @@ const testFilePath = path.join(__dirname, '..', 'client', 'src', 'data', 'test-f
 const testFiles = JSON.parse(fs.readFileSync(testFilePath, 'utf8'));
 const fileList = Object.keys(testFiles);
 
+// Import validation function from the application
+const { validateBillInput, generateFileName } = require('./bill-validator.cjs');
+
 let totalTests = 0;
 let passedTests = 0;
 let failedTests = 0;
@@ -43,9 +46,14 @@ function testValidation() {
   tests.forEach(test => {
     totalTests++;
     try {
-      const hasValidItems = test.data.items.some(i => i.quantity > 0);
-      const isValid = test.data.projectName && test.data.contractorName && hasValidItems && 
-                      test.data.items.every(i => i.quantity >= 0 && i.rate >= 0);
+      // Use the application's validation function
+      const validation = validateBillInput(
+        test.data.projectName, 
+        test.data.contractorName, 
+        test.data.items
+      );
+      
+      const isValid = validation.isValid;
       
       if (isValid === !test.expectFail) {
         console.log(`  ✅ ${test.name}`);
@@ -127,12 +135,10 @@ function testFileNaming() {
     totalTests++;
     try {
       const projectName = "Test_Project";
-      const now = new Date();
-      const timestamp = now.toISOString().slice(0, 19).replace(/:/g, '');
-      const safeName = projectName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-      const filename = `${safeName}_Bill_${timestamp}.xlsx`;
+      const filename = generateFileName(projectName, 'xlsx');
       
-      const hasTimestamp = /\d{8}T\d{6}/.test(filename);
+      // Check if filename has correct format
+      const hasTimestamp = /\d{8}_\d{6}/.test(filename); // YYYYMMDD_HHMMSS format
       const hasExtension = filename.endsWith('.xlsx');
       
       if (hasTimestamp && hasExtension) {
@@ -299,4 +305,5 @@ console.log('✅ 4. Error Handling - WORKING');
 console.log('✅ 5. Timestamp File Naming - WORKING');
 console.log('✅ 6. Batch Export Framework - READY');
 console.log('✅ 7. Bill History/Persistence - READY');
+
 console.log('\n' + '='.repeat(80));
